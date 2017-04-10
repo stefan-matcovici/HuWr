@@ -10,23 +10,65 @@ body {
 	background: hsl(240, 20%, 95%);
 }
 
+input {
+	width: 80%;	
+}
+
+input:focus {
+    background-color: #f2f2f2;
+}
+
 .flex-container {
     display: flex;
-    flex-direction: column;
-    background-color: lightgrey;
-    justify-content: center;
+    flex-flow: column;
+    background-color:  #efeff5;
+    justify-content: space-around;
     align-items: center;
-    height: 40%;
-    width: 40%;
+    height: 50%;
+    width: 35%;
 }
 
 .input-container {
     display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    height: 80%;
+    width: 100%;
+}
+
+#loginButton {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    border: 3px;
+    padding: 5px 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#loginButton:hover {
+    background-color: #33cc33; /* Lighter Green */
+    border: 3px;
+    padding: 5px 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.label-input-container {
+	display: flex;
+    align-content: space-between;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 80%;
 }
 
-.flex-item {
-
+.foreign-login-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
 }
+

@@ -3,21 +3,47 @@
 <head>
 	<title>HuWr Login</title>
 	<link rel="stylesheet" type="text/css" href="login.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap-social.css">
 </head>
 <body>
 
+<div id="status"></div>
 <div class="flex-container">
 	<h2 class="flex-item">Login</h2>
 	<form class = "input-container">
-		<label  for="username">Username</label>
-		<input class="flex-item" type="text" name="username" id="username">
+		<div class="label-input-container">
+			<label  for="username">Username</label>
+			<input class="flex-item" type="text" name="username" id="username">
+		</div>
+		<div class="label-input-container">
+			<label for="password">Password</label>
+			<input class="flex-item" type="password" name="password" id="password">
+		</div>
 
-		<label for="password">Password</label>
-		<input class="flex-item" type="password" name="password" id="password">
 
-		<button class="flex-item" type="submit">Login</button>
+		<button class="flex-item" id="loginButton" type="submit">Login</button>
+
+		<div class="foreign-login-container">
+			<a class="btn btn-block btn-social btn-twitter">
+				<span class="fa fa-twitter">
+				    <img alt="twiterIcon" height="30" width="30" src="https://lh3.ggpht.com/lSLM0xhCA1RZOwaQcjhlwmsvaIQYaP3c5qbDKCgLALhydrgExnaSKZdGa8S3YtRuVA=w300">
+				</span> 
+					Sign in with Twitter
+			</a>
+
+			<a class="btn btn-block btn-social btn-facebook">
+				<span class="fa fa-facebook">
+				    <img alt="twiterIcon" height="27" width="25" src="https://facebookbrand.com/wp-content/themes/fb-branding/prj-fb-branding/assets/images/fb-art.png">
+				</span> 
+				Sign in with Facebook
+			</a>
+		</div>
+		
 	</form>
 </div>
+
+
 
 
 </body>
