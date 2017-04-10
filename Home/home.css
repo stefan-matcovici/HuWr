@@ -1,0 +1,45 @@
+.navbar
+{
+	background-color: #e3f2fd;
+	border-radius: 10px;
+	padding:10px;
+}
+.navbar *
+{
+	display:inline;
+}
+.home
+{
+	letter-spacing: 0.25em;
+	font-size: 1.25em;
+	position:relative;
+	bottom:10px;
+}
+.nav-brand img
+{
+	width:40px;
+	margin-right:10px;
+}
+a
+{
+	text-decoration: none;
+}
+
+.nav-item
+{
+	float:right;
+	background-color: #7db0cf;
+	border-radius: 5px;
+    color: white;
+    padding:13px;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    margin: 0px 10px 0px 10px;
+}
+
+
+li:hover{
+    background-color: white;
+}
+
