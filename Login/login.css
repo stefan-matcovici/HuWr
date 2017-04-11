@@ -15,10 +15,12 @@ input {
 }
 
 input:focus {
+
     background-color: #f2f2f2;
 }
 
 input:hover {
+    box-shadow: 1px 1px 1px #888888;
 	background-color: rgb(250, 250, 250);
 }
 
@@ -51,6 +53,7 @@ input:hover {
     text-align: center;
     display: inline-block;
     font-size: 16px;
+    box-shadow: 1px 1px 1px #888888;
 }
 
 #loginButton:hover {
@@ -60,6 +63,7 @@ input:hover {
     text-align: center;
     display: inline-block;
     font-size: 16px;
+    box-shadow: 2px 2px 2px #888888;
 }
 
 .label-input-container {

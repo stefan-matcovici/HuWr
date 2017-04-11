@@ -6,69 +6,73 @@
     <script type="text/javascript" src="contries_states.js"></script>
 </head>
 <body>
-    <h1 align="center">
-        Add a new migration
-    </h1>
 
-    <form align="center" method="post">
-        <label>
-            Departure location:
-            <select id="country-departure" name="country-departure"></select>
-            <select id="state-departure" name="state-departure"></select>
-        </label>
+    <form class="add-migration-form-container" method="post"> 
+        <h1 class="title">
+            Add a new migration
+        </h1>
+        <div class="migration-div">
+            <div class="location-selection">
+                <label class="label-input-left">
+                    Departure location:
+                    <select id="country-departure" name="country-departure"></select>
+                    <select id="state-departure" name="state-departure"></select>
+                </label>
 
-        <br>
+                <label class="label-input-left">
+                    Destination location:
+                    <select id="country-destination" name="country-destination"></select>
+                    <select id="state-destination" name="state-destination"></select>
+                </label>
+                <script type="text/javascript">
+                    populateCountries("country-departure", "state-departure");
+                    populateCountries("country-destination", "state-destination");
+                </script>
+            </div>
 
-        <label>
-            Destination location:
-            <select id="country-destination" name="country-destination"></select>
-            <select id="state-destination" name="state-destination"></select>
-        </label>
-        <script type="text/javascript">
-            populateCountries("country-departure", "state-departure");
-            populateCountries("country-destination", "state-destination");
-        </script>
+            <div class="location-selection">
+                <label class="label-input-right">
+                Reason: 
+                <select>
+                    <option value="Economics">
+                        Economics
+                    </option>
+                    <option value="War">
+                        War
+                    </option>
+                    <option value="Personal">
+                        Personal
+                    </option>
+                    <option vale="Education">
+                        Education
+                    </option>
+                    <option value="Economics">
+                        Economics
+                    </option>
+                    <option value="Religion">
+                        Religion
+                    </option>
+                    <option value="Other">
+                        Other
+                    </option>
+                </select>
+            </label>
 
-        <br>
+            <label class="label-input-right">
+                Number of adults:
+                <input class="number-input" type="number" name="number-of-adults" value="0" min="0" max="1000">
+            </label>
 
-        <label>
-            Reason:
-            <select>
-                <option value="Economics">
-                    Economics
-                </option>
-                <option value="War">
-                    War
-                </option>
-                <option value="Personal">
-                    Personal
-                </option>
-                <option value="Economics">
-                    Economics
-                </option>
-                <option value="Other">
-                    Other
-                </option>
-            </select>
-        </label>
+            <label class="label-input-right">
+                Number of children:
+                <input class="number-input" type="number" name="number-of-children" value="0" min="0" max="1000">
+            </label>
 
-        <br>
-
-        <label>
-            Number of adults:
-            <input type="number" name="number-of-adults" value="0" min="0" max="1000">
-        </label>
-
-        <br>
-
-        <label>
-            Number of children:
-            <input type="number" name="number-of-children" value="0" min="0" max="1000">
-        </label>
-
-        <br>
-
-        <input type="submit" name="submit" value="submit">
+            </div>
+        </div>
+        <input type="submit" name="submit" value="Add" class="submit">
     </form>
+
+
 </body>
 </html>
