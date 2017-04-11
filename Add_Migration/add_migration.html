@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Migration</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="contries_states.js"></script>
+</head>
+<body>
+    <h1 align="center">
+        Add a new migration
+    </h1>
+
+    <form align="center" method="post">
+        <label>
+            Departure location:
+            <select id="country-departure" name="country-departure"></select>
+            <select id="state-departure" name="state-departure"></select>
+        </label>
+
+        <br>
+
+        <label>
+            Destination location:
+            <select id="country-destination" name="country-destination"></select>
+            <select id="state-destination" name="state-destination"></select>
+        </label>
+        <script type="text/javascript">
+            populateCountries("country-departure", "state-departure");
+            populateCountries("country-destination", "state-destination");
+        </script>
+
+        <br>
+
+        <label>
+            Reason:
+            <select>
+                <option value="Economics">
+                    Economics
+                </option>
+                <option value="War">
+                    War
+                </option>
+                <option value="Personal">
+                    Personal
+                </option>
+                <option value="Economics">
+                    Economics
+                </option>
+                <option value="Other">
+                    Other
+                </option>
+            </select>
+        </label>
+
+        <br>
+
+        <label>
+            Number of adults:
+            <input type="number" name="number-of-adults" value="0" min="0" max="1000">
+        </label>
+
+        <br>
+
+        <label>
+            Number of children:
+            <input type="number" name="number-of-children" value="0" min="0" max="1000">
+        </label>
+
+        <br>
+
+        <input type="submit" name="submit" value="submit">
+    </form>
+</body>
+</html>
