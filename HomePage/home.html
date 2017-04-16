@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-toggleable-sm navbar-light bg-faded rounded mt-3 mx-5 fixed-top">
+  <nav class="navbar navbar-toggleable-sm navbar-light bg-faded rounded mt-3 mx-5 fixed-top">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -28,6 +28,16 @@
       </ul>
     </div>
   </nav>
+
+  <div class="container fill">
+    <div id="demoMap"></div>
+    <script src="OpenLayers.js"></script>
+    <script>
+      map = new OpenLayers.Map("demoMap");
+      map.addLayer(new OpenLayers.Layer.OSM());
+      map.zoomToMaxExtent();
+    </script>
+  </div>
 
   <!-- jQuery first, then Tether, then Bootstrap JS. -->
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
