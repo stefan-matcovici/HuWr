@@ -1,0 +1,19 @@
+.navbar-brand img
+{
+	height:50px;
+	width:50px;
+	margin-right:10px;
+}
+.navbar-brand
+{
+	font-family: 'Quintessential', cursive;
+	font-size:140%;
+}
+.nav-link
+{
+	font-family: 'Fanwood Text', serif;
+	font-size:140%;	
+}
+.navbar {
+	background-color: rgba(238, 238, 238, 0.8);
+}
