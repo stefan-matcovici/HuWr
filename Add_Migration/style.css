@@ -9,8 +9,8 @@ body {
 	align-items: center;
 	justify-content: center;
 	background-color: #595959;
-	width: 100%;
-	height: 100%;
+	width: 99%;
+	height: 98%;
 }
 
 select {
@@ -123,13 +123,22 @@ select {
     .migration-div {
     	flex-flow: column wrap;
     }
-    .add-migration-form-container {
-		overflow: scroll;
-	}
 }
 
-@media screen and (max-height: 500px) {
+@media screen and (max-height: 700px) {
+	h1 {
+		display: none;
+	}
 	.add-migration-form-container {
-		overflow: scroll;
+		flex-flow: row wrap;
+	    -webkit-flex: 1 1 auto;
+	    overflow-y: auto;
+	    min-height: 0px;
+	}
+
+	body {
+	    -webkit-flex: 1 1 auto;
+	    overflow-y: auto;
+	    min-height: 0px;
 	}
 }
