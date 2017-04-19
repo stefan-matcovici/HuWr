@@ -87,3 +87,8 @@ input {
 	height: 20%;
 
 }
+@media screen and (max-width: 881px) {
+	.image-div {
+		display: none;
+	}
+}
