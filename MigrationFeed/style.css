@@ -1,10 +1,14 @@
+body {
+	background-color: rgb(245, 245, 245);
+}
 table {
 	width: 100%;
+	font-size: 18px;
+	font-family: arial;
 }
 
 table, th, td {
-	border: 1px solid black;
-
+	border: 1px lightgray;
 }
 
 .body-container {
@@ -31,14 +35,16 @@ table, th, td {
 
 .flag-image {
 	border: 2px solid black;
+	opacity: 0.8;
 	border-radius: 5px;
 	width: 60px;
 	height: 40px;
 }
 
 .reason-image {
-	width: 50px;
-	height: 38px;
+	width: 48px;
+	height: 42px;
+	opacity: 0.7;
 }
 
 .number-adults-children-div {
@@ -53,4 +59,20 @@ table, th, td {
 
 .number-children-div {
 
+}
+
+.time-elapsed {
+	color: gray;
+}
+
+tr:hover {
+	background-color: rgb(251, 251, 251);
+}
+
+tr:hover .flag-image {
+	opacity: 1.0;
+}
+
+tr:hover .reason-image {
+	opacity: 1.0;
 }
