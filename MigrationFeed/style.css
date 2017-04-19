@@ -2,6 +2,7 @@ body {
 	background-color: rgb(245, 245, 245);
 }
 table {
+
 	width: 100%;
 	font-size: 18px;
 	font-family: arial;
@@ -12,12 +13,14 @@ table, th, td {
 }
 
 .body-container {
+	padding-top: 110px;
 	display: flex;
 	flex-flow: column wrap;
 	align-items: center;
 }
 
 .table-div {
+	padding-top: 25px;
 	width: 100%;
 }
 
