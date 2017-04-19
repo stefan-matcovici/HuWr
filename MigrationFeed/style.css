@@ -1,0 +1,56 @@
+table {
+	width: 100%;
+}
+
+table, th, td {
+	border: 1px solid black;
+
+}
+
+.body-container {
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+}
+
+.table-div {
+	width: 100%;
+}
+
+.to-cell {
+	width: 15%;
+}
+
+.reason-cell {
+	width: 70%;
+}
+
+.from-cell {
+	width: 15%;
+}
+
+.flag-image {
+	border: 2px solid black;
+	border-radius: 5px;
+	width: 60px;
+	height: 40px;
+}
+
+.reason-image {
+	width: 50px;
+	height: 38px;
+}
+
+.number-adults-children-div {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.number-adults-div {
+
+}
+
+.number-children-div {
+
+}

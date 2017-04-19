@@ -125,7 +125,7 @@ select {
     }
 }
 
-@media screen and (max-height: 700px) {
+@media screen and (max-height: 400px) {
 	h1 {
 		display: none;
 	}
