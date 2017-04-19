@@ -1,0 +1,72 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+<title> Join HuWr </title>
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+<script type="text/javascript" src="countries_states.js"></script>
+
+</head>
+
+<body>
+<h1> HuWr </h1>
+
+<p> Create your personal account </p> <br>
+
+<div align="center">
+	<form  id="form-prop" action="" method="" align="center">
+
+	<div class="container" >
+
+	<label class="date" for="name"> <strong> Name </strong> </label> 
+	<input type="text" id="name" placeholder="First" name=""> 
+	<input type="text" id="name" placeholder="Last" name=""> 
+
+	<label class="date" for="username"> <strong> Username </strong> </label> 
+	<input type="text" id="username" placeholder="Enter your Username" name="">
+
+	<label class="date" for="password"> <strong> Password </strong> </label>
+	<input type="password" id="password" placeholder="Enter your Password" name="">
+
+	<label class="date" for="password"> <strong> Password </strong> </label>
+	<input type="password" id="password" placeholder="Confirm your Password" name="">
+
+	<label class="date" for="birth"> <strong> Birthday </strong> </label>
+	<input type="date" id="birth" name="day"> 
+
+	<label class="date" for="email"> <strong> Gender </strong> </label>
+	Female:	
+	<input type="radio" id="email" name="gender">
+	Male:
+	<input type="radio" id="email" name="gender">
+
+     <div class="location-selection">
+                <label class="label-input-left">
+                    Departure location:
+                    <select id="country-location" name="country-location"></select>
+                    <select id="state-location" name="state-location"></select>
+                </label>
+                <script type="text/javascript">
+                    populateCountries("country-location", "state-location");
+                </script>
+     </div>
+
+	<div class="button">
+	<label class="date" for="email"> <strong> Email </strong> </label>
+	<input type="text" id="email" placeholder="Enter your Email" name="">
+
+	      <button type="button" class="cancelbtn">Cancel</button>
+	      <button type="submit" class="signupbtn">SignUp</button>
+
+	</div>
+	</div>
+	</form>
+</div>
+
+
+</body>
+
+</html>
