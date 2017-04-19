@@ -11,62 +11,87 @@
 
 </head>
 
-<body>
-<h1> HuWr </h1>
+	<body>
 
-<p> Create your personal account </p> <br>
+		<div class="introduction">
+			<h3> Create your personal account </h3>
+		</div>
+		<div class="sign-up-div">
+			<div class="image-div">
+				<img src="https://scontent.fotp3-1.fna.fbcdn.net/v/t34.0-12/18051554_448376545510168_53013132_n.png?oh=637b7d253ae3e0357d6c05a746578a7d&oe=58F957EA" width="400px" height="400px">
+			</div>
 
-<div align="center">
-	<form  id="form-prop" action="" method="" align="center">
+			<div class="sign-up-form-div" align="center">
+				<form  id="form-propr" action="" method="" align="center">
 
-	<div class="container" >
+					<div class="container" >
 
-	<label class="date" for="name"> <strong> Name </strong> </label> 
-	<input type="text" id="name" placeholder="First" name=""> 
-	<input type="text" id="name" placeholder="Last" name=""> 
+						<div class="name">
+							<label class="date" for="name"> <strong> Name </strong> </label> 
+							<div class="name-input-div">
+							<input class="name-input" type="text" id="name" placeholder="First" name=""> 
+							<input class="name-input" type="text" id="name" placeholder="Last" name=""> 
+							</div>
+						</div>
 
-	<label class="date" for="username"> <strong> Username </strong> </label> 
-	<input type="text" id="username" placeholder="Enter your Username" name="">
+						<div class="username">
+							<label class="date" for="username"> <strong> Username </strong> </label> 
+							<input type="text" id="username" placeholder="Enter your Username" name="">
+						</div>
 
-	<label class="date" for="password"> <strong> Password </strong> </label>
-	<input type="password" id="password" placeholder="Enter your Password" name="">
+						<div class="password">
+							<label class="date" for="password"> <strong> Password </strong> </label>
+							<input type="password" id="password" placeholder="Enter your Password" name="">
+						</div>
 
-	<label class="date" for="password"> <strong> Password </strong> </label>
-	<input type="password" id="password" placeholder="Confirm your Password" name="">
+						<div class="password_confirm">
+							<label class="date" for="password"> <strong> Confirm Password </strong> </label>
+							<input type="password" id="password" placeholder="Confirm your Password" name="">	
+						</div>
 
-	<label class="date" for="birth"> <strong> Birthday </strong> </label>
-	<input type="date" id="birth" name="day"> 
+						<div class="birth">
+							<label class="date" for="birth"> <strong> Birthday </strong> </label>
+							<input type="date" id="birth" name="day"> 
+						</div>
 
-	<label class="date" for="email"> <strong> Gender </strong> </label>
-	Female:	
-	<input type="radio" id="email" name="gender">
-	Male:
-	<input type="radio" id="email" name="gender">
+						<div class="gender">
+								<label class="date" for="gender"> <strong> Gender </strong> </label>
+								<div class="sub-gender">
+								Female:	
+								<input type="radio" id="gender" name="gender">
+								Male:
+								<input type="radio" id="gender" name="gender">
+								</div>
+						</div>
 
-     <div class="location-selection">
-                <label class="label-input-left">
-                    Departure location:
-                    <select id="country-location" name="country-location"></select>
-                    <select id="state-location" name="state-location"></select>
-                </label>
-                <script type="text/javascript">
-                    populateCountries("country-location", "state-location");
-                </script>
-     </div>
+					     <div class="location-selection">
+					                <label class="label-input-left">
+					                    Departure location:
+					                    <select class="location-input" id="country-location" name="country-location"></select>
+					                    <select class="location-input" id="state-location" name="state-location"></select>
+					                </label>
+					                <script type="text/javascript">
+					                    populateCountries("country-location", "state-location");
+					                </script>
+					     </div>
 
-	<div class="button">
-	<label class="date" for="email"> <strong> Email </strong> </label>
-	<input type="text" id="email" placeholder="Enter your Email" name="">
+						<div class="email">
+							<label class="date" for="email"> <strong> Email </strong> </label>
+							<input type="text" id="email" placeholder="Enter your Email" name="">
+						</div>
 
-	      <button type="button" class="cancelbtn">Cancel</button>
-	      <button type="submit" class="signupbtn">SignUp</button>
+						<div class="button">
+					      <button type="button" class="cancelbtn">Cancel</button>
+					      <button type="submit" class="signupbtn">SignUp</button>
+						</div>
 
-	</div>
-	</div>
-	</form>
-</div>
+					</div>
 
+				</form>
 
-</body>
+			</div>
+		</div>
+
+	</body>
 
 </html>
