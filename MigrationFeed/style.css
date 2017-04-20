@@ -1,5 +1,5 @@
 body {
-	background-color: rgb(245, 245, 245);
+	background: linear-gradient(to right, rgb(200, 200, 200), rgb(250,250,250));
 	font-family: 'Quintessential', cursive;
 }
 table {
