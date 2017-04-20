@@ -2,20 +2,19 @@
 {
 	height:65px;
 	width:65px;
-	margin-right:10px;
 }
 .navbar-brand
 {
 	font-family: 'Quintessential', cursive;
 	font-size:140%;
     filter: grayscale(50%);
+    width:80%;
 }
 
 .navbar-brand-short img
 {
     height:65px;
     width:65px;
-    margin-right:10px;
 }
 
 .navbar-brand-short
@@ -61,13 +60,14 @@ html, body {
 }
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 600px) {
     .navbar-brand {
         display: none;
     }
     
     .navbar-brand-short {
         display: inline-block;
+        width:80%;
     }
     
 }
