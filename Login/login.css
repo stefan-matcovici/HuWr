@@ -2,7 +2,7 @@ html {
 	height: 100%;
 }
 body {
-	background-color: #595959;
+	background-color: lightgray;
 	display: flex;
 	flex-wrap: wrap;
     justify-content: center;
@@ -26,6 +26,7 @@ input:hover {
 }
 
 .flex-container {
+    border-radius: 15px;
     display: flex;
     flex-flow: column;
     border: 2px solid black;
