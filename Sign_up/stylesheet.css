@@ -4,6 +4,7 @@ body {
 	align-items: center;
 }
 
+
 .introduction {
 	flex: 1;
 }
@@ -37,18 +38,21 @@ body {
 }
 
 .container {
-	padding:40px;
+	padding:30px;
 	border: 1px solid black;
-/*	margin-top: 70px;
-    margin-bottom: 60px;
-    margin-right: 400px;
-    margin-left: 400px;*/
 	background-color:rgb(240,240,240);
 	border-radius: 15px;
 	width: 70%;
 }
 
-.label-input-left {
+
+.location-selection {
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+
+/*.label-input-left {
 	display: flex;
 	flex-flow: column wrap;
 	justify-content: space-between;
@@ -56,18 +60,53 @@ body {
 	font: "Palatino Linotype";
 	font-size: 18px;
 	font-weight: bold;
-	height: 20%;
+	height: 30%;
+	padding-bottom: 10px;
+}*/
+
+.location-class {
+	display: flex;
+	padding-bottom: 12%px;
+	padding-bottom: 12%px;
+	padding-left: 42%;
+	font: "Palatino Linotype";
+	font-size: 18px;
+	font-weight: bold;
+	height: 30%;
+}
+.location-input {
+	margin: 5px 0px;
+	padding: 4px 3px;
+	width: 100%;
+}
+
+.gender-div {
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+	padding: 5px;
 }
 
 .name-input-div {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	box-sizing: border-box;
 }
 
 .name-input {
 	flex-basis: 48%;
+}
+
+.sub-gender-div {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	width: 100%;
+	padding-top: 5px;
+}
+
+.gender-class {
+	width: 10%;
 }
 
 input {
@@ -79,16 +118,37 @@ input {
     box-sizing: border-box;
 }
 
-.date{
-	
+input[type="radio"] {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.date {
 	font: "Palatino Linotype";
 	font-size: 18px;
 	font-weight: bold;
 	height: 20%;
 
 }
+
+.signupbtn {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    cursor: pointer;
+    float: right;
+    height: 20%;
+}
+
 @media screen and (max-width: 881px) {
 	.image-div {
 		display: none;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.gender-div {
+		flex-flow: row-wrap;
 	}
 }

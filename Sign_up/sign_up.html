@@ -54,21 +54,26 @@
 							<input type="date" id="birth" name="day"> 
 						</div>
 
-						<div class="gender">
-								<label class="date" for="gender"> <strong> Gender </strong> </label>
-								<div class="sub-gender">
-								Female:	
-								<input type="radio" id="gender" name="gender">
-								Male:
-								<input type="radio" id="gender" name="gender">
-								</div>
-						</div>
+						<div class="gender-div">
+									<label class="date" for="gender"> <strong> Gender </strong> </label>
+										<div class="sub-gender-div">
+											 <label>
+											 	Female:	
+											 </label>
+											 <input class="gender-class" type="radio" id="gender" name="gender">
+
+											 <label>
+												Male:
+											 </label>
+											 <input class="gender-class" type="radio" id="gender" name="gender">
+										</div>
+							</div>
 
 					     <div class="location-selection">
 					                <label class="label-input-left">
-					                    Departure location:
-					                    <select class="location-input" id="country-location" name="country-location"></select>
-					                    <select class="location-input" id="state-location" name="state-location"></select>
+					                	<label class="location-class">	Location:</label>
+						                <select class="location-input" id="country-location" name="country-location"></select>
+						                <select class="location-input" id="state-location" name="state-location"></select>
 					                </label>
 					                <script type="text/javascript">
 					                    populateCountries("country-location", "state-location");
@@ -81,7 +86,6 @@
 						</div>
 
 						<div class="button">
-					      <button type="button" class="cancelbtn">Cancel</button>
 					      <button type="submit" class="signupbtn">SignUp</button>
 						</div>
 
