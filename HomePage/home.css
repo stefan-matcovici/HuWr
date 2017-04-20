@@ -1,7 +1,7 @@
 .navbar-brand img
 {
-	height:50px;
-	width:50px;
+	height:65px;
+	width:65px;
 	margin-right:10px;
 }
 .navbar-brand
@@ -10,6 +10,22 @@
 	font-size:140%;
     filter: grayscale(50%);
 }
+
+.navbar-brand-short img
+{
+    height:65px;
+    width:65px;
+    margin-right:10px;
+}
+
+.navbar-brand-short
+{
+    display: none;
+    font-family: 'Quintessential', cursive;
+    font-size:140%;
+    filter: grayscale(50%);
+}
+
 .nav-link
 {
 	font-family: 'Fanwood Text', serif;
@@ -42,4 +58,16 @@ html, body {
 
 .navbar-brand:hover {
     filter: grayscale(0%);
+}
+
+
+@media screen and (max-width: 700px) {
+    .navbar-brand {
+        display: none;
+    }
+    
+    .navbar-brand-short {
+        display: inline-block;
+    }
+    
 }
