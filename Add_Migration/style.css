@@ -1,144 +1,101 @@
-html {
-	width: 100%;
-	height: 100%;
-}
-
 body {
-	display: flex;
-	flex-flow: column wrap;
-	align-items: center;
-	justify-content: center;
-	background-color: #595959;
-	width: 99%;
-	height: 98%;
+	background: linear-gradient(to right, rgb(140, 140, 140), rgb(230,230,230));
 }
 
 select {
-   	background: transparent;
-   	border: 1px solid gray;
-	box-shadow: 1px 1px 1px #888888;
-   	font-size: 14px;
-   	height: 29px;
-   	padding: 5px; /* If you add too much padding here, the options won't show in IE */
-   	width: 268px;
+	width: 90%;
+	height: 32px;
+	padding: 3px;
+	margin: 3px;
+	font-family: 'Fanwood Text', serif;	
+	font-size: 16px;
 }
 
-select:hover {
-	box-shadow: 2px 2px 2px #888888;
+input[type='number'] {
+	width: 50px;
+	text-align: center;
+}
+
+input[type='checkbox'] {
+	width: 17px;
+	height: 17px;
+	position: relative;
+	top: 4px;
+}
+
+label {
+	width: 100%;
 }
 
 h1 {
-	border: 0px;
-	margin: 0px;
-	height: 10%;
-	color: #262626;
+	font-family: 'Quintessential', cursive;
 }
 
-select {
-	margin: 0.6em;
+.add-migration-div-container {
+	padding-top: 120px;
 }
 
-.number-input {
-   background: transparent;
-   border: 1px solid gray;
-   box-shadow: 1px 1px 1px #888888;
-   font-size: 14px;
-   height: 20px;
-   padding: 5px; /* If you add too much padding here, the options won't show in IE */
-   width: 255px;
-}
-
-.number-input:hover {
-	box-shadow: 2px 2px 2px #888888;
-}
-
-.migration-div {
+.image-form-container {
+	padding: 10px 80px;
 	display: flex;
 	flex-flow: row wrap;
-	align-items: center;
 	justify-content: space-around;
+	font-family: 'Fanwood Text', serif;	
+	font-size: 18px;
 }
 
 .add-migration-form-container {
-	background-color: white;
-	border: 2px solid black;
-	display: flex;
-	flex-flow: column wrap;
-	align-items: center;
-	justify-content: space-around;
-	padding: 50px;
-}
-
-.label-input-left {
-	display: flex;
-	flex-flow: column wrap;
-	justify-content: space-between;
-	align-items: center;
-	font: "Palatino Linotype";
-	font-size: 22px;
-	font-weight: bold;
-	height: 40%;
-}
-
-.label-input-right {
-	display: flex;
-	flex-flow: column wrap;
-	justify-content: space-around;
-	align-items: center;
-	font: "Palatino Linotype";
-	font-size: 22px;
-	font-weight: bold;
-	height: 28%;
-}
-
-.location-selection {
 	flex: 1;
-	flex-basis: 40%;
-	display: flex;
-	flex-flow: column wrap;
-	justify-content: space-around;
-	align-items: center;
-	margin: 1.5em;
+	background-color: rgb(245, 245, 245);
+	padding: 20px 25px;
+	border: 2px solid lightgray;
+	border-radius: 7px;
 }
 
-.submit {
+.add-migration-image-div {
+	flex: 1.75;
 	display: flex;
-	flex-flow: column wrap;
-    background-color: #008CBA; /* Green */
+	justify-content: center;
+	align-items: center;
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 5px 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #888888;
+    background-color: #008CBA;
+    font-family: 'Fanwood Text', serif;	
 }
 
-.submit:hover {
-	background-color: #0099ff;
+#migration-image {
+	width: 500px;
+	height: 250px;
+	filter: grayscale(100%);
+}
+
+.button:hover {
+	background-color: rgb(10, 120, 150);
 	box-shadow: 2px 2px 2px #888888;
 }
 
-@media screen and (max-width: 1000px) {
-    .migration-div {
-    	flex-flow: column wrap;
-    }
+select:hover {
+	box-shadow: 1px 1px 1px #888888;
 }
 
-@media screen and (max-height: 400px) {
-	h1 {
-		display: none;
-	}
-	.add-migration-form-container {
-		flex-flow: row wrap;
-	    -webkit-flex: 1 1 auto;
-	    overflow-y: auto;
-	    min-height: 0px;
-	}
+input[type='number']:hover {
+	box-shadow: 1px 1px 1px #888888;
+}
 
-	body {
-	    -webkit-flex: 1 1 auto;
-	    overflow-y: auto;
-	    min-height: 0px;
+@media screen and (max-width: 630px) {
+	.add-migration-image-div {
+		display: none;
 	}
 }

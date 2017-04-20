@@ -1,14 +1,30 @@
 .navbar-brand img
 {
-	height:50px;
-	width:50px;
-	margin-right:10px;
+	height:65px;
+	width:65px;
 }
 .navbar-brand
 {
 	font-family: 'Quintessential', cursive;
 	font-size:140%;
+    filter: grayscale(50%);
+    width:80%;
 }
+
+.navbar-brand-short img
+{
+    height:65px;
+    width:65px;
+}
+
+.navbar-brand-short
+{
+    display: none;
+    font-family: 'Quintessential', cursive;
+    font-size:140%;
+    filter: grayscale(50%);
+}
+
 .nav-link
 {
 	font-family: 'Fanwood Text', serif;
@@ -37,4 +53,21 @@ html, body {
     width:100%;
     padding-right:0px;
     padding-left:0px;
+}
+
+.navbar-brand:hover {
+    filter: grayscale(0%);
+}
+
+
+@media screen and (max-width: 600px) {
+    .navbar-brand {
+        display: none;
+    }
+    
+    .navbar-brand-short {
+        display: inline-block;
+        width:80%;
+    }
+    
 }
