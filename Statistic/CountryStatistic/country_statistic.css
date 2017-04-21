@@ -1,0 +1,28 @@
+#state-location
+{
+    display:none;
+}
+
+select {
+	width: 90%;
+	height: 32px;
+	padding: 3px;
+	margin: 3px;
+	font-family: 'Fanwood Text', serif;	
+	font-size: 16px;
+}
+
+path.slice{
+	stroke-width:2px;
+}
+polyline{
+	opacity: .3;
+	stroke: black;
+	stroke-width: 2px;
+	fill: none;
+} 
+svg text.percent{
+	fill:white;
+	text-anchor:middle;
+	font-size:12px;
+}
