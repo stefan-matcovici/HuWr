@@ -43,7 +43,6 @@ body {
 	border: 1px solid black;
 	background-color:rgb(240,240,240);
 	border-radius: 15px;
-	width: 70%;
 }
 
 
@@ -52,19 +51,6 @@ body {
 	align-items: center;
 	width: 100%;
 }
-
-/*.label-input-left {
-	display: flex;
-	flex-flow: column wrap;
-	justify-content: space-between;
-	align-items: center;
-	font: "Palatino Linotype";
-	font-size: 18px;
-	font-weight: bold;
-	height: 30%;
-	padding-bottom: 10px;
-}*/
-
 .location-class {
 	display: flex;
 	padding-bottom: 12%px;
@@ -74,6 +60,11 @@ body {
 	font-size: 18px;
 	font-weight: bold;
 	height: 30%;
+}
+
+.location-class label{
+	display: flex;
+	align-items: center;
 }
 .location-input {
 	margin: 5px 0px;
@@ -110,6 +101,16 @@ body {
 	width: 10%;
 }
 
+.button {
+	width:50%;
+}
+
+.button:hover {
+	background-color: rgb(10, 120, 150);
+	box-shadow: 2px 2px 2px #888888;
+	width:50%;
+}
+
 input {
     width: 100%;
     padding: 5px 10px;
@@ -130,16 +131,6 @@ input[type="radio"] {
 	font-weight: bold;
 	height: 20%;
 
-}
-
-.signupbtn {
-    background-color: #4CAF50;
-    color: white;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    cursor: pointer;
-    float: right;
-    height: 20%;
 }
 
 @media screen and (max-width: 881px) {
