@@ -1,16 +1,31 @@
 Schita Documentatie/Arhitectura:
 
+REMINDERS:
+- verificarea HTML si CSS cu W3Validator
+
 Ce trebuie sa facem?
-1.
+1. Autentificare cu Facebook.
 2.
 3.
 
 Ce avem nevoie pentru a face?
-1.
+1. 
+- setup aplicatie(am facut eu deja - Andi)
+- gasirea unui domeniu(pentru setup)
+- cod pentru aplicatie
+- utilizarea Javascript
+- utilizarea Facebook SDK pentru PHP
+- inlocuirea appID-ului
 2.
 3.
 
 Cum facem?
 1.
+- pentru setup cream aplicatia la https://github.com/facebook/php-graph-sdk
+- setam domeniul pe care l-am cumparat/gasit
+- clonam SDK-ul de pe GitHub(https://github.com/facebook/php-graph-sd)
+- din HTML setam datele la care are acces aplicatia
+- utilizarea prin intermediul JS a metodelor puse la dispozitie de SDK
+- utilizam sesiunile pentru login
 2.
 3.
