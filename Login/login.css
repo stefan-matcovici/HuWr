@@ -100,7 +100,7 @@ input:hover {
 }
 
 .logo {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .btn-facebook {
@@ -119,7 +119,7 @@ input:hover {
         display: none;
     }
     .flex-container {
-        height: 80%;
+        height: 85%;
     }
 }
 

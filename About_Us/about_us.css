@@ -1,0 +1,59 @@
+body {
+	background: linear-gradient(to right top, rgb(140, 140, 140), rgb(230,230,230));
+}
+
+h3 {
+	font-weight: bold;
+}
+
+.personal-information:first-child>h3 {
+	color: rgb(0, 102, 0);	
+}
+
+.personal-information:nth-child(2)>h3 {
+	color: rgb(0, 43, 128);	
+}
+
+.personal-information:nth-child(3)>h3 {
+	color: rgb(153, 0, 0);	
+}
+
+.content-container {
+	margin-top: 120px;
+	font-family: 'Quintessential', cursive;
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+}
+
+.information-container {
+	padding: 15px;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	background-color: lightgray;
+}
+
+.personal-information {
+	flex: 1;
+	background-color: rgb(245, 245, 245);
+	margin: 20px;
+	padding: 10px;
+	border: 1px solid gray;
+	border-radius: 10px;
+	font-family: 'Fanwood Text', serif;
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+}
+
+.personal-image {
+	margin: 5px;
+	height: 300px;
+	width: 300px;
+	filter: grayscale(50%);
+}
+
+.personal-information:hover img {
+	filter: grayscale(0%);
+}
