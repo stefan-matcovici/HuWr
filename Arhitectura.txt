@@ -5,7 +5,7 @@ REMINDERS:
 
 Ce trebuie sa facem?
 1. Autentificare cu Facebook.
-2.
+2. Autentificare ca user in cadrul aplicatiei.
 3.
 
 Ce avem nevoie pentru a face?
@@ -17,6 +17,7 @@ Ce avem nevoie pentru a face?
 - utilizarea Facebook SDK pentru PHP
 - inlocuirea appID-ului
 2.
+- configurare baza de date de tip Oracle/MySQL
 3.
 
 Cum facem?
@@ -26,6 +27,9 @@ Cum facem?
 - clonam SDK-ul de pe GitHub(https://github.com/facebook/php-graph-sd)
 - din HTML setam datele la care are acces aplicatia
 - utilizarea prin intermediul JS a metodelor puse la dispozitie de SDK
-- utilizam sesiunile pentru login
+- utilizarea sesiunilor pentru login
 2.
+- 
+
+- utilizarea sesiunilor pentru login
 3.
