@@ -6,7 +6,7 @@ h3 {
 	font-weight: bold;
 }
 
-.personal-information:first-child>h3 {
+.personal-information:first-child div>h3 {
 	color: rgb(0, 102, 0);	
 }
 
