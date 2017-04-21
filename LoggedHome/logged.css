@@ -8,6 +8,8 @@
 {
 	font-family: 'Quintessential', cursive;
 	font-size:140%;
+	filter: grayscale(50%);
+    width:80%;
 }
 .nav-link
 {
@@ -16,4 +18,7 @@
 }
 .navbar {
 	background-color: rgba(238, 238, 238, 0.8);
+}
+.navbar-brand:hover {
+    filter: grayscale(0%);
 }
