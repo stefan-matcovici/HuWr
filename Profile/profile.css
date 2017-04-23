@@ -1,0 +1,41 @@
+body {
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+}
+
+.profile-outside-container {
+	margin-top: 200px;
+	padding: 50px;
+	display: flex;
+	flex-flow: column wrap;
+	border: 2px solid gray;
+	border-radius: 10px;
+	background-color: rgb(230, 230, 230);
+}
+
+.profile-inside-container {
+	align-self: flex-start;
+	order: 1;
+	height: 90%;
+	margin-top: 10px;
+	background-color: gray;
+}
+
+.profile-image {
+	margin-top: -120px;
+	width: 100px;
+	border-radius: 100%;
+	border: 2px solid gray;
+	box-shadow: 4px 2px 4px 0px rgba(0,0,0,0.7);
+}
+
+.name-div {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+}
+
+.name-div label {
+	margin: 0px 10px;
+}
