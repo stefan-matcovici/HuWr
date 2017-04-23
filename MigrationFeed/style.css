@@ -13,6 +13,14 @@ table, th, td {
 	border: 1px lightgray;
 }
 
+#ntext {
+ color:  rgb(220, 125, 31);
+  }
+
+  #navbarDropdownMenuLink {
+  	color : rgb(220, 125, 31);
+  }
+
 .body-container {
 	padding-top: 110px;
 	display: flex;
