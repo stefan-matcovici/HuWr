@@ -7,12 +7,14 @@
 
     <link rel="stylesheet" type="text/css" href="country_statistic.css">
     <link rel="stylesheet" type="text/css" href="../../LoggedHome/logged.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Fanwood+Text|Quintessential" rel="stylesheet">
     <script type="text/javascript" src="countries_states.js"></script>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="Donut3D.js"></script>
-  </head>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="Statistics.js" ></script>
+</head>
+
 <body>
     <nav class="navbar navbar-toggleable-sm navbar-light bg-faded rounded mt-3 mx-5 fixed-top">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
@@ -50,42 +52,19 @@
                 <div class="location-selection">
                     <label class="label-input-center">
                         <label class="location-class">	Country:</label>
-                        <select class="location-input" id="country-location" name="country-location"></select>
-                        <select class="location-input" id="state-location" name="state-location"></select>
+                    <select class="location-input" id="country-location" name="country-location"></select>
+                    <select class="location-input" id="state-location" name="state-location"></select>
                     </label>
                     <button type="button" class="btn btn-default" onclick="drawStatistics()">Go</button>
                     <script type="text/javascript">
                         populateCountries("country-location", "state-location");
                     </script>
-                    <script>
-                        var salesData=[
-                        {label:"Basic", color:"#3366CC"},
-                        {label:"Plus", color:"#DC3912"},
-                        {label:"Lite", color:"#FF9900"},
-                        {label:"Elite", color:"#109618"},
-                        {label:"Delux", color:"#990099"}
-                        ];
-
-                        function randomData(){
-                            return salesData.map(function(d){ 
-                                return {label:d.label, value:1000*Math.random(), color:d.color};});
-                        }   
-
-                        function drawStatistics()
-                        {
-                        
-                        var svg = d3.select(".card-block").append("svg").attr("width",700).attr("height",300);
-
-                        svg.append("g").attr("id","salesDonut");
-
-                        Donut3D.draw("salesDonut", randomData(), 150, 150, 130, 100, 30, 0.4);
-                        }
-                    </script>
-				</div>
+                </div>
             </div>
         </div>
     </div>
-        <!-- jQuery first, then Tether, then Bootstrap JS. -->
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
@@ -93,4 +72,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
         crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -12,17 +12,27 @@ select {
 	font-size: 16px;
 }
 
-path.slice{
-	stroke-width:2px;
+.legend {
+    font-size: 12px;
+  }
+  rect {
+    stroke-width: 2;
+  }
+
+  .bar {
+  fill: steelblue;
 }
-polyline{
-	opacity: .3;
-	stroke: black;
-	stroke-width: 2px;
-	fill: none;
-} 
-svg text.percent{
-	fill:white;
-	text-anchor:middle;
-	font-size:12px;
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis--x path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
 }

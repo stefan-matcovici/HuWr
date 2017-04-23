@@ -94,8 +94,20 @@ input[type='number']:hover {
 	box-shadow: 1px 1px 1px #888888;
 }
 
-@media screen and (max-width: 630px) {
+@media screen and (max-width: 1000px) {
+	.image-form-container {
+		flex-flow: column wrap;
+	}
+}
+
+@media screen and (max-width: 730px) {
 	.add-migration-image-div {
 		display: none;
 	}
 }
+
+@media screen and (max-width: 430px) {
+	.image-form-container {
+		padding: 0px;
+	}
+} 
