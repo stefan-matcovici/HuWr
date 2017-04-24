@@ -1,0 +1,85 @@
+body {
+	font-family: 'Fanwood Text', serif; 
+}
+
+.profile-outside-container {
+	margin-top: 200px;
+	box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.3);
+	padding: 50px;
+	display: flex;
+	flex-flow: column wrap;
+	border: 2px solid gray;
+	border-radius: 10px;
+	background-color: rgb(230, 230, 230);
+}
+
+.profile-inside-container {
+	order: 1;
+/*	background-color: gray;*/
+}
+
+.profile-image {
+	filter: grayscale(90%);
+	margin-top: -120px;
+	width: 100px;
+	border-radius: 100%;
+	border: 2px solid gray;
+	box-shadow: 4px 6px 10px 1px rgba(0,0,0,0.9);
+}
+
+
+.profile-outside-container:hover .profile-image {
+	filter: grayscale(0%);
+}
+
+.name-div {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+}
+
+.profile-inside-container div label {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	font-size: 22px;
+}
+
+.profile-inside-container div label b {
+	font-size: 17px;
+	color: rgba(100, 100, 100, 0.7);
+}
+
+.name-div label {
+	margin: 0px 25px;
+}
+
+.last-migrations-div {
+	margin-top: 25px;
+	padding: 10px;
+	border-radius: 25px;
+	border: 1px solid gray;
+	box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.3);
+}
+
+@media screen and (max-width: 450px) {
+    .profile-outside-container {
+       	padding-left: 0px;
+       	padding-right: 0px; 
+    }
+}
+
+
+@media screen and (min-width: 1000px) {
+    .profile-outside-container {
+        margin-left: 250px;
+        margin-right: 250px;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .profile-outside-container {
+        margin-left: 500px;
+        margin-right: 500px;
+    }
+}
+
