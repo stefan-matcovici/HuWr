@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Add Migration</title>
-    <meta name="viewport" content="width=device-width; maximum-scale=1; minimum-scale=1;"/>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <title>Add Migration</title>
+    <meta name="viewport" content="width=device-width; maximum-scale=1; minimum-scale=1;" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="../HomePage/home.css">
+    <link rel="stylesheet" type="text/css" href="../LoggedHome/logged.css">
     <link href="https://fonts.googleapis.com/css?family=Fanwood+Text|Quintessential" rel="stylesheet">
     <script type="text/javascript" src="contries_states.js"></script>
 </head>
-<body>
 
+<body>
     <nav class="navbar navbar-toggleable-sm navbar-light bg-faded rounded mt-3 mx-5 fixed-top">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
             aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
         <a class="navbar-brand" href="../LoggedHome/logged.html"><img src="../img/logo.png" />Human Migration Web Reporter</a>
-        <a class="navbar-brand navbar-brand-short" href="../LoggedHome/logged.html"><img src="../img/logo.png"/>HuWr</a>
+        <a class="navbar-brand navbar-brand-short" href="../LoggedHome/logged.html"><img src="../img/logo.png" />HuWr</a>
         <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
             <ul class="nav navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="../Add_Migration/add_migration.html">Add Migration</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Statistic 
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="../Statistic/CountrStatistic/country_statistic.html">Country Statistic</a>
-                        <a class="dropdown-item" href="#">Global Statistic</a>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Statistic/statistic.html">Statistic</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Predictions</a>
+                    <a class="nav-link" href="../Predictions/predictions.html">Predictions</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Logout</a>
@@ -53,7 +49,7 @@
                 <img id="migration-image" src="migration.png" alt="Migration image">
             </div>
 
-            <form class="add-migration-form-container" method="post"> 
+            <form class="add-migration-form-container" method="post">
                 <div class="migration-div">
                     <div class="location-selection">
                         <label align="center" class="label-input-left">
@@ -101,12 +97,12 @@
                         </select>
                     </label>
 
-                    <label class="label-input-right">
+                        <label class="label-input-right">
                         Number of adults:
                         <input class="number-input" type="number" name="number-of-adults" value="0" min="0" max="1000">
                     </label>
 
-                    <label class="label-input-right">
+                        <label class="label-input-right">
                         Number of children:
                         <input class="number-input" type="number" name="number-of-children" value="0" min="0" max="1000">
                     </label>
@@ -125,4 +121,5 @@
     </div>
 
 </body>
+
 </html>

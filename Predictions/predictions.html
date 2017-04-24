@@ -1,133 +1,131 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>
 		HuWr Predictions
 	</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+	 crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="stylesheet" type="text/css" href="../HomePage/home.css">
+
 	<link href="https://fonts.googleapis.com/css?family=Fanwood+Text|Quintessential" rel="stylesheet">
 	<script type="text/javascript" src="countries.js"></script>
 	<script type="text/javascript" src="climate.js"></script>
+	<link rel="stylesheet" type="text/css" href="../LoggedHome/logged.css">
 </head>
-<body>
 
+<body>
 	<nav class="navbar navbar-toggleable-sm navbar-light bg-faded rounded mt-3 mx-5 fixed-top">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-            aria-expanded="false" aria-label="Toggle navigation">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+		 aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-        <a class="navbar-brand" href="#"><img src="../img/logo.png" />Human Migration Web Reporter</a>
-        <a class="navbar-brand navbar-brand-short" href="#"><img src="../img/logo.png"/>HuWr</a>
-        <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
-            <ul class="nav navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Add Migration</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Statistic 
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Country Statistic</a>
-                        <a class="dropdown-item" href="#">Global Statistic</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Predictions</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-  
+		<a class="navbar-brand" href="../LoggedHome/logged.html"><img src="../img/logo.png" />Human Migration Web Reporter</a>
+		<a class="navbar-brand navbar-brand-short" href="../LoggedHome/logged.html"><img src="../img/logo.png" />HuWr</a>
+		<div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
+			<ul class="nav navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="../Add_Migration/add_migration.html">Add Migration</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../Statistic/statistic.html">Statistic</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../Predictions/predictions.html">Predictions</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Logout</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
 
-		<div class="image-form-div">
-			<div class="image-div">
-				<img src="world-1837416.svg" >
+
+	<div class="image-form-div">
+		<div class="image-div">
+			<img src="world-1837416.svg">
+		</div>
+
+
+		<div class="prediction-form-div" align="center">
+			<div class="introduction">
+				<h3> Set your options </h3>
 			</div>
+			<form id="prediction-form-container" method="post" align="center">
+				<div class="container-div">
 
-
-	        <div class="prediction-form-div" align="center">
-	        	<div class="introduction">
-					<h3> Set your options </h3>
-				</div>
-		        <form id="prediction-form-container" method="post" align="center"> 
-		        	<div class="container-div">
-
-						<div class="age">
-							<label class="date" for="age"> Age </label>
-							<input type="number" min="0" max="100" id="age" placeholder="Enter age" name="">
-						</div>
-
-						<div class="year">
-							<label class="date" for="year"> Year </label>
-							<input type="number" id="year" min="2017" max="2027" placeholder="Enter year" name="">
-						</div>
-
-						<div class="radio-div">
-							<label class="date" for="radio"> Gender </label>
-								<div class="sub-radio-div">
-									 <label>
-									 	Female:	
-									 </label>
-									 <input class="radio-class" type="radio" id="radio" name="radio">
-
-									 <label>
-										Male:
-									 </label>
-									 <input class="radio-class" type="radio" id="radio" name="radio">
-								</div>
-						</div>
-
-						<div class="location-selection">
-							<label class="label-input-left">
-							<label class="location-class"> Location</label>
-							<select class="location-input" id="country-location" name="country-location"></select>
-							</label>
-							<script type="text/javascript">
-								populateCountries("country-location");
-							</script>
-						</div>
-
-						<div class="climate-selection">
-							<label class="label-input-left">
-							<label class="climate-class"> Climate </label>
-							<select class="climate-input" id="climate-location" name="climate-location"></select>
-							</label>
-							<script type="text/javascript">
-								populateClimates("climate-location");
-							</script>
-						</div>
-
-						<div class="radio-div">
-								<div class="sub-radio-div">
-									 <label>
-									 	Immigration:	
-									 </label>
-									 <input class="radio-class" type="radio" id="radio" name="radio">
-
-									 <label>
-										Migration:
-									 </label>
-									 <input class="radio-class" type="radio" id="radio" name="radio">
-								</div>
-						</div>
-
-						<div align="center" class="submit-button-div">
-                    		<input class="button" type="submit" name="submit" value="Send" class="submit">
-                		</div>
-
+					<div class="age">
+						<label class="date" for="age"> Age </label>
+						<input type="number" min="0" max="100" id="age" placeholder="Enter age" name="">
 					</div>
 
-		        </form>
+					<div class="year">
+						<label class="date" for="year"> Year </label>
+						<input type="number" id="year" min="2017" max="2027" placeholder="Enter year" name="">
+					</div>
 
-		    </div> 
+					<div class="radio-div">
+						<label class="date" for="radio"> Gender </label>
+						<div class="sub-radio-div">
+							<label>
+									 	Female:	
+									 </label>
+							<input class="radio-class" type="radio" id="radio" name="radio">
 
-	  </div>
+							<label>
+										Male:
+									 </label>
+							<input class="radio-class" type="radio" id="radio" name="radio">
+						</div>
+					</div>
+
+					<div class="location-selection">
+						<label class="label-input-left">
+							<label class="location-class"> Location</label>
+						<select class="location-input" id="country-location" name="country-location"></select>
+						</label>
+						<script type="text/javascript">
+							populateCountries("country-location");
+						</script>
+					</div>
+
+					<div class="climate-selection">
+						<label class="label-input-left">
+							<label class="climate-class"> Climate </label>
+						<select class="climate-input" id="climate-location" name="climate-location"></select>
+						</label>
+						<script type="text/javascript">
+							populateClimates("climate-location");
+						</script>
+					</div>
+
+					<div class="radio-div">
+						<div class="sub-radio-div">
+							<label>
+									 	Immigration:	
+									 </label>
+							<input class="radio-class" type="radio" id="radio" name="radio">
+
+							<label>
+										Migration:
+									 </label>
+							<input class="radio-class" type="radio" id="radio" name="radio">
+						</div>
+					</div>
+
+					<div align="center" class="submit-button-div">
+						<input class="button" type="submit" name="submit" value="Send" class="submit">
+					</div>
+
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
 
 </body>
+
 </html>

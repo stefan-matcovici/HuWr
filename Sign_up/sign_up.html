@@ -4,100 +4,129 @@
 
 <head>
 
-<title> Join HuWr </title>
+	<title> Join HuWr </title>
 
-<link rel="stylesheet" type="text/css" href="stylesheet.css">
-<script type="text/javascript" src="countries_states.js"></script>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<script type="text/javascript" src="countries_states.js"></script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+	 crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="../HomePage/home.css">
 
 </head>
 
-	<body>
+<body>
 
-		<div class="introduction">
-			<h2> Create your personal account </h2>
+	<nav class="navbar navbar-toggleable-sm navbar-light bg-faded rounded mt-3 mx-5 fixed-top">
+		<button class="navbar-toggler navbar-toggler-right mt-3" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+		 aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+		<a class="navbar-brand" href="../HomePage/home.html"><img src="../img/logo.png" />Human Migration Web Reporter</a>
+		<a class="navbar-brand navbar-brand-short" href="../HomePage/home.html"><img src="../img/logo.png" />HuWr</a>
+		<div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="nav-item">
+					<a class="nav-link" href="../Login/login.html">Login</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../Sign_up/sign_up.html">Sign up</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../MigrationFeed/migration-feed.html">Feed</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../About_Us/about_us.html">About us</a>
+				</li>
+			</ul>
 		</div>
-		<div class="sign-up-div">
-			<div class="image-div">
-				<img src="../img/logo.png" width="400px" height="400px">
-			</div>
+	</nav>
 
-			<div class="sign-up-form-div" align="center">
-				<form  id="form-propr" action="" method="" align="center">
+	<div class="introduction">
+		<h2> Create your personal account </h2>
+	</div>
+	<div class="sign-up-div">
+		<div class="image-div">
+			<img src="../img/logo.png" width="400px" height="400px">
+		</div>
 
-					<div class="container" >
+		<div class="sign-up-form-div" align="center">
+			<form id="form-propr" action="" method="" align="center">
 
-						<div class="name">
-							<label class="date" for="name"> <strong> Name </strong> </label> 
-							<div class="name-input-div">
-							<input class="name-input" type="text" id="name" placeholder="First" name=""> 
-							<input class="name-input" type="text" id="name" placeholder="Last" name=""> 
-							</div>
+				<div class="container">
+
+					<div class="name">
+						<label class="date" for="name"> <strong> Name </strong> </label>
+						<div class="name-input-div">
+							<input class="name-input" type="text" id="name" placeholder="First" name="">
+							<input class="name-input" type="text" id="name" placeholder="Last" name="">
 						</div>
-
-						<div class="username">
-							<label class="date" for="username"> <strong> Username </strong> </label> 
-							<input type="text" id="username" placeholder="Enter your Username" name="">
-						</div>
-
-						<div class="password">
-							<label class="date" for="password"> <strong> Password </strong> </label>
-							<input type="password" id="password" placeholder="Enter your Password" name="">
-						</div>
-
-						<div class="password_confirm">
-							<label class="date" for="password"> <strong> Confirm Password </strong> </label>
-							<input type="password" id="password" placeholder="Confirm your Password" name="">	
-						</div>
-
-						<div class="birth">
-							<label class="date" for="birth"> <strong> Birthday </strong> </label>
-							<input type="date" id="birth" name="day"> 
-						</div>
-
-						<div class="gender-div">
-									<label class="date" for="gender"> <strong> Gender </strong> </label>
-										<div class="sub-gender-div">
-											 <label>
-											 	Female:	
-											 </label>
-											 <input class="gender-class" type="radio" id="gender" name="gender">
-
-											 <label>
-												Male:
-											 </label>
-											 <input class="gender-class" type="radio" id="gender" name="gender">
-										</div>
-							</div>
-
-					     <div class="location-selection">
-					                <label class="label-input-left">
-					                	<label class="location-class">	Location:</label>
-						                <select class="location-input" id="country-location" name="country-location"></select>
-						                <select class="location-input" id="state-location" name="state-location"></select>
-					                </label>
-					                <script type="text/javascript">
-					                    populateCountries("country-location", "state-location");
-					                </script>
-					     </div>
-
-						<div class="email">
-							<label class="date" for="email"> <strong> Email </strong> </label>
-							<input type="text" id="email" placeholder="Enter your Email" name="">
-						</div>
-
-						<div align="center" class="button-div">
-                    		<input class="button" type="submit" name="submit" value="Send" class="submit">
-                		</div>
-
-
-
 					</div>
 
-				</form>
+					<div class="username">
+						<label class="date" for="username"> <strong> Username </strong> </label>
+						<input type="text" id="username" placeholder="Enter your Username" name="">
+					</div>
 
-			</div>
+					<div class="password">
+						<label class="date" for="password"> <strong> Password </strong> </label>
+						<input type="password" id="password" placeholder="Enter your Password" name="">
+					</div>
+
+					<div class="password_confirm">
+						<label class="date" for="password"> <strong> Confirm Password </strong> </label>
+						<input type="password" id="password" placeholder="Confirm your Password" name="">
+					</div>
+
+					<div class="birth">
+						<label class="date" for="birth"> <strong> Birthday </strong> </label>
+						<input type="date" id="birth" name="day">
+					</div>
+
+					<div class="gender-div">
+						<label class="date" for="gender"> <strong> Gender </strong> </label>
+						<div class="sub-gender-div">
+							<label>
+											 	Female:	
+											 </label>
+							<input class="gender-class" type="radio" id="gender" name="gender">
+
+							<label>
+												Male:
+											 </label>
+							<input class="gender-class" type="radio" id="gender" name="gender">
+						</div>
+					</div>
+
+					<div class="location-selection">
+						<label class="label-input-left">
+					                	<label class="location-class">	Location:</label>
+						<select class="location-input" id="country-location" name="country-location"></select>
+						<select class="location-input" id="state-location" name="state-location"></select>
+						</label>
+						<script type="text/javascript">
+							populateCountries("country-location", "state-location");
+						</script>
+					</div>
+
+					<div class="email">
+						<label class="date" for="email"> <strong> Email </strong> </label>
+						<input type="text" id="email" placeholder="Enter your Email" name="">
+					</div>
+
+					<div align="center" class="button-div">
+						<input class="button" type="submit" name="submit" value="Send" class="submit">
+					</div>
+
+
+
+				</div>
+
+			</form>
+
 		</div>
+	</div>
 
-	</body>
+</body>
 
 </html>
