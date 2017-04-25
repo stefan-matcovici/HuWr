@@ -5,37 +5,45 @@ body {
 	background: linear-gradient(to right, rgb(200, 200, 200), rgb(250,250,250));
 }
 
-.introduction-sign-up-form {
+.introduction-sign-up-form-div {
+	/*display: flex;
+	flex-flow: column;
+	align-items: center;*/
 	padding-top: 120px;
+	padding-left: 50px;
+	padding-right: 50px;
+	width: 100%;
 }
 
 
 .sign-up-div {
-	flex: 1;
+	width: 100%;
 	display: flex;
-	flex-flow: row wrap;
+	flex-flow: row nowrap;
 	align-items: center;
 	justify-content: space-around;
-	width: 90%;
 }
 
 .image-div {
-	flex: 1.5;
+	flex: 1.75;
 	display: flex;
 	justify-content: center;
 }
 
 .sign-up-form-div {
 	flex: 1;
+	padding:30px;
+	margin: 15px;
+	border: 1px solid black;
+	background-color:rgb(240,240,240);
+	border-radius: 15px;
 }
 
 #form-propr {
-    display: flex;
+/*    display: flex;
     flex-flow: column wrap;
     justify-content: space-around;
-    align-items: center;
-    height: 80%;
-    width: 100%;
+    align-items: center;*/
 }
 
 .container {
