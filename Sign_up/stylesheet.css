@@ -146,9 +146,3 @@ input[type="radio"] {
 		display: none;
 	}
 }
-
-@media screen and (max-width: 600px) {
-	.gender-div {
-		flex-flow: row-wrap;
-	}
-}
