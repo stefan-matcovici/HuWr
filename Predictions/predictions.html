@@ -56,26 +56,26 @@
 			</div>
 			<form id="prediction-form-container" method="post">
 				<div class="container-div">
-
-					<div class="age">
-						<label class="date" for="age"> Age </label>
-						<input type="number" min="0" max="100" id="age" placeholder="Enter age">
+					<div class="year">
+						<label class="date" for="year"> From </label>
+						<input type="date" min="2017" max="2027" placeholder="Enter year">
 					</div>
 
+
 					<div class="year">
-						<label class="date" for="year"> Year </label>
-						<input type="number" id="year" min="2017" max="2027" placeholder="Enter year">
+						<label class="date" for="year"> To </label>
+						<input type="date" min="2017" max="2027" placeholder="Enter year">
 					</div>
 
 					<div class="radio-div">
-						<label class="date"> Gender </label>
+						<label class="date"> Age </label>
 						<div class="sub-radio-div">
 							<label>
-									 	Female:	
+									 	Child:	
 							 </label>
 							<input class="radio-class" type="radio" name="radio">
 							<label>
-										Male:
+										Adult:
 									 </label>
 							<input class="radio-class" type="radio" name="radio">
 						</div>
@@ -97,20 +97,6 @@
 						<script type="text/javascript">
 							populateClimates("climate-location");
 						</script>
-					</div>
-
-					<div class="radio-div">
-						<div class="sub-radio-div">
-							<label>
-									 	Immigration:	
-									 </label>
-							<input class="radio-class" type="radio" name="radio">
-
-							<label>
-										Migration:
-									 </label>
-							<input class="radio-class" type="radio" name="radio">
-						</div>
 					</div>
 
 					<div class="submit-button-div">

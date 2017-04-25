@@ -9,6 +9,10 @@ select {
 	width: 100%;
 }
 
+label {
+	font-weight: bold;
+}
+
 .label-input-left {
 	display: flex;
 	flex-flow: column;
