@@ -61,8 +61,8 @@ body {
 }
 .location-class {
 	display: flex;
-	padding-bottom: 12%px;
-	padding-bottom: 12%px;
+	padding-bottom: 12px;
+	padding-bottom: 12px;
 	padding-left: 42%;
 	font: "Palatino Linotype";
 	font-size: 18px;
@@ -80,6 +80,44 @@ body {
 	width: 100%;
 }
 
+.birth {
+		display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+	padding: 5px;
+}
+
+.name {
+		display: flex;
+	flex-flow: column wrap;
+	align-items: center; 
+}
+
+.username {
+		display: flex;
+	flex-flow: column wrap;
+	align-items: center; 
+}
+
+.password {
+		display: flex;
+	flex-flow: column wrap;
+	align-items: center; 
+}
+
+.password_confirm {
+		display: flex;
+	flex-flow: column wrap;
+	align-items: center; 
+}
+
+
+.email {
+		display: flex;
+	flex-flow: column wrap;
+	align-items: center; 
+}
+
 .gender-div {
 	display: flex;
 	flex-flow: column wrap;
@@ -91,6 +129,7 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	width: 100%;
 }
 
 .name-input {
@@ -149,6 +188,8 @@ input[type="radio"] {
 
 @media screen and (max-width: 600px) {
 	.gender-div {
-		flex-flow: row-wrap;
+				display: flex;
+				align-items: center; 
+				flex-flow: row wrap;
 	}
 }

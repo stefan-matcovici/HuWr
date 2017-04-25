@@ -176,7 +176,7 @@ input[type="radio"] {
 
 @media screen and (max-width: 600px) {
 	.gender-div {
-		flex-flow: row-wrap;
+		flex-flow: row wrap;
 	}
 
 }
