@@ -32,6 +32,7 @@ select {
 }
 
 .image-form-div {
+	text-align: center;
 	display: flex;
 	justify-content: space-around;
 	width: 100%;
@@ -140,7 +141,6 @@ select {
 	font-size: 18px;
 	font-weight: bold;
 	height: 20%;
-
 }
 
 

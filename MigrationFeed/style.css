@@ -19,6 +19,14 @@ tr td:last-child, tr th:last-child {
 	border-bottom-right-radius: 10px;
 }
 
+div {
+	text-align: center;
+}
+
+.migration-image {
+	width: 40px;
+	height: 40px;
+}
 
 .body-container {
 	padding-top: 130px;

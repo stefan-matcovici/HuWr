@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
     <title>Add Migration</title>
     <meta name="viewport" content="width=device-width; maximum-scale=1; minimum-scale=1;" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="../LoggedHome/logged.css">
-    <link href="https://fonts.googleapis.com/css?family=Fanwood+Text|Quintessential" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quintessential" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fanwood+Text" rel="stylesheet">
     <script type="text/javascript" src="contries_states.js"></script>
 </head>
 
@@ -18,8 +20,8 @@
             aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-        <a class="navbar-brand" href="../LoggedHome/logged.html"><img src="../img/logo.png" />Human Migration Web Reporter</a>
-        <a class="navbar-brand navbar-brand-short" href="../LoggedHome/logged.html"><img src="../img/logo.png" />HuWr</a>
+        <a class="navbar-brand" href="../LoggedHome/logged.html"><img  alt="logo" src="../img/logo.png" />Human Migration Web Reporter</a>
+        <a class="navbar-brand navbar-brand-short" href="../LoggedHome/logged.html"><img alt="logo" src="../img/logo.png" />HuWr</a>
         <div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
             <ul class="nav navbar-nav">
                 <li class="nav-item">
@@ -39,7 +41,7 @@
     </nav>
 
     <div class="add-migration-div-container">
-        <h1 align="center">
+        <h1>
             Add migration
         </h1>
 
@@ -52,46 +54,55 @@
             <form class="add-migration-form-container" method="post">
                 <div class="migration-div">
                     <div class="location-selection">
-                        <label align="center" class="label-input-left">
+                        <label class="label-input-left">
                             Departure location:
                             <select id="country-departure" name="country-departure"></select>
-                            <select id="state-departure" name="state-departure"></select>
                         </label>
+                        <label class="label-input-left">
 
-                        <label align="center" class="label-input-left">
+                          <select id="state-departure" name="state-departure"></select>  
+                        </label>
+                        
+
+                        <label class="label-input-left">
                             Destination location:
                             <select id="country-destination" name="country-destination"></select>
+                            
+                        </label>
+
+                        <label class="label-input-left">
                             <select id="state-destination" name="state-destination"></select>
                         </label>
+
                         <script type="text/javascript">
                             populateCountries("country-departure", "state-departure");
                             populateCountries("country-destination", "state-destination");
                         </script>
                     </div>
 
-                    <div align="center" class="location-selection">
+                    <div class="location-selection">
                         <label class="label-input-right">
                         Reason: 
                         <select>
-                            <option value="Economics">
+                            <option>
                                 Economics
                             </option>
-                            <option value="War">
+                            <option>
                                 War
                             </option>
-                            <option value="Personal">
+                            <option>
                                 Personal
                             </option>
-                            <option vale="Education">
+                            <option>
                                 Education
                             </option>
-                            <option value="Economics">
+                            <option>
                                 Economics
                             </option>
-                            <option value="Religion">
+                            <option>
                                 Religion
                             </option>
-                            <option value="Other">
+                            <option>
                                 Other
                             </option>
                         </select>
@@ -109,12 +120,12 @@
 
                     </div>
                 </div>
-                <label align="center">
-                    Share on <color style="color: rgb(59,89,152);">Facebook</color>
+                <label>
+                    Share on Twitter
                     <input type="checkbox" name="facebook-share">
                 </label>
-                <div align="center" class="submit-button-div">
-                    <input class="button" type="submit" name="submit" value="Add" class="submit">
+                <div class="submit-button-div">
+                    <input type="submit" name="submit" value="Add" class="button">
                 </div>
             </form>
         </div>

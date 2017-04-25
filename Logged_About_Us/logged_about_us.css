@@ -28,14 +28,13 @@ h3 {
 }
 
 .information-container {
-	border: 1px solid gray;
 	border-radius: 10px;
 	margin: 15px;
 	padding: 15px;
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
-	background-color: lightgray;
+	text-align: center;
 }
 
 .personal-information {
