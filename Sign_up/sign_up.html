@@ -5,14 +5,15 @@
 <head>
 
 	<title> Join HuWr </title>
-	
+
 	<script type="text/javascript" src="countries_states.js"></script>
-	<meta name="viewport" content="width=device-width; maximum-scale=1; minimum-scale=1;"/>
+	<meta name="viewport" content="width=device-width; maximum-scale=1; minimum-scale=1;" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
 	 crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="../HomePage/home.css">
 	<link rel="stylesheet" type="text/css" href="stylesheet.css">
-	<link href="https://fonts.googleapis.com/css?family=Fanwood+Text|Quintessential" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Fanwood+Text" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Quintessential" rel="stylesheet">
 </head>
 
 <body>
@@ -22,8 +23,8 @@
 		 aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-		<a class="navbar-brand" href="../HomePage/home.html"><img src="../img/logo.png" />Human Migration Web Reporter</a>
-		<a class="navbar-brand navbar-brand-short" href="../HomePage/home.html"><img src="../img/logo.png" />HuWr</a>
+		<a class="navbar-brand" href="../HomePage/home.html"><img src="../img/logo.png" alt="logo" />Human Migration Web Reporter</a>
+		<a class="navbar-brand navbar-brand-short" href="../HomePage/home.html"><img src="../img/logo.png" alt="logo"/>HuWr</a>
 		<div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="nav-item">
@@ -43,65 +44,65 @@
 	</nav>
 
 	<div class="introduction-sign-up-form-div">
-		<h2 align="center"> 
-		Create your personal account
+		<h2>
+			Create your personal account
 		</h2>
-	<div class="sign-up-div">
-		<div class="image-div">
-			<img src="../img/logo.png" width="50%" height="50%">
-		</div>
+		<div class="sign-up-div">
+			<div class="image-div">
+				<img src="../img/logo.png" alt="image">
+			</div>
 
-		<div class="sign-up-form-div">
-			<form id="form-propr" action="" method="">
+			<div class="sign-up-form-div">
+				<form id="form-propr" action="action.php" method="get">
 					<div class="name">
-						<label class="date" for="name"> <strong> Name </strong> </label>
+						<label class="date" for="first-name"> <strong> Name </strong> </label>
 						<div class="name-input-div">
-							<input class="name-input" type="text" id="name" placeholder="First" name="">
-							<input class="name-input" type="text" id="name" placeholder="Last" name="">
+							<input class="name-input" type="text" id="first-name" placeholder="First" name="first-name">
+							<input class="name-input" type="text" id="last-name" placeholder="Last" name="last-name">
 						</div>
 					</div>
 
 					<div class="username">
 						<label class="date" for="username"> <strong> Username </strong> </label>
-						<input type="text" id="username" placeholder="Enter your Username" name="">
+						<input type="text" id="username" placeholder="Enter your Username" name="username">
 					</div>
 
 					<div class="password">
 						<label class="date" for="password"> <strong> Password </strong> </label>
-						<input type="password" id="password" placeholder="Enter your Password" name="">
+						<input type="password" id="password" placeholder="Enter your Password" name="password">
 					</div>
 
 					<div class="password_confirm">
 						<label class="date" for="password"> <strong> Confirm Password </strong> </label>
-						<input type="password" id="password" placeholder="Confirm your Password" name="">
+						<input type="password" id="password-confirm" placeholder="Confirm your Password" name="password_confirm">
 					</div>
 
 					<div class="birth">
-						<label class="date" for="birth"> <strong> Birthday </strong> </label>
+						<label class="date" for="birth"> Birthday </label>
 						<input type="date" id="birth" name="day">
 					</div>
 
 					<div class="gender-div">
-						<label class="date" for="gender"> <strong> Gender </strong> </label>
+						<label class="date" for="gender-female"> <strong> Gender </strong> </label>
 						<div class="sub-gender-div">
 							<label>
 											 	Female:	
 											 </label>
-							<input class="gender-class" type="radio" id="gender" name="gender">
+							<input class="gender-class" type="radio" id="gender-female" name="gender">
 
 							<label>
 												Male:
 											 </label>
-							<input class="gender-class" type="radio" id="gender" name="gender">
+							<input class="gender-class" type="radio" id="gender-male" name="gender">
 						</div>
 					</div>
 
 					<div class="location-selection">
-						<label class="label-input-left">
-					                	<label class="location-class">	Location:</label>
+						<label class="label-input-left date">
+							Location
+						</label>
 						<select class="location-input" id="country-location" name="country-location"></select>
 						<select class="location-input" id="state-location" name="state-location"></select>
-						</label>
 						<script type="text/javascript">
 							populateCountries("country-location", "state-location");
 						</script>
@@ -109,24 +110,24 @@
 
 					<div class="email">
 						<label class="date" for="email"> <strong> Email </strong> </label>
-						<input type="text" id="email" placeholder="Enter your Email" name="">
+						<input type="text" id="email" placeholder="Enter your Email" name="email">
 					</div>
 
-					<div align="center" class="button-div">
-						<input class="button" type="submit" name="submit" value="Send" class="submit">
+					<div class="button-div">
+						<input class="button" type="submit" name="submit" value="Send">
 					</div>
-			</form>
+				</form>
 
+			</div>
 		</div>
 	</div>
-	</div>
-  <!-- jQuery first, then Tether, then Bootstrap JS. -->
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-    crossorigin="anonymous"></script>
+	<!-- jQuery first, then Tether, then Bootstrap JS. -->
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+	 crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+	 crossorigin="anonymous"></script>
 </body>
 
 </html>

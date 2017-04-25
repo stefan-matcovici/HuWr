@@ -9,7 +9,8 @@
     <link rel="stylesheet" type="text/css" href="../LoggedHome/logged.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
         crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Fanwood+Text|Quintessential" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fanwood+Text" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quintessential" rel="stylesheet">
     <script type="text/javascript" src="countries_states.js"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="Statistics.js"></script>
@@ -21,7 +22,7 @@
 		 aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-		<a class="navbar-brand" href="../LoggedHome/logged.html"><img src="../img/logo.png" />Human Migration Web Reporter</a>
+		<a class="navbar-brand" href="../LoggedHome/logged.html"><img src="../img/logo.png" alt="logo" />Human Migration Web Reporter</a>
 		<div class="collapse navbar-collapse justify-content-md-end" id="navbarNav">
 			<ul class="nav navbar-nav">
 				<li class="nav-item">
@@ -44,12 +45,10 @@
         <div class="card text-center rounded col-lg-10  mt-5 mx-auto">
             <div class="card-block">
                 <div class="location-selection">
-                    <label class="label-input-center">
-                        <label class="location-class">	Country:</label>
-                    <select class="location-input" id="country-location" name="country-location"></select>
+                    <label class="label-input-center">Country</label>
+                    <select class="location-input col-md-3" id="country-location" name="country-location"></select>
                     <select class="location-input" id="state-location" name="state-location"></select>
-                    </label>
-                    <button type="button" class="btn btn-default" onclick="drawStatistics()">Go</button>
+                    <button type="button" class="btn btn-default mt-2" onclick="drawStatistics()">Go</button>
                     <script type="text/javascript">
                         populateCountries("country-location", "state-location");
                     </script>
