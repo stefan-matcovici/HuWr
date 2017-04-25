@@ -81,6 +81,10 @@ function drawDonut() {
         .attr('y', legendRectSize - legendSpacing)
         .text(function (d) { return d; });
 
+    card.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
+    card.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
+    card.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
+    card.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
 }
 
 function drawBar() {
@@ -135,11 +139,16 @@ function drawBar() {
     // add the y Axis
     svg.append("g")
         .call(d3.axisLeft(y));
+
+    card.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
+    card.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
+    card.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
+    card.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
 }
 
- var margin = { top: 20, right: 20, bottom: 30, left: 50 },
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+var margin = { top: 20, right: 20, bottom: 30, left: 50 },
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
 function drawLine() {
     d3.select(".jumbotron").append("div").attr("class", "card text-center rounded col-lg-10  mt-5 mx-auto kids-statistic");
@@ -196,6 +205,11 @@ function drawLine() {
     // Add the Y Axis
     svg.append("g")
         .call(d3.axisLeft(y));
+
+    card.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
+    card.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
+    card.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
+    card.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
 }
 
 function drawStatistics() {

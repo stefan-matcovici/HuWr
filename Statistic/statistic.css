@@ -12,12 +12,17 @@ select {
 	font-size: 16px;
 }
 
+
 .legend {
     font-size: 12px;
   }
   rect {
     stroke-width: 2;
   }
+ .card-block 
+ {
+   overflow:auto;
+ }
 
   .bar {
   fill: steelblue;
