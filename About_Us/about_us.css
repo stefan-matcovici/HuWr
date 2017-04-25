@@ -28,14 +28,11 @@ h3 {
 }
 
 .information-container {
-	border: 1px solid gray;
-	border-radius: 10px;
 	margin: 15px;
 	padding: 15px;
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
-	background-color: lightgray;
 }
 
 .personal-information {
@@ -49,6 +46,7 @@ h3 {
 	display: flex;
 	flex-flow: column wrap;
 	align-items: center;
+	box-shadow: 4px 6px 10px 1px gray;
 }
 
 .personal-image {
