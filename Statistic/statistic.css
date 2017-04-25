@@ -12,6 +12,14 @@ select {
 	font-size: 16px;
 }
 
+.location-selection
+{
+  display:flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
 
 .legend {
     font-size: 12px;
