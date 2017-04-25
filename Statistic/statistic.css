@@ -49,3 +49,10 @@ select {
   stroke: steelblue;
   stroke-width: 2px;
 }
+
+.buttons {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}

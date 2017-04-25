@@ -81,10 +81,11 @@ function drawDonut() {
         .attr('y', legendRectSize - legendSpacing)
         .text(function (d) { return d; });
 
-    card.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
-    card.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
-    card.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
-    card.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
+    var div = card.append('div').attr('class','buttons');
+    div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
+    div.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
+    div.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
+    div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
 }
 
 function drawBar() {
@@ -140,10 +141,11 @@ function drawBar() {
     svg.append("g")
         .call(d3.axisLeft(y));
 
-    card.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
-    card.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
-    card.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
-    card.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
+    var div = card.append('div').attr('class','buttons');
+    div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
+    div.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
+    div.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
+    div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
 }
 
 var margin = { top: 20, right: 20, bottom: 30, left: 50 },
@@ -206,10 +208,11 @@ function drawLine() {
     svg.append("g")
         .call(d3.axisLeft(y));
 
-    card.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
-    card.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
-    card.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
-    card.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
+    var div = card.append('div').attr('class','buttons');
+    div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
+    div.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
+    div.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
+    div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
 }
 
 function drawStatistics() {
