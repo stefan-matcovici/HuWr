@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>12</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>264</x>
+      <y>132</y>
+      <w>1500</w>
+      <h>936</h>
+    </coordinates>
+    <panel_attributes>HuWr
+-
+ - MVC design using Laravel </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>300</x>
+      <y>192</y>
+      <w>1404</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>Views
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>300</x>
+      <y>456</y>
+      <w>1404</w>
+      <h>336</h>
+    </coordinates>
+    <panel_attributes>Controllers
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>300</x>
+      <y>816</y>
+      <w>1404</w>
+      <h>228</h>
+    </coordinates>
+    <panel_attributes>Models
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>732</x>
+      <y>888</y>
+      <w>216</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>MySQL DB
+--
+Users Table
+Migrations Table</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>552</x>
+      <y>288</y>
+      <w>156</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>User pages
+--
+Login
+Sign Up</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>732</x>
+      <y>264</y>
+      <w>216</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>Migration pages
+--
+Home page (wtih the map)
+Add migration
+Statistics
+Predictions
+Migration Feed
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>384</x>
+      <y>300</y>
+      <w>144</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Other pages
+--
+About us</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1416</x>
+      <y>876</y>
+      <w>240</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>Geonames
+--
+JavaScript openSource library 
+with countries/states(cities)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1488</x>
+      <y>552</y>
+      <w>156</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Twitter OAuth
+--
+twitter API for Twitter
+authentication</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1476</x>
+      <y>660</y>
+      <w>192</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Twitter Search API
+--
+twitter API for searching 
+tweets by hastags</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1260</x>
+      <y>576</y>
+      <w>180</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>Leaflet
+--
+JS Library which uses 
+Open Street Map that 
+provides methods to
+ create graphics over
+ the map</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1536</x>
+      <y>288</y>
+      <w>132</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Bootstrap Library
+--
+CSS Library</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1404</x>
+      <y>288</y>
+      <w>120</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>FontAwesome
+--
+CSS Library</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1224</x>
+      <y>288</y>
+      <w>168</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Google API CSS 
+for Fonts
+--
+CSS library with fonts</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>504</y>
+      <w>1008</w>
+      <h>264</h>
+    </coordinates>
+    <panel_attributes>APIs
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>960</x>
+      <y>552</y>
+      <w>264</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Open Weather Map
+--
+provides different data about
+the weather for a spacific place
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1044</x>
+      <y>228</y>
+      <w>636</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>APIs / Libraries
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>228</y>
+      <w>612</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>Pages
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>960</x>
+      <y>648</y>
+      <w>264</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>Export APIs
+--
+APIs used for exporting data to
+different formats: HTML, XML,
+JSON, CSV, PDF, etc.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>348</x>
+      <y>588</y>
+      <w>180</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Pages Controllers
+--
+the controllers for each 
+page / module</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>516</x>
+      <y>612</y>
+      <w>180</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+Uses</panel_attributes>
+    <additional_attributes>130.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>960</x>
+      <y>300</y>
+      <w>108</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+Uses</panel_attributes>
+    <additional_attributes>70.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>708</x>
+      <y>552</y>
+      <w>192</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>Laravel-Feed
+--
+package which pro-
+vides an easy way to 
+generate rss feeds.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1056</x>
+      <y>288</y>
+      <w>156</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>D3
+--
+JS Library for SVG
+statistics
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>708</x>
+      <y>660</y>
+      <w>192</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Nominatim API
+--
+used for geocoding and
+reverse geocoding</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1224</x>
+      <y>876</y>
+      <w>168</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>Twitter Profile
+--
+used for providing 
+different data for 
+the users</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>984</x>
+      <y>876</y>
+      <w>216</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>Tweets
+--
+Twitter posts that provide 
+information about different
+migrations</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>336</x>
+      <y>852</y>
+      <w>156</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>Users table
+--
+username(PH)
+password
+token
+first_name
+last_name
+location
+email
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>516</x>
+      <y>852</y>
+      <w>192</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>MigrationsTable
+--
+departure_location
+destination_location
+reason
+nr_adults
+nr_children
+username
+date
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
