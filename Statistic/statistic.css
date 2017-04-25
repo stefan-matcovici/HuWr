@@ -24,28 +24,12 @@ select {
 .legend {
     font-size: 12px;
   }
-  rect {
-    stroke-width: 2;
-  }
+
  .card-block 
  {
    overflow:auto;
  }
 
-  .bar {
-  fill: steelblue;
-}
-
-.bar:hover {
-  fill: brown;
-}
-
 .axis--x path {
   display: none;
-}
-
-.line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 2px;
 }
