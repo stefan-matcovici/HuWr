@@ -17,21 +17,20 @@ class CreateHumanMigrationsTable extends Migration
 
         $table->increments('id');
 
-        $table->integer('departure_longitude');
-        $table->integer('departure_latitude');
+        $table->string('departure_country');
+        $table->string('departure_city');
 
-        $table->integer('arrival_longitude');
-        $table->integer('arrival_latitude');
+        $table->string('arrival_country');
+        $table->string('arrival_city');
 
         $table->integer('adults')->default(0);
         $table->integer('children')->default(0);
 
-        $table->string('reason');
+        $table->longText('reason');
 
         $table->integer('user_id')->unsigned();
         $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); 
 
-        $table->rememberToken();
         $table->timestamps();
     });
     }
@@ -43,6 +42,6 @@ class CreateHumanMigrationsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('human_migrations');
     }
 }

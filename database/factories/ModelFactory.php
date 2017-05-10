@@ -16,9 +16,26 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        'username' => $faker->name,
         'password' => $password ?: $password = bcrypt('secret'),
+        'first_name' => $faker->firstName(),
+        'last_name' => $faker->lastName(),
+        'birthday'  => $faker->dateTime(),
+        'country' => $faker->country(),
+        'city' => $faker->city(),
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(App\HumanMigration::class, function (Faker\Generator $faker) {
+    return [
+        'departure_longitude' => $faker->longitude(),
+        'departure_latitude' => $faker->latitude(),
+        'arrival_longitude' => $faker->longitude(),
+        'arrival_latitude' => $faker->latitude(),
+        'adults'  => $faker->numberBetween(0,5),
+        'children' => $faker->numberBetween(0,10),
+        'reason' => $faker->realText(200),
+        'user_id' => $faker->numberBetween($min = 1, $max = 100),
     ];
 });
