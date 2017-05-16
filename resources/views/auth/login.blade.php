@@ -8,7 +8,7 @@
 <div class="login-container">
 		<div class="flex-container">
 			<h3 class="flex-item">Login</h3>
-			<form class = "input-container">
+			<form class = "input-container" method="POST" action="{{ route('login') }}">
 				<div class="label-input-container">
 					<label  for="username">Username</label>
 					<input class="flex-item" type="text" name="username" id="username">
