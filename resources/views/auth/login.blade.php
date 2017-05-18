@@ -9,22 +9,15 @@
 		<div class="flex-container">
 			<h3 class="flex-item">Login</h3>
 			<form class = "input-container" method="POST" action="{{ route('login') }}">
-				{{csrf_field()}}
 				<div class="label-input-container">
-					<label  for="email">Username</label>
-					<input class="flex-item" type="email" name="email" id="email">
-
-					@if ($errors->has('email'))
-						<span class="help-block">
-							<strong>{{ $errors->first('email') }}</strong>
-						</span>
-					@endif 
-
+					<label  for="username">Username</label>
+					<input class="flex-item" type="text" name="username" id="username">
 				</div>
 				<div class="label-input-container">
 					<label for="password">Password</label>
 					<input class="flex-item" type="password" name="password" id="password">
 				</div>
+
 
 				<button class="flex-item" id="loginButton" type="submit">Login</button>
 
