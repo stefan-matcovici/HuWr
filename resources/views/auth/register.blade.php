@@ -1,87 +1,139 @@
 @extends('layouts.welcome')
 
 @section('assets')
-	<link rel="stylesheet" type="text/css" href="{{asset('css/register.css')}}">
-	<script src="{{asset('js/country_states.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/register.css')}}">
+    <script src="{{asset('js/countries_states.js')}}"></script>
 @endsection
 
 @section('content')
-<div class="introduction-sign-up-form-div">
-	<h2>
-		Create your personal account
-	</h2>
-	<div class="sign-up-div">
-		<div class="image-div">
-			<img src="../img/logo.png" alt="image">
-		</div>
+    <div class="introduction-sign-up-form-div">
+        <h2>
+            Create your personal account
+        </h2>
+        <div class="sign-up-div">
+            <div class="image-div">
+                <img src="{{ asset('img/logo.png') }}" alt="image">
+            </div>
 
-		<div class="sign-up-form-div">
-			<form id="form-propr" action="action.php" method="get">
-				<div class="name">
-					<label class="date" for="first-name"> <strong> Name </strong> </label>
-					<div class="name-input-div">
-						<input class="name-input" type="text" id="first-name" placeholder="First" name="first-name">
-						<input class="name-input" type="text" id="last-name" placeholder="Last" name="last-name">
-					</div>
-				</div>
+            <div class="sign-up-form-div">
+                <form id="form-propr" method="POST" action="{{ route('register') }}">
+                    {{csrf_field()}}
+                    <div class="name">
+                        <label class="date" for="first-name"> <strong> Name </strong> </label>
+                        <div class="name-input-div">
+                            <input class="name-input" type="text" id="first-name" placeholder="First" name="first-name">
+                            @if ($errors->has('first-name'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('first-name') }}</strong>
+                                    </span>
+                            @endif
+                            <input class="name-input" type="text" id="last-name" placeholder="Last" name="last-name">
+                            @if ($errors->has('last-name'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('last-name') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
 
-				<div class="username">
-					<label class="date" for="username"> <strong> Username </strong> </label>
-					<input type="text" id="username" placeholder="Enter your Username" name="username">
-				</div>
+                    <div class="username">
+                        <label class="date" for="username"> <strong> Username </strong> </label>
+                        <input type="text" id="username" placeholder="Enter your Username" name="username">
+                        @if ($errors->has('username'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                        @endif
+                    </div>
 
-				<div class="password">
-					<label class="date" for="password"> <strong> Password </strong> </label>
-					<input type="password" id="password" placeholder="Enter your Password" name="password">
-				</div>
+                    <div class="password">
+                        <label class="date" for="password"> <strong> Password </strong> </label>
+                        <input type="password" id="password" placeholder="Enter your Password" name="password">
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                        @endif
+                    </div>
 
-				<div class="password_confirm">
-					<label class="date" for="password"> <strong> Confirm Password </strong> </label>
-					<input type="password" id="password-confirm" placeholder="Confirm your Password" name="password_confirm">
-				</div>
+                    <div class="password_confirm">
+                        <label class="date" for="password"> <strong> Confirm Password </strong> </label>
+                        <input type="password" id="password-confirm" placeholder="Confirm your Password"
+                               name="password_confirmation">
+                        @if ($errors->has('password_confirmation'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                        @endif
+                    </div>
 
-				<div class="birth">
-					<label class="date" for="birth"> Birthday </label>
-					<input type="date" id="birth" name="day">
-				</div>
+                    <div class="birth">
+                        <label class="date" for="birth"> Birthday </label>
+                        <input type="date" id="birth" name="birthday">
+                        @if ($errors->has('birthday'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('birthday') }}</strong>
+                                    </span>
+                        @endif
+                    </div>
 
-				<div class="gender-div">
-					<label class="date" for="gender-female"> <strong> Gender </strong> </label>
-					<div class="sub-gender-div">
-						<label>
-											 	Female:	
-											 </label>
-						<input class="gender-class" type="radio" id="gender-female" name="gender">
+                    <div class="gender-div">
+                        <label class="date" for="gender-female"> <strong> Gender </strong> </label>
+                        <div class="sub-gender-div">
+                            <label>
+                                Female:
+                            </label>
+                            <input class="gender-class" type="radio" id="gender-female" name="gender">
+                            @if ($errors->has('gender'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('gender') }}</strong>
+                                    </span>
+                            @endif
 
-						<label>
-												Male:
-											 </label>
-						<input class="gender-class" type="radio" id="gender-male" name="gender">
-					</div>
-				</div>
+                            <label>
+                                Male:
+                            </label>
+                            <input class="gender-class" type="radio" id="gender-male" name="gender">
+                        </div>
+                    </div>
 
-				<div class="location-selection">
-					<label class="label-input-left date">
-							<strong> Location </strong>
-						</label>
-					<select class="location-input" id="country-location" name="country-location"></select>
-					<select class="location-input" id="state-location" name="state-location"></select>
-					<script type="text/javascript">
-						populateCountries("country-location", "state-location");
-					</script>
-				</div>
+                    <div class="location-selection">
+                        <label class="label-input-left date">
+                            <strong> Location </strong>
+                        </label>
+                        <select class="location-input" id="country-location" name="country-location"></select>
+                        @if ($errors->has('country-location'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('country-location') }}</strong>
+                                    </span>
+                        @endif
+                        <select class="location-input" id="state-location" name="state-location"></select>
+                        @if ($errors->has('state-location'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('state-location') }}</strong>
+                                    </span>
+                        @endif
+                        <script type="text/javascript">
+                            populateCountries("country-location", "state-location");
+                        </script>
+                    </div>
 
-				<div class="email">
-					<label class="date" for="email"> <strong> Email </strong> </label>
-					<input type="text" id="email" placeholder="Enter your Email" name="email">
-				</div>
+                    <div class="email">
+                        <label class="date" for="email"> <strong> Email </strong> </label>
+                        <input type="text" id="email" placeholder="Enter your Email" name="email">
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                        @endif
+                    </div>
 
-				<div class="button-div">
-					<input class="button" type="submit" name="submit" value="Send">
-				</div>
-			</form>
+                    <div class="button-div">
+                        <input class="button" type="submit" name="submit" value="Send">
+                    </div>
+                </form>
 
-		</div>
-	</div>
-</div>
+            </div>
+        </div>
+    </div>
 @endsection

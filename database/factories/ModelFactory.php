@@ -29,10 +29,10 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\HumanMigration::class, function (Faker\Generator $faker) {
     return [
-        'departure_longitude' => $faker->longitude(),
-        'departure_latitude' => $faker->latitude(),
-        'arrival_longitude' => $faker->longitude(),
-        'arrival_latitude' => $faker->latitude(),
+        'departure_country' => $faker->country(),
+        'departure_city' => $faker->city(),
+        'arrival_country' => $faker->country(),
+        'arrival_city' => $faker->city(),
         'adults'  => $faker->numberBetween(0,5),
         'children' => $faker->numberBetween(0,10),
         'reason' => $faker->realText(200),
