@@ -26,14 +26,14 @@
                 id: 'mapbox.streets'
             }).addTo(mymap);
 
-            var pointA;
-            var address1 = 'Iasi Romania';
-            $.get('https://www.mapquestapi.com/geocoding/v1/address?key=WyaRTL1asD9OT4aDXlfoxOhs5DFeH6Ya&location='+address1, function(data){
-                pointA = new L.LatLng(data.results[0].locations[0].latLng.lat, data.results[0].locations[0].latLng.lng);
-            });
+            {{--var pointA;--}}
+            {{--var address1 = 'Iasi Romania';--}}
+            {{--$.get('https://www.mapquestapi.com/geocoding/v1/address?key=WyaRTL1asD9OT4aDXlfoxOhs5DFeH6Ya&location='+address1, function(data){--}}
+                {{--pointA = new L.LatLng(data.results[0].locations[0].latLng.lat, data.results[0].locations[0].latLng.lng);--}}
+            {{--});--}}
 
 
-            var migrations = {!! json_encode($migrations->toArray()) !!};
+            {{--var migrations = {!! json_encode($migrations->toArray()) !!};--}}
 
 //            migrations.forEach(function(migration)
 //            {
@@ -84,7 +84,7 @@
 //
 //                var arrow = new L.Arrow(arrowData, arrowOptions);
 //                arrow.addTo(mymap);
-            })
+            //})
 
 
         </script>
