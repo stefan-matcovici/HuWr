@@ -26,38 +26,42 @@
                 id: 'mapbox.streets'
             }).addTo(mymap);
 
+            var pointA;
+            var address1 = 'Iasi Romania';
+            $.get('https://www.mapquestapi.com/geocoding/v1/address?key=WyaRTL1asD9OT4aDXlfoxOhs5DFeH6Ya&location='+address1, function(data){
+                pointA = new L.LatLng(data.results[0].locations[0].latLng.lat, data.results[0].locations[0].latLng.lng);
+            });
+
+
             var migrations = {!! json_encode($migrations->toArray()) !!};
 
-            migrations.forEach(function(migration)
-            {
-                var polylinePoints=[];
-                console.log(migration);
-                var pointA;
-                var address1 = migration.departure_city;
-                $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+address1, function(data){
-                    pointA = new L.LatLng(data[0].lat, data[0].lon);
-                    polylinePoints.push(pointA);
-                });
-
-                var pointB;
-                var address2 = migration.arrival_city;
-                $.get(location.protocol + '//nominatim.openstreetmap.org/search?format=json&q='+address2, function(data){
-                    pointB = new L.LatLng(data[0].lat, data[0].lon);
-                    polylinePoints.push(pointB);
-                });
-
-                console.log(polylinePoints);
-
-                var polylineOptions = {
-                    color: 'blue',
-                    weight: 6,
-                    opacity: 0.9
-                };
-
-                var polyline = new L.Polyline(polylinePoints, polylineOptions);
-
-                mymap.addLayer(polyline);
-
+//            migrations.forEach(function(migration)
+//            {
+//                var polylinePoints=[];
+//                //console.log(migration);
+//                var address1 = migration.departure_city;
+//                $.get('https://www.mapquestapi.com/geocoding/v1/address?key=WyaRTL1asD9OT4aDXlfoxOhs5DFeH6Ya&location='+address1, function(data){
+//                    pointA = new L.LatLng(data.results[0].locations[0].latLng.lat, data.results[0].locations[0].latLng.lng);
+//                });
+//
+//                var pointB;
+//                var address2 = migration.arrival_city;
+//                $.get('https://www.mapquestapi.com/geocoding/v1/address?key=WyaRTL1asD9OT4aDXlfoxOhs5DFeH6Ya&location='+address2, function(data){
+//                    pointB = new L.LatLng(data.results[0].locations[0].latLng.lat, data.results[0].locations[0].latLng.lng);
+//                });
+//
+//                console.log(pointA);
+//
+//                var polylineOptions = {
+//                    color: 'blue',
+//                    weight: 6,
+//                    opacity: 0.9
+//                };
+//
+//                var polyline = new L.Polyline(polylinePoints, polylineOptions);
+//
+//                mymap.addLayer(polyline);
+//
 //                var arrowOptions = {
 //                    distanceUnit: 'km',
 //                    isWindDegree: true,

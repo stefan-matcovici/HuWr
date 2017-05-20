@@ -10,7 +10,7 @@ class WelcomeController extends Controller
     public function index()
     {
         $migrations = Migration::all();
-        return view('welcome.welcome',['migrations' => $migrations]);
+        return view('welcome.welcome',['migrations' => $migrations->nth(100)]);
     }
 
     public function feed()
