@@ -21,9 +21,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'first_name' => $faker->firstName(),
         'last_name' => $faker->lastName(),
         'birthday'  => $faker->dateTime(),
-        'country' => $faker->country(),
-        'city' => $faker->city(),
-        'remember_token' => str_random(10),
+        'gender' => $faker->randomDigit>6?'male':'female'
     ];
 });
 

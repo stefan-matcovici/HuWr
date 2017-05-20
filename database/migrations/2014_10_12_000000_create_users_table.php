@@ -21,9 +21,9 @@ class CreateUsersTable extends Migration
 
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('gender');
+
             $table->date('birthday');
-            $table->string('country');
-            $table->string('city');
 
             $table->rememberToken();
             $table->timestamps();

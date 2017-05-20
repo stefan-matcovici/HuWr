@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\HumanMigration as Migration;
 
 class WelcomeController extends Controller
 {
     public function index()
     {
-        return view('welcome.welcome');
+        $migrations = Migration::all();
+        return view('welcome.welcome',['migrations' => $migrations]);
     }
 
     public function feed()

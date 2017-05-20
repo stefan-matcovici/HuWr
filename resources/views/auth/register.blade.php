@@ -83,8 +83,8 @@
                             <label>
                                 Female:
                             </label>
-                            <input class="gender-class" type="radio" id="gender-female" name="gender">
-                            @if ($errors->has('gender'))
+                            <input class="gender-class" type="radio" id="gender-female" name="female">
+                            @if ($errors->has('female'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('gender') }}</strong>
                                     </span>
@@ -93,29 +93,13 @@
                             <label>
                                 Male:
                             </label>
-                            <input class="gender-class" type="radio" id="gender-male" name="gender">
+                            <input class="gender-class" type="radio" id="gender-male" name="male">
+                            @if ($errors->has('male'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('gender') }}</strong>
+                                    </span>
+                            @endif
                         </div>
-                    </div>
-
-                    <div class="location-selection">
-                        <label class="label-input-left date">
-                            <strong> Location </strong>
-                        </label>
-                        <select class="location-input" id="country-location" name="country-location"></select>
-                        @if ($errors->has('country-location'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('country-location') }}</strong>
-                                    </span>
-                        @endif
-                        <select class="location-input" id="state-location" name="state-location"></select>
-                        @if ($errors->has('state-location'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('state-location') }}</strong>
-                                    </span>
-                        @endif
-                        <script type="text/javascript">
-                            populateCountries("country-location", "state-location");
-                        </script>
                     </div>
 
                     <div class="email">
