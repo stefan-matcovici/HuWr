@@ -15,24 +15,30 @@ class CreateHumanMigrationsTable extends Migration
     {
         Schema::create('human_migrations', function (Blueprint $table) {
 
-        $table->increments('id');
+            $table->increments('id');
 
-        $table->string('departure_country');
-        $table->string('departure_city');
+            $table->string('departure_country');
+            $table->string('departure_city');
 
-        $table->string('arrival_country');
-        $table->string('arrival_city');
+            $table->string('arrival_country');
+            $table->string('arrival_city');
 
-        $table->integer('adults')->default(0);
-        $table->integer('children')->default(0);
+            $table->integer('departure_latitude');
+            $table->integer('departure_longitude');
 
-        $table->longText('reason');
+            $table->integer('arrival_latitude');
+            $table->integer('arrival_longitude');
 
-        $table->integer('user_id')->unsigned();
-        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); 
+            $table->integer('adults')->default(0);
+            $table->integer('children')->default(0);
 
-        $table->timestamps();
-    });
+            $table->longText('reason');
+
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->timestamps();
+        });
     }
 
     /**

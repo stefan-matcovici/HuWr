@@ -21,3 +21,4 @@ Route::group(['prefix' => '/'], function () {
 Route::group(['prefix' => '/home'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 });
+

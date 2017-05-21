@@ -15,7 +15,7 @@ class HumanMigration extends Model
      * @var array
      */
     protected $fillable = [
-        'departure_longitude', 'departure_latitude', 'arrival_longitude','arrival_latitude','adults','children','reason'
+        'departure_city','departure_country','departure_longitude', 'departure_latitude', 'arrival_city','arrival_country','arrival_longitude','arrival_latitude','adults','children','reason'
     ];
 
     public function user()

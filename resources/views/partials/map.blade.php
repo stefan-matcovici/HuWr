@@ -26,65 +26,51 @@
                 id: 'mapbox.streets'
             }).addTo(mymap);
 
-            {{--var pointA;--}}
-            {{--var address1 = 'Iasi Romania';--}}
-            {{--$.get('https://www.mapquestapi.com/geocoding/v1/address?key=WyaRTL1asD9OT4aDXlfoxOhs5DFeH6Ya&location='+address1, function(data){--}}
-                {{--pointA = new L.LatLng(data.results[0].locations[0].latLng.lat, data.results[0].locations[0].latLng.lng);--}}
-            {{--});--}}
+            var migrations = {!! json_encode($migrations->toArray()) !!};
 
+            migrations.forEach(function(migration)
+            {
+                console.log(migration);
+                pointA = new L.LatLng(migration.departure_latitude, migration.departure_longitude);
+                pointB = new L.LatLng(migration.arrival_latitude, migration.arrival_longitude);
 
-            {{--var migrations = {!! json_encode($migrations->toArray()) !!};--}}
+                console.log(pointA);
 
-//            migrations.forEach(function(migration)
-//            {
-//                var polylinePoints=[];
-//                //console.log(migration);
-//                var address1 = migration.departure_city;
-//                $.get('https://www.mapquestapi.com/geocoding/v1/address?key=WyaRTL1asD9OT4aDXlfoxOhs5DFeH6Ya&location='+address1, function(data){
-//                    pointA = new L.LatLng(data.results[0].locations[0].latLng.lat, data.results[0].locations[0].latLng.lng);
-//                });
-//
-//                var pointB;
-//                var address2 = migration.arrival_city;
-//                $.get('https://www.mapquestapi.com/geocoding/v1/address?key=WyaRTL1asD9OT4aDXlfoxOhs5DFeH6Ya&location='+address2, function(data){
-//                    pointB = new L.LatLng(data.results[0].locations[0].latLng.lat, data.results[0].locations[0].latLng.lng);
-//                });
-//
-//                console.log(pointA);
-//
-//                var polylineOptions = {
-//                    color: 'blue',
-//                    weight: 6,
-//                    opacity: 0.9
-//                };
-//
-//                var polyline = new L.Polyline(polylinePoints, polylineOptions);
-//
-//                mymap.addLayer(polyline);
-//
-//                var arrowOptions = {
-//                    distanceUnit: 'km',
-//                    isWindDegree: true,
-//                    stretchFactor: 1,
-//                    popupContent: function (data) {
-//                        return '<strong>' + data.title + '</strong>';
-//                    },
-//                    arrowheadLength: 0.8,
-//                    color: '#155799',
-//                    opacity: 0.8
-//                };
-//
-//                var arrowData = {
-//
-//                    latlng: L.latLng(46.95, 7.4),
-//                    degree: 77,
-//                    distance: 10,
-//                    title: 'Demo'
-//                };
-//
-//                var arrow = new L.Arrow(arrowData, arrowOptions);
-//                arrow.addTo(mymap);
-            //})
+                polylinePoints = [pointA,pointB];
+
+                var polylineOptions = {
+                    color: 'blue',
+                    weight: 1,
+                    opacity: 0.3
+                };
+
+                var polyline = new L.Polyline(polylinePoints, polylineOptions);
+
+                mymap.addLayer(polyline);
+
+                var arrowOptions = {
+                    distanceUnit: 'km',
+                    isWindDegree: true,
+                    stretchFactor: 1,
+                    popupContent: function (data) {
+                        return '<strong>' + data.title + '</strong>';
+                    },
+                    arrowheadLength: 0.8,
+                    color: '#155799',
+                    opacity: 0.8
+                };
+
+                var arrowData = {
+
+                    latlng: L.latLng(46.95, 7.4),
+                    degree: 77,
+                    distance: 10,
+                    title: 'Demo'
+                };
+
+                var arrow = new L.Arrow(arrowData, arrowOptions);
+                arrow.addTo(mymap);
+           })
 
 
         </script>
