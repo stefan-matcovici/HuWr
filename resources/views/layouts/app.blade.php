@@ -31,6 +31,9 @@
                     <a class="nav-link" href="{{route('add')}}">Add Migration</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{route('profile')}}">Profile</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{route('statistics')}}">Statistics</a>
                 </li>
                 <li class="nav-item">

@@ -42,4 +42,9 @@ class HomeController extends Controller
     {
         return view('app.predictions');
     }
+
+    public function profile()
+    {
+        return view('app.profile');
+    }
 }

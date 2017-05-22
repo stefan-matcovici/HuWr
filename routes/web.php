@@ -24,5 +24,6 @@ Route::group(['prefix' => '/home'], function () {
     Route::get('/add', ['as' => 'add', 'uses' => 'HomeController@add']);
     Route::get('/statistics', ['as' => 'statistics', 'uses' => 'HomeController@statistics']);
     Route::get('/predictions', ['as' => 'predictions', 'uses' => 'HomeController@predictions']);
+    Route::get('/profile', ['as' => 'profile', 'uses' => 'HomeController@profile']);
 });
 
