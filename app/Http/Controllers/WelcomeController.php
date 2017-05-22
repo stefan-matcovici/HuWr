@@ -13,6 +13,14 @@ class WelcomeController extends Controller
         return view('welcome.welcome',['migrations' => $migrations]);
     }
 
+    public function country()
+    {
+//        $result = app('geocoder')->reverse(43.882587,-103.454067)->get();
+//        dd($result);
+        $migrations = Migration::all();
+        return view('welcome.welcome',['migrations' => $migrations]);
+    }
+
     public function feed()
     {
         return view('welcome.feed');

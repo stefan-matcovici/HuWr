@@ -1,0 +1,58 @@
+#state-location
+{
+    display:none;
+}
+
+select {
+	width: 90%;
+	height: 32px;
+	padding: 3px;
+	margin: 3px;
+	font-family: 'Fanwood Text', serif;	
+	font-size: 16px;
+}
+
+.location-selection
+{
+  display:flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+.legend {
+    font-size: 12px;
+  }
+  rect {
+    stroke-width: 2;
+  }
+ .card-block 
+ {
+   overflow:auto;
+ }
+
+  .bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis--x path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}

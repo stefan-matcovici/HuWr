@@ -15,8 +15,15 @@
                 src="https://code.jquery.com/jquery-3.2.1.min.js"
                 integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
                 crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-polylinedecorator/1.1.0/leaflet.polylineDecorator.js">
+        </script>
         <script>
             var mymap = L.map('demoMap').setView([0,0], 2);
+            {{--mymap.on("click",function(event)--}}
+                {{--{--}}
+                    {{--window.location.replace('{!!  route('country') ,['lat' => 12, 'lng' => 13] !!}');--}}
+                {{--}--}}
+            {{--)--}}
 
             L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
                 maxZoom: 18,
@@ -30,11 +37,8 @@
 
             migrations.forEach(function(migration)
             {
-                console.log(migration);
                 pointA = new L.LatLng(migration.departure_latitude, migration.departure_longitude);
                 pointB = new L.LatLng(migration.arrival_latitude, migration.arrival_longitude);
-
-                console.log(pointA);
 
                 polylinePoints = [pointA,pointB];
 
@@ -45,32 +49,16 @@
                 };
 
                 var polyline = new L.Polyline(polylinePoints, polylineOptions);
-
                 mymap.addLayer(polyline);
 
-                var arrowOptions = {
-                    distanceUnit: 'km',
-                    isWindDegree: true,
-                    stretchFactor: 1,
-                    popupContent: function (data) {
-                        return '<strong>' + data.title + '</strong>';
-                    },
-                    arrowheadLength: 0.8,
-                    color: '#155799',
-                    opacity: 0.8
-                };
-
-                var arrowData = {
-
-                    latlng: L.latLng(46.95, 7.4),
-                    degree: 77,
-                    distance: 10,
-                    title: 'Demo'
-                };
-
-                var arrow = new L.Arrow(arrowData, arrowOptions);
-                arrow.addTo(mymap);
-           })
+                L.polylineDecorator(polyline,{
+                    patterns: [
+                        // define a pattern of 10px-wide dashes, repeated every 20px on the line
+                        {
+                            offset: '100%', repeat:0, symbol: new L.Symbol.arrowHead({pixelSize: 8,pathOptions: {fillOpacity:
+                            0.5,weight: 0.5}})}
+                    ]}).addTo(mymap);
+            })
 
 
         </script>

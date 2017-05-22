@@ -1,0 +1,122 @@
+body {
+    background: linear-gradient(to right, rgb(140, 140, 140), rgb(230,230,230));
+}
+
+h1 {
+    text-align: center;
+}
+
+select {
+    width: 90%;
+    height: 32px;
+    padding: 3px;
+    margin: 3px;
+    font-family: 'Fanwood Text', serif;
+    font-size: 16px;
+}
+
+input[type='number'] {
+    width: 50px;
+    text-align: center;
+}
+
+input[type='checkbox'] {
+    width: 17px;
+    height: 17px;
+    position: relative;
+    top: 4px;
+}
+
+label {
+    text-align: center;
+    width: 100%;
+}
+
+h1 {
+    font-family: 'Quintessential', cursive;
+}
+
+.add-migration-div-container {
+    padding-top: 120px;
+}
+
+.image-form-container {
+    padding: 10px 80px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    font-family: 'Fanwood Text', serif;
+    font-size: 18px;
+}
+
+.add-migration-form-container {
+    flex: 1;
+    background-color: rgb(245, 245, 245);
+    padding: 20px 25px;
+    border: 2px solid lightgray;
+    border-radius: 7px;
+}
+
+.add-migration-image-div {
+    flex: 1.75;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #888888;
+    background-color: #008CBA;
+    font-family: 'Fanwood Text', serif;
+}
+
+#migration-image {
+    width: 500px;
+    height: 250px;
+    filter: grayscale(100%);
+}
+
+.button:hover {
+    background-color: rgb(10, 120, 150);
+    box-shadow: 2px 2px 2px #888888;
+}
+
+.submit-button-div {
+    text-align: center;
+}
+
+select:hover {
+    box-shadow: 1px 1px 1px #888888;
+}
+
+input[type='number']:hover {
+    box-shadow: 1px 1px 1px #888888;
+}
+
+@media screen and (max-width: 1000px) {
+    .image-form-container {
+        flex-flow: column wrap;
+    }
+}
+
+@media screen and (max-width: 730px) {
+    .add-migration-image-div {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .image-form-container {
+        padding: 0px;
+    }
+}
