@@ -2,6 +2,12 @@
 
 @section('assets')
 	<link rel="stylesheet" type="text/css" href="{{asset('css/feed.css')}}">
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="//cloud.github.com/downloads/lafeber/world-flags-sprite/flags32.css"
+    />
+    <script src="{{asset('js/getCountryName.js')}}"></script>
 @endsection
 
 @section('content')
@@ -14,31 +20,48 @@
     <div class="table-div">
         <table>
             <tr>
-                <th class="to-cell"> <div> To</div> </th>
+                <th class="from-cell"> <div> From</div> </th>
                 <th class="reason-cell"> <div>  Reason </div> </th>
-                <th class="from-cell"> <div>  From </div> </th>
+                <th class="to-cell"> <div>  To </div> </th>
             </tr>
 
-            <tr>
-                <td class="to-cell">
-                    <img class="flag-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flag_of_Romania.svg/2000px-Flag_of_Romania.svg.png" alt="Romania flag"><br>
-                    Country: Romania <br> 
-                    State:Iasi  
+            @foreach($migrations as $migration)
+                <tr>
+                <td class="from-cell">
+                    <div class="f32">
+                        <div class="flag {{strtolower($migration->departure_country)}}"></div>
+                    </div>
+                    Country:<script>
+                        document.write(getCountryName('{{$migration->departure_country}}'));
+                    </script> <br>
+                    City:{{$migration->departure_city}}
                 </td>
                 <td class="reason-cell">
                     <div class="username">
-                        User: AndreiLuca96
+                        User: {{$migration->user->username}}
                     </div>
                     <div class="reason">
-                        Reason: Economics
+                        Reason: {{$migration->reason}}
                     </div>
-                    <img class="reason-image" src="https://openclipart.org/image/2400px/svg_to_png/222588/cash1.png" alt="Economics Reason photo">
+                    @if ($migration->reason == 'Education')
+                        <img class="reason-image" src="{{asset('img/reason/education.svg')}}" alt="Economics Reason photo">
+                    @elseif ($migration->reason == 'Religion')
+                        <img class="reason-image" src="{{asset('img/reason/religion.svg')}}" alt="Religion Reason photo">
+                    @elseif ($migration->reason == 'Economics')
+                        <img class="reason-image" src="{{asset('img/reason/money.svg')}}" alt="Economics Reason photo">
+                    @elseif ($migration->reason == 'War')
+                        <img class="reason-image" src="{{asset('img/reason/war.svg')}}" alt="War Reason photo">
+                    @elseif ($migration->reason == 'Personal')
+                        <img class="reason-image" src="{{asset('img/reason/personal.svg')}}" alt="Personal Reason photo">
+                    @elseif ($migration->reason == 'Other')
+                        <img class="reason-image" src="{{asset('img/reason/other.svg')}}" alt="Personal Reason photo">
+                    @endif
                     <div class="number-adults-children-div">
                         <div class="number-adults-div">
-                            Nr adults: 2
+                            Nr adults: {{$migration->adults}}
                         </div>
                         <div class="number-children-div">
-                            Nr children: 0
+                            Nr children: {{$migration->children}}
                         </div>							
                     </div>
                     <div class="time-elapsed">
@@ -46,151 +69,20 @@
                     </div>
                     
                 </td>
-                <td class="from-cell">
-                    <img class="flag-image" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1280px-Flag_of_the_United_Kingdom.svg.png" alt="England flag"><br>
-                    Country: England <br> 
-                    State: London  
-                </td>
-            </tr>
-
-            <tr>
                 <td class="to-cell">
-                    <img class="flag-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flag_of_Romania.svg/2000px-Flag_of_Romania.svg.png" alt="Romania flag"><br>
-                    Country: Romania <br> 
-                    State:Iasi  
-                </td>
-                <td class="reason-cell">
-                    <div class="username">
-                        User: AndreiLuca96
+                    <div class="f32">
+                        <div class="flag {{strtolower($migration->arrival_country)}}"></div>
                     </div>
-                    <div class="reason">
-                        Reason: Economics
-                    </div>
-                    <img class="reason-image" src="https://openclipart.org/image/2400px/svg_to_png/222588/cash1.png" alt="Economics Reason photo">
-                    <div class="number-adults-children-div">
-                        <div class="number-adults-div">
-                            Nr adults: 2
-                        </div>
-                        <div class="number-children-div">
-                            Nr children: 0
-                        </div>							
-                    </div>
-                    <div class="time-elapsed">
-                        5 minutes ago
-                    </div>
-                    
-                </td>
-                <td class="from-cell">
-                    <img class="flag-image" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1280px-Flag_of_the_United_Kingdom.svg.png" alt="England flag"><br>
-                    Country: England <br> 
-                    State: London  
+                    Country:<script>
+                        document.write(getCountryName('{{$migration->departure_country}}'));
+                    </script> <br>
+                    City:{{$migration->arrival_city}}
                 </td>
             </tr>
-
-            <tr>
-                <td class="to-cell">
-                    <img class="flag-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flag_of_Romania.svg/2000px-Flag_of_Romania.svg.png" alt="Romania flag"><br>
-                    Country: Romania <br> 
-                    State:Iasi  
-                </td>
-                <td class="reason-cell">
-                    <div class="username">
-                        User: AndreiLuca96
-                    </div>
-                    <div class="reason">
-                        Reason: Economics
-                    </div>
-                    <img class="reason-image" src="https://openclipart.org/image/2400px/svg_to_png/222588/cash1.png" alt="Economics Reason photo">
-                    <div class="number-adults-children-div">
-                        <div class="number-adults-div">
-                            Nr adults: 2
-                        </div>
-                        <div class="number-children-div">
-                            Nr children: 0
-                        </div>							
-                    </div>
-                    <div class="time-elapsed">
-                        5 minutes ago
-                    </div>
-                    
-                </td>
-                <td class="from-cell">
-                    <img class="flag-image" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1280px-Flag_of_the_United_Kingdom.svg.png" alt="England flag"><br>
-                    Country: England <br> 
-                    State: London  
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="to-cell">
-                    <img class="flag-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flag_of_Romania.svg/2000px-Flag_of_Romania.svg.png" alt="Romania flag"><br>
-                    Country: Romania <br> 
-                    State:Iasi  
-                </td>
-                <td class="reason-cell">
-                    <div class="username">
-                        User: AndreiLuca96
-                    </div>
-                    <div class="reason">
-                        Reason: Economics
-                    </div>
-                    <img class="reason-image" src="https://openclipart.org/image/2400px/svg_to_png/222588/cash1.png" alt="Economics Reason photo">
-                    <div class="number-adults-children-div">
-                        <div class="number-adults-div">
-                            Nr adults: 2
-                        </div>
-                        <div class="number-children-div">
-                            Nr children: 0
-                        </div>							
-                    </div>
-                    <div class="time-elapsed">
-                        5 minutes ago
-                    </div>
-                    
-                </td>
-                <td class="from-cell">
-                    <img class="flag-image" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1280px-Flag_of_the_United_Kingdom.svg.png" alt="England flag"><br>
-                    Country: England <br> 
-                    State: London  
-                </td>
-            </tr>
-
-            <tr>
-                <td class="to-cell">
-                    <img class="flag-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flag_of_Romania.svg/2000px-Flag_of_Romania.svg.png" alt="Romania flag"><br>
-                    Country: Romania <br> 
-                    State:Iasi  
-                </td>
-                <td class="reason-cell">
-                    <div class="username">
-                        User: AndreiLuca96
-                    </div>
-                    <div class="reason">
-                        Reason: Economics
-                    </div>
-                    <img class="reason-image" src="https://openclipart.org/image/2400px/svg_to_png/222588/cash1.png" alt="Economics Reason photo">
-                    <div class="number-adults-children-div">
-                        <div class="number-adults-div">
-                            Nr adults: 2
-                        </div>
-                        <div class="number-children-div">
-                            Nr children: 0
-                        </div>							
-                    </div>
-                    <div class="time-elapsed">
-                        5 minutes ago
-                    </div>
-                    
-                </td>
-                <td class="from-cell">
-                    <img class="flag-image" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1280px-Flag_of_the_United_Kingdom.svg.png" alt="England flag"><br>
-                    Country: England <br> 
-                    State: London  
-                </td>
-            </tr>
-
+            @endforeach
         </table>
     </div>
+
+    @include('pagination.default', ['paginator' => $migrations])
 </div>
 @endsection
