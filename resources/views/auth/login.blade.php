@@ -29,15 +29,15 @@
 				<button class="flex-item" id="loginButton" type="submit">Login</button>
 
 				<div class="foreign-login-container">
-					<a class="btn-facebook">
+					<a class="btn-facebook" href="{{route('twitter.login')}}">
 						<span class="fa fa-facebook-square fa-6">
 						</span> 
-						Sign in with Facebook
+						Sign in with Twitter
 					</a>
 				</div>
 
 				<div class="foreign-login-container-minmized">
-					<a>
+					<a href="{{route('twitter.login')}}">
 						<span class="fa fa-facebook-square fa-6">
 						</span> 
 					</a>

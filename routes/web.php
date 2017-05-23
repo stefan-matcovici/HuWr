@@ -27,3 +27,9 @@ Route::group(['prefix' => '/home'], function () {
     Route::get('/profile', ['as' => 'profile', 'uses' => 'HomeController@profile']);
 });
 
+Route::group(['prefix' => '/twitter'], function () {
+    Route::get('/login', ['as' => 'twitter.login', 'uses' => 'TwitterController@twitterLogin']);
+    Route::get('/callback', ['as' => 'twitter.callback', 'uses' => 'TwitterController@twitterCallback']);
+    Route::get('/error', ['as' => 'twitter.error', 'uses' => 'TwitterController@twitterError']);
+    Route::get('/logout', ['as' => 'twitter.logout', 'uses' => 'TwitterController@twitterLogout']);
+});
