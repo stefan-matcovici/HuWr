@@ -31,7 +31,7 @@ class WelcomeController extends Controller
 
     public function feedGet()
     {
-        $feed = Feed::make("feed");
+        $feed = \App::make("feed");
 
         // multiple feeds are supported
         // if you are using caching you should set different cache keys for your feeds
