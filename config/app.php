@@ -140,6 +140,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        Roumen\Feed\FeedServiceProvider::class,
         Thujohn\Twitter\TwitterServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
@@ -193,6 +194,7 @@ return [
     */
 
     'aliases' => [
+        'Feed' => Roumen\Feed\Feed::class,
         'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,

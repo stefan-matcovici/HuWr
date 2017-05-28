@@ -17,6 +17,10 @@
         Migration Feed
         <img class="migration-image" alt="migration" src="https://cdn.pixabay.com/photo/2017/02/01/11/13/couple-2029712_960_720.png">
     </h1>
+    <div class="submit-button-div">
+        <button type="submit" formaction="{{route('feed.get')}}">Submit</button>
+    </div>
+
     <div class="table-div">
         <table>
             <tr>
