@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers ;
 
 use Illuminate\Http\Request;
 use App\HumanMigration as Migration;
+use Feed;
+
 
 class WelcomeController extends Controller
 {
@@ -29,7 +31,7 @@ class WelcomeController extends Controller
 
     public function feedGet()
     {
-        $feed = App::make("feed");
+        $feed = Feed::make("feed");
 
         // multiple feeds are supported
         // if you are using caching you should set different cache keys for your feeds
@@ -47,7 +49,7 @@ class WelcomeController extends Controller
             $feed->title = 'HuWr';
             $feed->description = 'Migration Feed';
             $feed->logo = 'img/logo.png';
-            $feed->link = url('feed');
+            $feed->link = url('feed.get');
             $feed->setDateFormat('datetime'); // 'datetime', 'timestamp' or 'carbon'
             //$feed->pubdate = $posts[0]->created_at;
             $feed->lang = 'en';
