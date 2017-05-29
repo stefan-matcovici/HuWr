@@ -89,6 +89,17 @@ function drawDonut() {
 }
 
 function drawBar() {
+    var e = document.getElementById("country-location");
+    var country = e.options[e.selectedIndex].value;
+
+    var countryURI = basicURI + "/statistics/" + getCountryCode(country) + "/years";
+    if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest ();
+    } else
+    if (window.ActiveXObject) {
+        request = new ActiveXObject ("Microsoft.XMLHTTP");
+    }
+    var _this = this;
     var margin = { top: 20, right: 20, bottom: 30, left: 40 },
         width = 960 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
@@ -110,42 +121,51 @@ function drawBar() {
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
+            "translate(" + margin.left + "," + margin.top + ")");
 
+    if (request) {
+        request.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                years =  JSON.parse(this.responseText);
 
-    // format the data
-    years.forEach(function (d) {
-        d.migrations = +d.migrations;
-    });
+                // format the data
+                years.forEach(function (d) {
+                    d.migrations = +d.migrations;
+                });
 
-    // Scale the range of the data in the domains
-    x.domain(years.map(function (d) { return d.year; }));
-    y.domain([0, d3.max(years, function (d) { return d.migrations; })]);
+                // Scale the range of the data in the domains
+                x.domain(years.map(function (d) { return d.year; }));
+                y.domain([0, d3.max(years, function (d) { return d.migrations; })]);
 
-    // append the rectangles for the bar chart
-    svg.selectAll(".bar")
-        .data(years)
-        .enter().append("rect")
-        .attr("class", "bar")
-        .attr("x", function (d) { return x(d.year); })
-        .attr("width", x.bandwidth())
-        .attr("y", function (d) { return y(d.migrations); })
-        .attr("height", function (d) { return height - y(d.migrations); });
+                // append the rectangles for the bar chart
+                svg.selectAll(".bar")
+                    .data(years)
+                    .enter().append("rect")
+                    .attr("class", "bar")
+                    .attr("x", function (d) { return x(d.year); })
+                    .attr("width", x.bandwidth())
+                    .attr("y", function (d) { return y(d.migrations); })
+                    .attr("height", function (d) { return height - y(d.migrations); });
 
-    // add the x Axis
-    svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
+                // add the x Axis
+                svg.append("g")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(d3.axisBottom(x));
 
-    // add the y Axis
-    svg.append("g")
-        .call(d3.axisLeft(y));
+                // add the y Axis
+                svg.append("g")
+                    .call(d3.axisLeft(y));
 
-    var div = card.append('div').attr('class','buttons');
-    div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
-    div.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
-    div.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
-    div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
+                var div = card.append('div').attr('class','buttons');
+                div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
+                div.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
+                div.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
+                div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
+            }
+        };
+    }
+    request.open ("GET", countryURI, true);
+    request.send (null);
 }
 
 var margin = { top: 20, right: 20, bottom: 30, left: 50 },
@@ -183,7 +203,7 @@ function drawLine() {
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
+            "translate(" + margin.left + "," + margin.top + ")");
 
     data.forEach(function (d) {
         d.date = parseTime(d.date);

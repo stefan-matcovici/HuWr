@@ -5,9 +5,13 @@
 @endsection
 
 @section('content')
+    <script type="text/javascript">
+        var basicURI = "{{ route('welcome')}}";
+    </script>
     <script src="{{asset('js/countries_states.js')}}"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="{{asset('js/statistics.js')}}"></script>
+    <script src="{{asset('js/getCountryCode.js')}}"></script>
 
     <div class="jumbotron">
         <div class="card text-center rounded col-lg-10  mt-5 mx-auto">

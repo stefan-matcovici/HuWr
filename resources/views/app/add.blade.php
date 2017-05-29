@@ -18,7 +18,8 @@
                 <img id="migration-image" src="{{ asset('img/migration.png') }}" alt="Migration image"/>
             </div>
 
-            <form class="add-migration-form-container" method="post">
+            <form class="add-migration-form-container" action="{{route('add.migration')}}" method="post">
+                {{csrf_field()}}
                 <div class="migration-div">
                     <div class="location-selection">
                         <label class="label-input-left">
@@ -50,23 +51,23 @@
                     <div class="location-selection">
                         <label class="label-input-right">
                             Reason:
-                            <select>
-                                <option>
+                            <select name="reason">
+                                <option value="Economics">
                                     Economics
                                 </option>
-                                <option>
+                                <option value="War">
                                     War
                                 </option>
-                                <option>
+                                <option value="Personal">
                                     Personal
                                 </option>
-                                <option>
+                                <option value="Education">
                                     Education
                                 </option>
-                                <option>
+                                <option value="Religion">
                                     Religion
                                 </option>
-                                <option>
+                                <option value="Other">
                                     Other
                                 </option>
                             </select>
