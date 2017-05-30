@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\HumanMigration as Migration;
 use Auth;
+use Twitter;
 
 class MigrationsController extends Controller
 {
@@ -32,6 +33,25 @@ class MigrationsController extends Controller
         $migration->user_id = Auth::id();
 
         $migration->save();
+        
+        if ($request->input('twitter-share')) {
+            $tweet = 'Migrated from '
+                    .$migration->departure_city
+                    .', '
+                    .$migration->departure_country
+                    .' to '
+                    .$migration->arrival_city
+                    .', '
+                    .$migration->arrival_country
+                    .' with '
+                    .$migration->adults
+                    .' adults  and '
+                    .$migration->children
+                    .' children because of '
+                    .$migration->reason
+                    .' #HuWr.'
+            Twitter::postTweet(['status' => $tweet, 'format' => 'json']);
+        }
 
         return back();
     }

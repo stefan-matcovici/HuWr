@@ -87,7 +87,7 @@
                 </div>
                 <label>
                     Share on Twitter
-                    <input type="checkbox" name="facebook-share">
+                    <input type="checkbox" name="twitter-share">
                 </label>
                 <div class="submit-button-div">
                     <input type="submit" name="submit" value="Add" class="button">
