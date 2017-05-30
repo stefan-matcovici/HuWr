@@ -5,6 +5,7 @@ namespace App\Http\Controllers ;
 use Illuminate\Http\Request;
 use App\HumanMigration as Migration;
 use Feed;
+use Twitter;
 
 
 class WelcomeController extends Controller
@@ -78,5 +79,9 @@ class WelcomeController extends Controller
     public function about()
     {
         return view('welcome.about');
+    }
+
+    private function getHuwrTweets() {
+        $obj = Twitter::getSearch(array('q' => '%23huwr', 'count' => 100, 'format' => 'array'));
     }
 }
