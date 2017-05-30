@@ -12,6 +12,9 @@ class WelcomeController extends Controller
 {
     public function index()
     {
+        $tweets = $this->getHuwrTweets();
+        $migrations = $this->parseTweets($tweets['statuses']);
+//        dd($migrations);
         $migrations = Migration::all();
         return view('welcome.welcome',['migrations' => $migrations]);
     }
@@ -81,7 +84,31 @@ class WelcomeController extends Controller
         return view('welcome.about');
     }
 
+    private function parseTweets($tweets) {
+        $parsedTweet = array();
+        $counter = 0;
+        foreach ($tweets as $tweet) {
+            $parsedTweet[$counter]['created_at'] = $tweet['created_at'];
+            $explodedString = explode(" ", $tweet['text']);
+
+            $parsedTweet[$counter]['departure_city'] = substr($explodedString[2], 0, strlen($explodedString[2]) - 1);
+            $parsedTweet[$counter]['departure_country'] = $explodedString[3];
+
+            $parsedTweet[$counter]['arrival_city'] = substr($explodedString[5], 0, strlen($explodedString[5]) - 1);
+            $parsedTweet[$counter]['arrival_country'] = $explodedString[6];
+
+            $parsedTweet[$counter]['adults'] = $explodedString[8];
+            $parsedTweet[$counter]['children'] = $explodedString[12];
+
+            $parsedTweet[$counter]['reason'] = $explodedString[16];
+
+            $counter++;
+        }
+
+        return $parsedTweet;
+    }
+
     private function getHuwrTweets() {
-        $obj = Twitter::getSearch(array('q' => '%23huwr', 'count' => 100, 'format' => 'array'));
+        return Twitter::getSearch(array('q' => '%23huwr', 'count' => 100, 'format' => 'array'));
     }
 }
