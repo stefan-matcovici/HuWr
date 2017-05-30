@@ -49,7 +49,7 @@ class MigrationsController extends Controller
                     .$migration->children
                     .' children because of '
                     .$migration->reason
-                    .' #HuWr.'
+                    .' #HuWr.';
             Twitter::postTweet(['status' => $tweet, 'format' => 'json']);
         }
 
