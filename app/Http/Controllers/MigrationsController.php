@@ -12,10 +12,7 @@ class MigrationsController extends Controller
     public function store(Request $request)
     {
         $migration = new Migration;
-        //$departure = app('geocoder')->geocode($request->input('state-departure').', '.$request->input('country-departure'))->all()[0];
         $departure = app('geocoder')->geocode($request->input('state-departure').', '.$request->input('country-departure'))->all()[0];
-
-
         $arrival = app('geocoder')->geocode($request->input('state-destination').', '.$request->input('country-destination'))->all()[0];
 
         $migration->departure_country = $departure->getCountryCode();

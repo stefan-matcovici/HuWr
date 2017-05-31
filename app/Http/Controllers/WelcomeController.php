@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\HumanMigration as Migration;
 use Feed;
 use Twitter;
+use DateTime;
 
 
 class WelcomeController extends Controller
@@ -14,7 +15,8 @@ class WelcomeController extends Controller
     {
         $tweets = $this->getHuwrTweets();
         $migrations = $this->parseTweets($tweets['statuses']);
-//        dd($migrations);
+        $this->storeMigrations($migrations);
+
         $migrations = Migration::all();
         return view('welcome.welcome',['migrations' => $migrations]);
     }
@@ -101,6 +103,7 @@ class WelcomeController extends Controller
             $parsedTweet[$counter]['children'] = $explodedString[12];
 
             $parsedTweet[$counter]['reason'] = $explodedString[16];
+            $parsedTweet[$counter]['user_id'] = $tweet['user']['id'];
 
             $counter++;
         }
@@ -110,5 +113,33 @@ class WelcomeController extends Controller
 
     private function getHuwrTweets() {
         return Twitter::getSearch(array('q' => '%23huwr', 'count' => 100, 'format' => 'array'));
+    }
+
+    private function storeMigrations($migrations) {
+        $migrationObj = new Migration();
+        foreach ($migrations as $migration) {
+            $departure = app('geocoder')->geocode($migration['departure_city'].', '.$migration['departure_country'])->all()[0];
+            $arrival = app('geocoder')->geocode($migration['arrival_city'].', '.$migration['arrival_country'])->all()[0];
+
+            $migrationObj->departure_country = $departure->getCountryCode();
+            $migrationObj->departure_city = $departure->getLocality();
+            $migrationObj->departure_longitude = $departure->getCoordinates()->getLongitude();
+            $migrationObj->departure_latitude = $departure->getCoordinates()->getLatitude();
+
+            $migrationObj->arrival_country = $arrival->getCountryCode();
+            $migrationObj->arrival_city = $arrival->getLocality();
+            $migrationObj->arrival_longitude = $arrival->getCoordinates()->getLongitude();
+            $migrationObj->arrival_latitude = $arrival->getCoordinates()->getLatitude();
+
+            $migrationObj->adults = $migration['adults'];
+            $migrationObj->children = $migration['children'];
+
+            $migrationObj->reason = $migration['reason'];
+
+            $migrationObj->user_id = $migration['user_id'];
+            $migrationObj->setCreatedAt(new DateTime($migration['created_at']));
+
+            $migrationObj->save();
+        }
     }
 }

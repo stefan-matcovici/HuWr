@@ -8,6 +8,7 @@ class HumanMigration extends Model
 {
     //table name from database
     protected $table = 'human_migrations';
+    protected $primaryKey = 'created_at';
 
     /**
      * The attributes that are mass assignable.
@@ -15,7 +16,8 @@ class HumanMigration extends Model
      * @var array
      */
     protected $fillable = [
-        'departure_city','departure_country','departure_longitude', 'departure_latitude', 'arrival_city','arrival_country','arrival_longitude','arrival_latitude','adults','children','reason'
+        'departure_city','departure_country','departure_longitude', 'departure_latitude', 'arrival_city',
+        'arrival_country','arrival_longitude','arrival_latitude','adults','children','reason', 'created_at'
     ];
 
     public function user()
