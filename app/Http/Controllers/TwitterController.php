@@ -52,6 +52,7 @@ class TwitterController extends Controller
             if (Input::has('oauth_verifier'))
             {
                 $oauth_verifier = Input::get('oauth_verifier');
+//                dd($oauth_verifier);
                 // getAccessToken() will reset the token for you
                 $token = Twitter::getAccessToken($oauth_verifier);
             }

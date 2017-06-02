@@ -7,6 +7,8 @@ use App\HumanMigration as Migration;
 use Feed;
 use Twitter;
 use DateTime;
+use App\User;
+use Illuminate\Support\Facades\DB;
 
 
 class WelcomeController extends Controller
@@ -136,7 +138,7 @@ class WelcomeController extends Controller
 
             $migrationObj->reason = $migration['reason'];
 
-            $migrationObj->user_id = $migration['user_id'];
+            $migrationObj->user_id = 1;
             $migrationObj->setCreatedAt(new DateTime($migration['created_at']));
 
             $migrationObj->save();
