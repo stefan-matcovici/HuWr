@@ -4,9 +4,11 @@ namespace App\Http\Controllers ;
 
 use Illuminate\Http\Request;
 use App\HumanMigration as Migration;
+use App\User as User;
 use Feed;
 use Twitter;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
 
 
 class WelcomeController extends Controller
@@ -139,7 +141,10 @@ class WelcomeController extends Controller
             $migrationObj->user_id = $migration['user_id'];
             $migrationObj->setCreatedAt(new DateTime($migration['created_at']));
 
-            $migrationObj->save();
+//            dd(Auth::id(1));
+
+//            dd($migrationObj);
+//            $migrationObj->save();
         }
     }
 }
