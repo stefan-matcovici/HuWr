@@ -7,6 +7,11 @@
 
 @section('content')
     <div class="introduction-sign-up-form-div">
+        @if (isset($flash_notice))
+        <h1>
+            {{session('flash_notice')}}
+        </h1>
+        @endif
         <h2>
             Create your personal account
         </h2>

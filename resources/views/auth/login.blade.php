@@ -30,7 +30,7 @@
 
 				<div class="foreign-login-container">
 					<a class="btn-facebook" href="{{route('twitter.login')}}">
-						<span class="fa fa-facebook-square fa-6">
+						<span class="fa fa-twitter-square fa-6">
 						</span> 
 						Sign in with Twitter
 					</a>
@@ -38,7 +38,7 @@
 
 				<div class="foreign-login-container-minmized">
 					<a href="{{route('twitter.login')}}">
-						<span class="fa fa-facebook-square fa-6">
+						<span class="fa fa-twitter-square fa-6">
 						</span> 
 					</a>
 				</div>

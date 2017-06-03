@@ -9,6 +9,7 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
+        "monarobase/country-list": "^2.0",
         "roumen/feed": "^2.10",
         "thujohn/twitter": "^2.2",
         "toin0u/geocoder-laravel": "^1.0"

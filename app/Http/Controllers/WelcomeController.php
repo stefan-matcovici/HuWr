@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers ;
 
-use Illuminate\Http\Request;
 use App\HumanMigration as Migration;
 use App\User as User;
 use Feed;
+use Twitter;
 
 
 class WelcomeController extends Controller
@@ -49,7 +49,7 @@ class WelcomeController extends Controller
         {
             // creating rss feed with our most recent 20 posts
             $posts = \DB::table('human_migrations')->get();
-
+            dd($posts);
             // set your feed's title, description, link, pubdate and language
             $feed->title = 'HuWr';
             $feed->description = 'Migration Feed';

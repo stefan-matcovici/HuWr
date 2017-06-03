@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(UrlGenerator $url)
     {
-        Schema::defaultStringLength(255);
+        Schema::defaultStringLength(1255);
     }
 
     /**

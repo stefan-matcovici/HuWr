@@ -26,6 +26,11 @@ Route::group(['prefix' => '/home'], function () {
     Route::get('/statistics', ['as' => 'statistics', 'uses' => 'HomeController@statistics']);
     Route::get('/predictions', ['as' => 'predictions', 'uses' => 'HomeController@predictions']);
     Route::get('/profile', ['as' => 'profile', 'uses' => 'HomeController@profile']);
+    Route::post('/add',['as' => 'add.migration', 'uses' => 'MigrationsController@store']);
+});
+
+Route::group(['prefix' => '/statistics'], function () {
+    Route::get('/{country}/years', ['as' => 'statistics.country.years', 'uses' => 'StatisticsController@countryIndexByYears']);
 });
 
 Route::group(['prefix' => '/twitter'], function () {
