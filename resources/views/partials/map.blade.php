@@ -5,6 +5,7 @@
             crossorigin=""></script>
     <script src="{{asset('js/leaflet-arrows.js')}}"></script>
     <script src='//unpkg.com/leaflet-arc/bin/leaflet-arc.min.js'></script>
+
 @endsection
 
 @section('content')
@@ -45,7 +46,7 @@
 
                     iconSize:     [10, 18], // size of the icon
                     iconAnchor:   [5, 14], // point of the icon which will correspond to marker's location
-                    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+                    popupAnchor:  [1, -15] // point from which the popup should open relative to the iconAnchor
                 });
                 marker1 = L.marker([migration.departure_latitude, migration.departure_longitude], {icon: blueMarker}).addTo(mymap);
                 var redMarker = L.icon({
@@ -53,9 +54,12 @@
 
                     iconSize:     [10, 18], // size of the icon
                     iconAnchor:   [5, 14], // point of the icon which will correspond to marker's location
-                    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+                    popupAnchor:  [1, -15] // point from which the popup should open relative to the iconAnchor
                 });
-                marker1 = L.marker([migration.arrival_latitude, migration.arrival_longitude], {icon: redMarker}).addTo(mymap);
+                marker2 = L.marker([migration.arrival_latitude, migration.arrival_longitude], {icon: redMarker}).addTo(mymap);
+                marker1.bindPopup("<b> Hello I'm a popup.</b>");
+                marker2.bindPopup("<b> Hello I'm a popup.</b>")
+
                 pointA = new L.LatLng(migration.departure_latitude, migration.departure_longitude);
                 pointB = new L.LatLng(migration.arrival_latitude, migration.arrival_longitude);
                 polylinePoints = [pointA,pointB];
@@ -83,9 +87,6 @@
                     }
                 });
 
-                polyline.on('click', function() {
-
-                });
 
                 polyline.on('click', function() {
                     if (this.options["color"] === 'black') {
@@ -99,16 +100,6 @@
                 });
 
                 mymap.addLayer(polyline);
-
-
-//                try {
-//                    L.Polyline.Arc([migration.departure_latitude, migration.departure_longitude], [migration.arrival_latitude, migration.arrival_longitude], {
-//                        color: 'gray',
-//                        vertices: 20
-//                    }).addTo(mymap);
-//                } catch (err) {
-//
-//                }
 
 
                 L.polylineDecorator(polyline,{
