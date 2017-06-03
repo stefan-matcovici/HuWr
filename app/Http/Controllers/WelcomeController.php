@@ -3,6 +3,7 @@
 namespace App\Http\Controllers ;
 
 use App\HumanMigration as Migration;
+use App\User as User;
 use Feed;
 use Twitter;
 
@@ -32,12 +33,16 @@ class WelcomeController extends Controller
     public function feedGet()
     {
         $feed = \App::make("feed");
+        //dd(User::find(1));
+        //dd($feed);
 
         // multiple feeds are supported
         // if you are using caching you should set different cache keys for your feeds
 
         // cache the feed for 60 minutes (second parameter is optional)
-        $feed->setCache(60);
+        //$feed->setCache(60);
+
+
 
         // check if there is cached feed and build new only if is not
         if (!$feed->isCached() or true)
@@ -49,28 +54,29 @@ class WelcomeController extends Controller
             $feed->title = 'HuWr';
             $feed->description = 'Migration Feed';
             $feed->logo = 'img/logo.png';
-            $feed->link = url('feed.get');
+            $feed->link = route('feed.get');
             $feed->setDateFormat('datetime'); // 'datetime', 'timestamp' or 'carbon'
             //$feed->pubdate = $posts[0]->created_at;
             $feed->lang = 'en';
             $feed->setShortening(true); // true or false
             $feed->setTextLimit(100); // maximum length of description text
 
+
+
             foreach ($posts as $post)
             {
+
                 // set item's title, author, url, pubdate, description, content, enclosure (optional)*
-                $feed->add($post->departure_country,
-                    $post->departure_city,
-                    $post->arrival_country,
-                    $post->arrival_city,
-                    $post->departure_latitude,
-                    $post->departure_longitude,
-                    $post->arrival_latitude,
-                    $post->arrival_longitude,
-                    $post->adults,
-                    $post->children,
-                    $post->reason,
-                    $post->user_id);
+                //dd('Migrated from'.$post->departure_city.', '.$post->departure_country.' to '.$post->arrival_city.', '.$post->arrival_country.' with '.
+                //$post->adults.' adults'.' and '.$post->children.' children because of '.$post->reason.'.');
+               $feed->add('Migrated from '.$post->departure_city.', '.$post->departure_country.' to '.$post->arrival_city.', '.$post->arrival_country,
+                $post->user_id,
+                $post->user_id,
+                'http://localhost/PW/public/feed',
+                $post->created_at,
+                'Migration Feed',
+                'Migrated from '.$post->departure_city.', '.$post->departure_country.' to '.$post->arrival_city.', '.$post->arrival_country.' with '.
+                $post->adults.' adults'.' and '.$post->children.' children because of '.$post->reason.'.');
             }
 
         }
