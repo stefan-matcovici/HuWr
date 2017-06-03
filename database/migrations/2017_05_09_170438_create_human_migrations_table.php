@@ -37,7 +37,10 @@ class CreateHumanMigrationsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->timestamps();
+            $table->timestamp('created_at');
+            $table->unique('created_at');
+
+            $table->timestamp('updated_at')->nullable();
         });
     }
 

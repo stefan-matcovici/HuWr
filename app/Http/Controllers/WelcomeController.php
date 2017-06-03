@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers ;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\HumanMigration as Migration;
 use Feed;
@@ -48,11 +49,11 @@ class WelcomeController extends Controller
         $feed->setCache(60);
 
         // check if there is cached feed and build new only if is not
-        if (!$feed->isCached())
+        if (!$feed->isCached() or true)
         {
             // creating rss feed with our most recent 20 posts
             $posts = \DB::table('human_migrations')->get();
-
+            dd($posts);
             // set your feed's title, description, link, pubdate and language
             $feed->title = 'HuWr';
             $feed->description = 'Migration Feed';
@@ -67,8 +68,18 @@ class WelcomeController extends Controller
             foreach ($posts as $post)
             {
                 // set item's title, author, url, pubdate, description, content, enclosure (optional)*
-                $feed->add($post->departure_country, $post->departure_city, $post->arrival_country, $post->arrival_city, $post->departure_latitude,
-                    $post->departure_longitude,$post->arrival_latitude,$post->arrival_longitude,$post->adults,$post->children,$post->reason,$post->user_id);
+                $feed->add($post->departure_country,
+                    $post->departure_city,
+                    $post->arrival_country,
+                    $post->arrival_city,
+                    $post->departure_latitude,
+                    $post->departure_longitude,
+                    $post->arrival_latitude,
+                    $post->arrival_longitude,
+                    $post->adults,
+                    $post->children,
+                    $post->reason,
+                    $post->user_id);
             }
 
         }
@@ -94,7 +105,6 @@ class WelcomeController extends Controller
         foreach ($tweets as $tweet) {
             $parsedTweet[$counter]['created_at'] = $tweet['created_at'];
             $explodedString = explode(" ", $tweet['text']);
-
             $parsedTweet[$counter]['departure_city'] = substr($explodedString[2], 0, strlen($explodedString[2]) - 1);
             $parsedTweet[$counter]['departure_country'] = $explodedString[3];
 
@@ -118,8 +128,8 @@ class WelcomeController extends Controller
     }
 
     private function storeMigrations($migrations) {
-        $migrationObj = new Migration();
         foreach ($migrations as $migration) {
+            $migrationObj = new Migration();
             $departure = app('geocoder')->geocode($migration['departure_city'].', '.$migration['departure_country'])->all()[0];
             $arrival = app('geocoder')->geocode($migration['arrival_city'].', '.$migration['arrival_country'])->all()[0];
 
@@ -140,8 +150,12 @@ class WelcomeController extends Controller
 
             $migrationObj->user_id = 1;
             $migrationObj->setCreatedAt(new DateTime($migration['created_at']));
+            try {
+                $migrationObj->save();
+            } catch (QueryException $queryException) {
+                continue;
+            }
 
-            $migrationObj->save();
         }
     }
 }
