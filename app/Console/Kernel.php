@@ -34,6 +34,7 @@ class Kernel extends ConsoleKernel
                  return;
              }
              $migrations = $this->parseTweets($tweets['statuses']);
+//             dd($migrations);
              if ($migrations == null) {
                  return;
              }
@@ -42,10 +43,10 @@ class Kernel extends ConsoleKernel
     }
 
     private function parseTweets($tweets) {
-        try {
-            $parsedTweet = array();
-            $counter = 0;
-            foreach ($tweets as $tweet) {
+        $parsedTweet = array();
+        $counter = 0;
+        foreach ($tweets as $tweet) {
+            try {
                 $parsedTweet[$counter]['created_at'] = $tweet['created_at'];
                 $explodedString = explode(" ", $tweet['text']);
                 $parsedTweet[$counter]['departure_city'] = substr($explodedString[2], 0, strlen($explodedString[2]) - 1);
@@ -61,12 +62,13 @@ class Kernel extends ConsoleKernel
                 $parsedTweet[$counter]['user_id'] = $tweet['user']['id'];
 
                 $counter++;
+            } catch (\Exception $exception) {
+                continue;
             }
 
-            return $parsedTweet;
-        } catch (\Exception $exception) {
-            return null;
         }
+
+        return $parsedTweet;
     }
 
     private function getHuwrTweets() {
@@ -87,7 +89,7 @@ class Kernel extends ConsoleKernel
             } catch (\Exception $exception) {
                 continue;
             }
-                        $migrationObj->departure_country = $departure->getCountryCode();
+            $migrationObj->departure_country = $departure->getCountryCode();
             $migrationObj->departure_city = $departure->getLocality();
             $migrationObj->departure_longitude = $departure->getCoordinates()->getLongitude();
             $migrationObj->departure_latitude = $departure->getCoordinates()->getLatitude();
