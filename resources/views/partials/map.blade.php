@@ -4,6 +4,7 @@
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
             crossorigin=""></script>
     <script src="{{asset('js/leaflet-arrows.js')}}"></script>
+    <script src='//unpkg.com/leaflet-arc/bin/leaflet-arc.min.js'></script>
 @endsection
 
 @section('content')
@@ -19,6 +20,8 @@
         </script>
         <script>
             var mymap = L.map('demoMap').setView([0,0], 2);
+            mymap.options.minZoom = 2;
+//            map.options.maxZoom = 14;
             {{--mymap.on("click",function(event)--}}
                 {{--{--}}
                     {{--window.location.replace('{!!  route('country') ,['lat' => 12, 'lng' => 13] !!}');--}}
@@ -44,7 +47,7 @@
                     iconAnchor:   [5, 14], // point of the icon which will correspond to marker's location
                     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
                 });
-                marker1 = L.marker([migration.departure_latitude, migration.departure_longitude], {icon: blueMarker}).addTo(mymap);
+                marker1 = L.marker([migration.departure_latitude, migration.departure_longitude], {icon: L.spriteIcon('red')}).addTo(mymap);
                 var redMarker = L.icon({
                     iconUrl: 'https://camo.githubusercontent.com/70c53b19fb9ec32c09ff59b4aebe6bb8058dfb8b/68747470733a2f2f7261772e6769746875622e636f6d2f706f696e7468692f6c6561666c65742d636f6c6f722d6d61726b6572732f6d61737465722f696d672f6d61726b65722d69636f6e2d7265642e706e673f7261773d74727565',
 
@@ -52,7 +55,7 @@
                     iconAnchor:   [5, 14], // point of the icon which will correspond to marker's location
                     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
                 });
-                marker1 = L.marker([migration.arrival_latitude, migration.arrival_longitude], {icon: redMarker}).addTo(mymap);
+                marker1 = L.marker([migration.arrival_latitude, migration.arrival_longitude], {icon: L.spriteIcon('blue')}).addTo(mymap);
                 pointA = new L.LatLng(migration.departure_latitude, migration.departure_longitude);
                 pointB = new L.LatLng(migration.arrival_latitude, migration.arrival_longitude);
                 polylinePoints = [pointA,pointB];
@@ -65,6 +68,15 @@
 
                 var polyline = new L.Polyline(polylinePoints, polylineOptions);
                 mymap.addLayer(polyline);
+//                try {
+//                    L.Polyline.Arc([migration.departure_latitude, migration.departure_longitude], [migration.arrival_latitude, migration.arrival_longitude], {
+//                        color: 'gray',
+//                        vertices: 20
+//                    }).addTo(mymap);
+//                } catch (err) {
+//
+//                }
+
 
                 L.polylineDecorator(polyline,{
                     patterns: [
