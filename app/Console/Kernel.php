@@ -30,7 +30,14 @@ class Kernel extends ConsoleKernel
     {
          $schedule->call(function() {
              $tweets = $this->getHuwrTweets();
+             if ($tweets == null) {
+                 return;
+             }
              $migrations = $this->parseTweets($tweets['statuses']);
+//             dd($migrations);
+             if ($migrations == null) {
+                 return;
+             }
              $this->storeMigrations($migrations);
          })->everyMinute();
     }
@@ -39,36 +46,49 @@ class Kernel extends ConsoleKernel
         $parsedTweet = array();
         $counter = 0;
         foreach ($tweets as $tweet) {
-            $parsedTweet[$counter]['created_at'] = $tweet['created_at'];
-            $explodedString = explode(" ", $tweet['text']);
-            $parsedTweet[$counter]['departure_city'] = substr($explodedString[2], 0, strlen($explodedString[2]) - 1);
-            $parsedTweet[$counter]['departure_country'] = $explodedString[3];
+            try {
+                $parsedTweet[$counter]['created_at'] = $tweet['created_at'];
+                $explodedString = explode(" ", $tweet['text']);
+                $parsedTweet[$counter]['departure_city'] = substr($explodedString[2], 0, strlen($explodedString[2]) - 1);
+                $parsedTweet[$counter]['departure_country'] = $explodedString[3];
 
-            $parsedTweet[$counter]['arrival_city'] = substr($explodedString[5], 0, strlen($explodedString[5]) - 1);
-            $parsedTweet[$counter]['arrival_country'] = $explodedString[6];
+                $parsedTweet[$counter]['arrival_city'] = substr($explodedString[5], 0, strlen($explodedString[5]) - 1);
+                $parsedTweet[$counter]['arrival_country'] = $explodedString[6];
 
-            $parsedTweet[$counter]['adults'] = $explodedString[8];
-            $parsedTweet[$counter]['children'] = $explodedString[12];
+                $parsedTweet[$counter]['adults'] = $explodedString[8];
+                $parsedTweet[$counter]['children'] = $explodedString[12];
 
-            $parsedTweet[$counter]['reason'] = $explodedString[16];
-            $parsedTweet[$counter]['user_id'] = $tweet['user']['id'];
+                $parsedTweet[$counter]['reason'] = $explodedString[16];
+                $parsedTweet[$counter]['user_id'] = $tweet['user']['id'];
 
-            $counter++;
+                $counter++;
+            } catch (\Exception $exception) {
+                continue;
+            }
+
         }
 
         return $parsedTweet;
     }
 
     private function getHuwrTweets() {
-        return Twitter::getSearch(array('q' => '%23huwr', 'count' => 100, 'format' => 'array'));
+        try {
+            return Twitter::getSearch(array('q' => '%23huwr', 'count' => 100, 'format' => 'array'));
+        } catch (\Exception $exception) {
+            return null;
+        }
+
     }
 
     private function storeMigrations($migrations) {
         foreach ($migrations as $migration) {
             $migrationObj = new Migration();
-            $departure = app('geocoder')->geocode($migration['departure_city'].', '.$migration['departure_country'])->all()[0];
-            $arrival = app('geocoder')->geocode($migration['arrival_city'].', '.$migration['arrival_country'])->all()[0];
-
+            try {
+                $departure = app('geocoder')->geocode($migration['departure_city'].', '.$migration['departure_country'])->all()[0];
+                $arrival = app('geocoder')->geocode($migration['arrival_city'].', '.$migration['arrival_country'])->all()[0];
+            } catch (\Exception $exception) {
+                continue;
+            }
             $migrationObj->departure_country = $departure->getCountryCode();
             $migrationObj->departure_city = $departure->getLocality();
             $migrationObj->departure_longitude = $departure->getCoordinates()->getLongitude();
