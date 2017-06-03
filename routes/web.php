@@ -18,6 +18,7 @@ Route::group(['prefix' => '/'], function () {
     Route::get('/about', ['as' => 'about', 'uses' => 'WelcomeController@about']);
     Route::get('/country', ['as' => 'country', 'uses' => 'WelcomeController@country']);
     Route::get('/feed/get', ['as' => 'feed.get', 'uses' => 'WelcomeController@feedGet']);
+    Route::get('/feed/{id}', ['as' => 'feed.getId', 'uses' => 'WelcomeController@feedGetId']);
 });
 
 Route::group(['prefix' => '/home'], function () {

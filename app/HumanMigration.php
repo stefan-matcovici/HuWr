@@ -8,7 +8,6 @@ class HumanMigration extends Model
 {
     //table name from database
     protected $table = 'human_migrations';
-    protected $primaryKey = 'created_at';
 
     /**
      * The attributes that are mass assignable.
