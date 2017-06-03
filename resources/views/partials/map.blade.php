@@ -47,7 +47,7 @@
                     iconAnchor:   [5, 14], // point of the icon which will correspond to marker's location
                     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
                 });
-                marker1 = L.marker([migration.departure_latitude, migration.departure_longitude], {icon: L.spriteIcon('red')}).addTo(mymap);
+                marker1 = L.marker([migration.departure_latitude, migration.departure_longitude], {icon: blueMarker}).addTo(mymap);
                 var redMarker = L.icon({
                     iconUrl: 'https://camo.githubusercontent.com/70c53b19fb9ec32c09ff59b4aebe6bb8058dfb8b/68747470733a2f2f7261772e6769746875622e636f6d2f706f696e7468692f6c6561666c65742d636f6c6f722d6d61726b6572732f6d61737465722f696d672f6d61726b65722d69636f6e2d7265642e706e673f7261773d74727565',
 
@@ -55,19 +55,52 @@
                     iconAnchor:   [5, 14], // point of the icon which will correspond to marker's location
                     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
                 });
-                marker1 = L.marker([migration.arrival_latitude, migration.arrival_longitude], {icon: L.spriteIcon('blue')}).addTo(mymap);
+                marker1 = L.marker([migration.arrival_latitude, migration.arrival_longitude], {icon: redMarker}).addTo(mymap);
                 pointA = new L.LatLng(migration.departure_latitude, migration.departure_longitude);
                 pointB = new L.LatLng(migration.arrival_latitude, migration.arrival_longitude);
                 polylinePoints = [pointA,pointB];
 
                 var polylineOptions = {
-                    color: 'blue',
-                    weight: 1,
-                    opacity: 0.3
+                    color: '#4d4d4d',
+                    weight: 3.5,
+                    opacity: 0.5,
+                    noClip: true
                 };
 
                 var polyline = new L.Polyline(polylinePoints, polylineOptions);
+                polyline.on('mouseover', function() {
+                    if (this.options["color"] !== 'black') {
+                        this.setStyle({
+                            color: 'gray',
+                            weight: 8
+                        });
+                    }
+                });
+
+                polyline.on('mouseout', function() {
+                    if (this.options["color"] === 'gray') {
+                        this.setStyle(polylineOptions);
+                    }
+                });
+
+                polyline.on('click', function() {
+
+                });
+
+                polyline.on('click', function() {
+                    if (this.options["color"] === 'black') {
+                        this.setStyle(polylineOptions);
+                    } else {
+                        this.setStyle({
+                            color: 'black',
+                            weight: 10
+                        });
+                    }
+                });
+
                 mymap.addLayer(polyline);
+
+
 //                try {
 //                    L.Polyline.Arc([migration.departure_latitude, migration.departure_longitude], [migration.arrival_latitude, migration.arrival_longitude], {
 //                        color: 'gray',
@@ -82,8 +115,15 @@
                     patterns: [
                         // define a pattern of 10px-wide dashes, repeated every 20px on the line
                         {
-                            offset: '100%', repeat:0, symbol: new L.Symbol.arrowHead({pixelSize: 8,pathOptions: {fillOpacity:
-                            0.5,weight: 0.5}})}
+                            offset: '100%',
+                            repeat:0,
+                            symbol: new L.Symbol.arrowHead({
+                                pixelSize: 8,
+                                pathOptions: {fillOpacity: 0.5,
+                                    weight: 0.5
+                                }
+                            })
+                        }
                     ]}).addTo(mymap);
             })
 
