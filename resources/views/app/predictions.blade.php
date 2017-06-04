@@ -18,17 +18,17 @@
             <div class="introduction">
                 <h3> Set your options </h3>
             </div>
-            <form id="prediction-form-container" method="post">
+            <form id="prediction-form-container" action="{{route('get.predictions')}}"method="get">
                 <div class="container-div">
                     <div class="year">
                         <label class="date" for="year"> From </label>
-                        <input type="date" min="2017" max="2027" placeholder="Enter year">
+                        <input type="date" min="2017" max="2027"  name="starting-time" placeholder="Enter year">
                     </div>
 
 
                     <div class="year">
                         <label class="date" for="year"> To </label>
-                        <input type="date" min="2017" max="2027" placeholder="Enter year">
+                        <input type="date" min="2017" max="2027" name="ending-time" placeholder="Enter year">
                     </div>
 
                     <div class="radio-div">
@@ -37,11 +37,11 @@
                             <label>
                                 Child:
                             </label>
-                            <input class="radio-class" type="radio" name="radio">
+                            <input class="radio-class" type="radio" name="child">
                             <label>
                                 Adult:
                             </label>
-                            <input class="radio-class" type="radio" name="radio">
+                            <input class="radio-class" type="radio" name="adult">
                         </div>
                     </div>
 
