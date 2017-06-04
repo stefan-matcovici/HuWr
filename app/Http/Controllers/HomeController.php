@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\HumanMigration as Migration;
+use Auth;
+
 
 class HomeController extends Controller
 {
@@ -45,6 +47,7 @@ class HomeController extends Controller
 
     public function profile()
     {
-        return view('app.profile');
+        $migrations = Migration::where('user_id',Auth::id())->get();
+        return view('app.profile',['migrations' => $migrations]);
     }
 }

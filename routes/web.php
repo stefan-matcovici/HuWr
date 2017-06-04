@@ -32,6 +32,8 @@ Route::group(['prefix' => '/home'], function () {
 
 Route::group(['prefix' => '/statistics'], function () {
     Route::get('/{country}/years', ['as' => 'statistics.country.years', 'uses' => 'StatisticsController@countryIndexByYears']);
+    Route::get('/{country}/reasons', ['as' => 'statistics.country.reasons', 'uses' => 'StatisticsController@countryIndexByReasons']);
+    Route::get('/{country}/children', ['as' => 'statistics.country.children', 'uses' => 'StatisticsController@countryIndexByChildren']);
 });
 
 Route::group(['prefix' => '/twitter'], function () {

@@ -1,48 +1,43 @@
 @extends('layouts.app')
 
 @section('assets')
+    <link rel="stylesheet" type="text/css" href="{{asset('css/feed.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/profile.css')}}">
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="//cloud.github.com/downloads/lafeber/world-flags-sprite/flags32.css"
+    />
+    <script src="{{asset('js/getCountryName.js')}}"></script>
 @endsection
 
 
 <div class="profile-outside-container">
-    <div class="profile-image-div">
-        <img class="profile-image" src="https://cdn.pixabay.com/photo/2014/10/27/18/38/man-505353_960_720.jpg" alt="profile image">
-    </div>
     <div class="profile-inside-container">
-        <h2>
-            LucaAndrei96
-        </h2>
         <div class="name-div">
             <label>
-                <b>Firstname:</b> Luca
+                <b>Firstname:</b> {{Auth::user()->first_name}}
             </label>
             <label>
-                <b>Lastname:</b> Andrei
-            </label>
-        </div>
-
-        <div class="location-div">
-            <label>
-                <b>From:</b> Iasi, Romania
+                <b>Lastname:</b> {{Auth::user()->last_name}}
             </label>
         </div>
 
         <div class="birthdate-div">
             <label>
-                <b>Birthdate:</b> 08/06/1996
+                <b>Birthdate:</b> {{Auth::user()->birthday}}
             </label>
         </div>
 
         <div class="gender-div">
             <label>
-                <b>Gender:</b> male
+                <b>Gender:</b> {{Auth::user()->gender}}
             </label>
         </div>
 
         <div class="email-div">
             <label>
-                <b>Email:</b> luca.andrei96@gmail.com
+                <b>Email:</b> {{Auth::user()->email}}
             </label>
         </div>
 
@@ -57,39 +52,60 @@
                     <th class="from-cell"> <div>  From </div> </th>
                 </tr>
 
+                @foreach($migrations as $migration)
                 <tr>
-                    <td class="to-cell">
-                        <img class="flag-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flag_of_Romania.svg/2000px-Flag_of_Romania.svg.png" alt="Romania flag"><br>
-                        Country: Romania <br>
-                        State:Iasi
+                    <td class="from-cell">
+                        <div class="f32">
+                            <div class="flag {{strtolower($migration->departure_country)}}"></div>
+                        </div>
+                        Country:<script>
+                            document.write(getCountryName('{{$migration->departure_country}}'));
+                        </script> <br>
+                        City:{{$migration->departure_city}}
                     </td>
                     <td class="reason-cell">
                         <div class="username">
-                            User: AndreiLuca96
+                            User: {{$migration->user->username}}
                         </div>
                         <div class="reason">
-                            Reason: Economics
+                            Reason: {{$migration->reason}}
+                            @if ($migration->reason == 'Education')
+                                <img class="reason-image" src="{{asset('img/reason/education.svg')}}" alt="Economics Reason photo">
+                            @elseif ($migration->reason == 'Religion')
+                                <img class="reason-image" src="{{asset('img/reason/religion.svg')}}" alt="Religion Reason photo">
+                            @elseif ($migration->reason == 'Economics')
+                                <img class="reason-image" src="{{asset('img/reason/money.svg')}}" alt="Economics Reason photo">
+                            @elseif ($migration->reason == 'War')
+                                <img class="reason-image" src="{{asset('img/reason/war.svg')}}" alt="War Reason photo">
+                            @elseif ($migration->reason == 'Personal')
+                                <img class="reason-image" src="{{asset('img/reason/personal.svg')}}" alt="Personal Reason photo">
+                            @elseif ($migration->reason == 'Other')
+                                <img class="reason-image" src="{{asset('img/reason/other.svg')}}" alt="Personal Reason photo">
+                            @endif
                         </div>
-                        <img class="reason-image" src="https://openclipart.org/image/2400px/svg_to_png/222588/cash1.png" alt="Economics Reason photo">
                         <div class="number-adults-children-div">
                             <div class="number-adults-div">
-                                Nr adults: 2
+                                Nr adults: {{$migration->adults}}
                             </div>
                             <div class="number-children-div">
-                                Nr children: 0
+                                Nr children: {{$migration->children}}
                             </div>
                         </div>
                         <div class="time-elapsed">
                             5 minutes ago
                         </div>
-
                     </td>
-                    <td class="from-cell">
-                        <img class="flag-image" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1280px-Flag_of_the_United_Kingdom.svg.png" alt="England flag"><br>
-                        Country: England <br>
-                        State: London
+                    <td class="to-cell">
+                        <div class="f32">
+                            <div class="flag {{strtolower($migration->arrival_country)}}"></div>
+                        </div>
+                        Country:<script>
+                            document.write(getCountryName('{{$migration->departure_country}}'));
+                        </script> <br>
+                        City:{{$migration->arrival_city}}
                     </td>
                 </tr>
+                @endforeach
             </table>
         </div>
     </div>
