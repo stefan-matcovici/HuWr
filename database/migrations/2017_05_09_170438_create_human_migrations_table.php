@@ -23,11 +23,11 @@ class CreateHumanMigrationsTable extends Migration
             $table->string('arrival_country');
             $table->string('arrival_city');
 
-            $table->integer('departure_latitude');
-            $table->integer('departure_longitude');
+            $table->double('departure_latitude');
+            $table->double('departure_longitude');
 
-            $table->integer('arrival_latitude');
-            $table->integer('arrival_longitude');
+            $table->double('arrival_latitude');
+            $table->double('arrival_longitude');
 
             $table->integer('adults')->default(0);
             $table->integer('children')->default(0);
