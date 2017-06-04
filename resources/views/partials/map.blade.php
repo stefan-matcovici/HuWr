@@ -7,11 +7,17 @@
     <script src='//unpkg.com/leaflet-arc/bin/leaflet-arc.min.js'></script>
     <script src="file:://../../node_modules/leaflet-toolbar/dist/leaflet.toolbar.js"></script>
     <link rel="stylesheet" href="file:://../../node_modules/leaflet-toolbar/dist/leaflet.toolbar.css"/>
+    <script src="{{asset('js/L.Control.Sidebar.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('css/L.Control.Sidebar.css')}}">
 @endsection
 
 @section('content')
     <div class="container fill">
-        <div id="demoMap"></div>
+        <div id="demoMap">
+            <div id="sidebar">
+                <h1>leaflet-sidebar</h1>
+            </div>
+        </div>
     </div>
     <div>
         <script
@@ -33,9 +39,16 @@
                 id: 'mapbox.streets'
             }).addTo(mymap);
 
+            var sidebar = L.control.sidebar('sidebar', {
+                position: 'left',
+                closeButton: 'true',
+            });
+
+            mymap.addControl(sidebar);
+
+
             var migrations = {!! json_encode($migrations->toArray()) !!};
 
-            var markers = [];
             migrations.forEach(function(migration)
             {
                 var blueMarker = L.icon({
@@ -89,10 +102,10 @@
                 polyline.on('click', function() {
                     if (this.options["color"] === 'black') {
                         this.setStyle(polylineOptions);
-                        marker1.closePopup();
-                        marker2.closePopup();
+                        sidebar.toggle();
                     } else {
-
+                        sidebar.toggle();
+                        sidebar.setContent('test' + migration.departure_latitude);
                         this.setStyle({
                             color: 'black',
                             weight: 10
@@ -117,8 +130,6 @@
                             })
                         }
                     ]}).addTo(mymap);
-                markers.push(marker1);
-                markers.push(marker2);
             })
 
 
