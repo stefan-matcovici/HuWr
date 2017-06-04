@@ -74,7 +74,7 @@
 
                     iconSize:     [20, 35], // size of the icon
                     iconAnchor:   [8, 34], // point of the icon which will correspond to marker's location
-                    popupAnchor:  [1, -15] // point from which the popup should open relative to the iconAnchor
+                    popupAnchor:  [1, -25] // point from which the popup should open relative to the iconAnchor
                 });
                 marker1 = L.marker([migration.departure_latitude, migration.departure_longitude], {icon: blueMarker}).addTo(mymap);
 
@@ -83,7 +83,7 @@
 
                     iconSize:     [20, 35], // size of the icon
                     iconAnchor:   [8, 34], // point of the icon which will correspond to marker's location
-                    popupAnchor:  [1, -15] // point from which the popup should open relative to the iconAnchor
+                    popupAnchor:  [1, -25] // point from which the popup should open relative to the iconAnchor
                 });
                 marker2 = L.marker([migration.arrival_latitude, migration.arrival_longitude], {icon: redMarker}).addTo(mymap);
                 marker1.bindPopup("<b> Here is the departure.</b>");
@@ -105,7 +105,7 @@
                     if (this.options["color"] !== 'black') {
                         this.setStyle({
                             color: 'gray',
-                            weight: 8
+                            weight: 17
                         });
                     }
                 });
@@ -141,7 +141,17 @@
                                 numberOfMigrations++;
                                 numberOfAdults += migration2.adults;
                                 numberOfChildren += migration2.children;
+
+                                var users = {!! json_encode($users->toArray()) !!};
+                                var username = "";
+                                users.forEach(function (user) {
+                                    if (user.id === migration.user_id) {
+                                        username = user.first_name + " " + user.last_name;
+                                    }
+                                } );
+
                                 content +=
+                                    "<li class = \"list-group-item\"> Author: " + username + " </li>" +
                                     "<li class = \"list-group-item\"> Date: " + migration2.created_at + " </li>" +
                                     "<li class = \"list-group-item\"> Number of adults: " + migration2.adults + "</li>" +
                                     "<li class = \"list-group-item\"> Number of children: " + migration2.children + "</li>" +

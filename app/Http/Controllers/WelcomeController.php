@@ -16,8 +16,10 @@ class WelcomeController extends Controller
     public function index()
     {
         $migrations = Migration::all();
+        $users = User::all();
+//        dd($users);
 //        dd($migrations);
-        return view('welcome.welcome',['migrations' => $migrations]);
+        return view('welcome.welcome',['migrations' => $migrations, 'users' => $users]);
     }
 
     public function country()
