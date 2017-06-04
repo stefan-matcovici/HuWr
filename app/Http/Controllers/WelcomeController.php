@@ -15,7 +15,7 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        $migrations = Migration::all();
+        $migrations = Migration::take(30)->get();
         $users = User::all();
 //        dd($users);
 //        dd($migrations);
