@@ -11,7 +11,7 @@ L.CountrySelect = L.Control.extend({
 	},
 	onAdd: function(map) {
 		this.div = L.DomUtil.create('div','leaflet-countryselect-container');
-		this.select = L.DomUtil.create('select','leaflet-countryselect',this.div);
+		this.select = L.DomUtil.create('select','form-control leaflet-countryselect',this.div);
 		var content = '';
 		
 		if (this.options.title.length > 0 ){

@@ -58,7 +58,6 @@
 
                 mymap.addLayer(country);
                 mymap.fitBounds(country.getBounds());
-
             });
 
 
