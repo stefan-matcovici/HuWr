@@ -85,10 +85,12 @@
 
                     </div>
                 </div>
-                <label>
-                    Share on Twitter
-                    <input type="checkbox" name="twitter-share">
-                </label>
+                @if (Session::get('access_token'))
+                    <label>
+                        Share on Twitter
+                        <input type="checkbox" name="twitter-share">
+                    </label>
+                @endif
                 <div class="submit-button-div">
                     <input type="submit" name="submit" value="Add" class="button">
                 </div>
