@@ -47,9 +47,9 @@
             </label>
             <table>
                 <tr>
-                    <th class="to-cell"> <div> To</div> </th>
+                    <th class="to-cell"> <div> From</div> </th>
                     <th class="reason-cell"> <div>  Reason </div> </th>
-                    <th class="from-cell"> <div>  From </div> </th>
+                    <th class="from-cell"> <div>  To </div> </th>
                 </tr>
 
                 @foreach($migrations as $migration)
@@ -58,9 +58,7 @@
                         <div class="f32">
                             <div class="flag {{strtolower($migration->departure_country)}}"></div>
                         </div>
-                        Country:<script>
-                            document.write(getCountryName('{{$migration->departure_country}}'));
-                        </script> <br>
+                        <br>
                         City:{{$migration->departure_city}}
                     </td>
                     <td class="reason-cell">
@@ -92,16 +90,14 @@
                             </div>
                         </div>
                         <div class="time-elapsed">
-                            5 minutes ago
+                            {{Carbon\Carbon::parse($migration->created_at)->diffForHumans()}}
                         </div>
                     </td>
                     <td class="to-cell">
                         <div class="f32">
                             <div class="flag {{strtolower($migration->arrival_country)}}"></div>
                         </div>
-                        Country:<script>
-                            document.write(getCountryName('{{$migration->departure_country}}'));
-                        </script> <br>
+                        <br>
                         City:{{$migration->arrival_city}}
                     </td>
                 </tr>

@@ -47,7 +47,7 @@ class HomeController extends Controller
 
     public function profile()
     {
-        $migrations = Migration::where('user_id',Auth::id())->get();
+        $migrations = Migration::where('user_id',Auth::id())->take(5)->get();
         return view('app.profile',['migrations' => $migrations]);
     }
 }
