@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="file:://../../node_modules/leaflet-toolbar/dist/leaflet.toolbar.css"/>
     <script src="{{asset('js/L.Control.Sidebar.js')}}"></script>
     <link rel="stylesheet" href="{{asset('css/L.Control.Sidebar.css')}}">
+    <script src="{{asset('js/Leaflet.CountrySelect.js')}}"></script>
 @endsection
 
 @section('content')
@@ -43,6 +44,23 @@
                 position: 'left',
                 closeButton: 'true',
             });
+
+            var select = L.countrySelect().addTo(mymap);
+            select.on('change', function(e){
+                if(e.feature === undefined){ //No action when the first item ("Country") is selected
+                    return;
+                }
+                var country = L.geoJson(e.feature);
+                if (this.previousCountry != null){
+                    mymap.removeLayer(this.previousCountry);
+                }
+                this.previousCountry = country;
+
+                mymap.addLayer(country);
+                mymap.fitBounds(country.getBounds());
+
+            });
+
 
             mymap.addControl(sidebar);
 
