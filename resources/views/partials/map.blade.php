@@ -28,7 +28,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-polylinedecorator/1.1.0/leaflet.polylineDecorator.js">
         </script>
         <script>
-            var mymap = L.map('demoMap').setView([0,0], 2);
+            var mymap = L.map('demoMap', {zoomControl : false}).setView([0,0], 2);
             mymap.options.minZoom = 2;
 //            map.options.maxZoom = 14;
 
@@ -120,9 +120,8 @@
                 polyline.on('click', function() {
                     if (this.options["color"] === 'black') {
                         this.setStyle(polylineOptions);
-                        sidebar.toggle();
                     } else {
-                        sidebar.toggle();
+                        sidebar.show();
                         sidebar.setContent('test' + migration.departure_latitude);
                         this.setStyle({
                             color: 'black',

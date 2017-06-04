@@ -3,7 +3,7 @@ L.CountrySelect.countries = {"Afghanistan":{"type":"Feature","id":"AFG","propert
 
 L.CountrySelect = L.Control.extend({
 	options: {
-		position: 'bottomleft',
+		position: 'bottomright',
 		title: 'Country',
 		exclude: [],
 		include: [],
