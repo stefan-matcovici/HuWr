@@ -121,8 +121,9 @@
                     if (this.options["color"] === 'black') {
                         this.setStyle(polylineOptions);
                     } else {
+//                        console.log(polylines);
                         polylines.forEach(function (polyline2) {
-                           polyline2.setOptions(polylineOptions);
+                           polyline2.setStyle(polylineOptions);
                         });
                         sidebar.show();
 
