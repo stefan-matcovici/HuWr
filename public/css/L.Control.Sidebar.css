@@ -1,6 +1,8 @@
 .leaflet-sidebar {
   position: absolute;
-  height: 100%;
+  margin-top: 150px;
+  margin-left: 35px;
+  height: 75%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -81,8 +83,8 @@
         right: 460px; } }
   .leaflet-sidebar .close {
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 0px;
+    top: -25px;
     width: 31px;
     height: 31px;
     color: #333;

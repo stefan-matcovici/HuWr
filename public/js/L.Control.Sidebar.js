@@ -4,8 +4,8 @@ L.Control.Sidebar = L.Control.extend({
 
     options: {
         closeButton: true,
-        position: 'left',
-        autoPan: true,
+        position: 'right',
+        autoPan: false,
     },
 
     initialize: function (placeholder, options) {
@@ -25,6 +25,7 @@ L.Control.Sidebar = L.Control.extend({
 
         // Style and attach content container
         L.DomUtil.addClass(content, l + 'control');
+
         container.appendChild(content);
 
         // Create close button and attach it if configured

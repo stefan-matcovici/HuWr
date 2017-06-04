@@ -8,8 +8,8 @@
     <script src="file:://../../node_modules/leaflet-toolbar/dist/leaflet.toolbar.js"></script>
     <link rel="stylesheet" href="file:://../../node_modules/leaflet-toolbar/dist/leaflet.toolbar.css"/>
     <script src="{{asset('js/L.Control.Sidebar.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('css/L.Control.Sidebar.css')}}">
     <script src="{{asset('js/Leaflet.CountrySelect.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('css/L.Control.Sidebar.css')}}">
 @endsection
 
 @section('content')
@@ -58,6 +58,7 @@
 
                 mymap.addLayer(country);
                 mymap.fitBounds(country.getBounds());
+                sidebar.show();
             });
 
 
