@@ -195,11 +195,11 @@
                     } );
 
                     content +=
-                        "<li class = \"list-group-item\"> Author: <b>" + username + "</b> </li>" +
-                        "<li class = \"list-group-item\"> Date: <b>" + migration2.created_at + "</b> </li>" +
-                        "<li class = \"list-group-item\"> Number of adults: <b>" + migration2.adults + "</b></li>" +
-                        "<li class = \"list-group-item\"> Number of children: <b>" + migration2.children + "</b></li>" +
-                        "<li class = \"list-group-item\"> Reason: <b>" + migration2.reason + "</b></li>";
+                        "<li class = \"list-group-item list-group-item-warning\"> Author: <b>" + username + "</b> </li>" +
+                        "<li class = \"list-group-item list-group-item-warning\"> Date: <b>" + migration2.created_at + "</b> </li>" +
+                        "<li class = \"list-group-item list-group-item-warning\"> Number of adults: <b>" + migration2.adults + "</b></li>" +
+                        "<li class = \"list-group-item list-group-item-warning\"> Number of children: <b>" + migration2.children + "</b></li>" +
+                        "<li class = \"list-group-item list-group-item-warning\"> Reason: <b>" + migration2.reason + "</b></li>";
                     content += "</ul><br>";
 
                     if (reasons.indexOf(migration2.reason) < 0) {
@@ -207,15 +207,20 @@
                     }
                 }
             });
-            content += "<hr><b> Reasons: <ol>";
+            content += "<hr><h4> Reasons: <ol class=\"list-group\">";
 
             reasons.forEach(function (reason) {
-                content += "<li> <h5>" + reason + " </h5></li>";
+                content += "<li class=\"list-group-item list-group-item-danger\"> <h5>" + reason + " </h5></li>";
             });
-            content += "</ol></b>";
-            content += "<h4> Total:  " + numberOfMigrations + " migrations </h4><br>";
-            content += "<h4> Total:  " + numberOfAdults + " adults </h4><br>";
-            content += "<h4> Total:  " + numberOfChildren + " children </h4><br>";
+            content += "</ol></h4>";
+
+            content += "<hr><h4> Total: <ol class=\"list-group\">";
+
+
+            content += "<li class = \"list-group-item list-group-item-info\"> " +numberOfMigrations + " migrations </li><br>";
+            content += "<li class = \"list-group-item list-group-item-info\"> " +numberOfAdults + " adults </li><br>";
+            content += "<li class = \"list-group-item list-group-item-info\"> " + numberOfChildren + " children </li><br>";
+            content += "</ol></h4>";
 
             return content;
         }
@@ -227,29 +232,32 @@
             migrations.forEach(function (migration2) {
                 if (migration2.departure_latitude ===latitude &&
                     migration2.departure_longitude === longitude) {
+                    if (reasons.indexOf(migration2.reason) < 0) {
+                        reasons.push(migration2.reason);
+                    }
                     fromMigrations ++;
                 }
 
                 if (migration2.arrival_latitude === latitude &&
                     migration2.arrival_longitude === longitude) {
+                    if (reasons.indexOf(migration2.reason) < 0) {
+                        reasons.push(migration2.reason);
+                    }
                     toMigrations ++;
                 }
 
-                if (reasons.indexOf(migration2.reason) < 0) {
-                    reasons.push(migration2.reason);
-                }
+
 
             });
             content1 = "<b> " + city + ", " + country + "</b> <br>";
             content1 += "<b>" + fromMigrations +" migrations started from here. </b><br>";
             content1 += "<b>" + toMigrations +" migrations finished here. </b>";
 
-            content1 += "<br><b> Reasons: <ol>";
+            content1 += "<hr><b> Reasons: <ol class=\"list-group\">";
 
             reasons.forEach(function (reason) {
-                content1 += "<li> <h6>" + reason + " </h6></li>";
+                content1 += "<li> <h5>" + reason + " </h5></li>";
             });
-
             content1 += "</ol></b>";
             return content1;
         }
