@@ -66,7 +66,7 @@
 
 
             var migrations = {!! json_encode($migrations->toArray()) !!};
-
+            var polylines = [];
             migrations.forEach(function(migration)
             {
                 var blueMarker = L.icon({
@@ -121,6 +121,9 @@
                     if (this.options["color"] === 'black') {
                         this.setStyle(polylineOptions);
                     } else {
+                        polylines.forEach(function (polyline2) {
+                           polyline2.setOptions(polylineOptions);
+                        });
                         sidebar.show();
 
                         numberOfMigrations = 0;
@@ -151,11 +154,11 @@
                                 } );
 
                                 content +=
-                                    "<li class = \"list-group-item\"> Author: " + username + " </li>" +
-                                    "<li class = \"list-group-item\"> Date: " + migration2.created_at + " </li>" +
-                                    "<li class = \"list-group-item\"> Number of adults: " + migration2.adults + "</li>" +
-                                    "<li class = \"list-group-item\"> Number of children: " + migration2.children + "</li>" +
-                                    "<li class = \"list-group-item\"> Reason: " + migration2.reason + "</li>";
+                                    "<li class = \"list-group-item\"> Author: <b>" + username + "</b> </li>" +
+                                    "<li class = \"list-group-item\"> Date: <b>" + migration2.created_at + "</b> </li>" +
+                                    "<li class = \"list-group-item\"> Number of adults: <b>" + migration2.adults + "</b></li>" +
+                                    "<li class = \"list-group-item\"> Number of children: <b>" + migration2.children + "</b></li>" +
+                                    "<li class = \"list-group-item\"> Reason: <b>" + migration2.reason + "</b></li>";
                                 content += "</ul><br>";
 
                                 if (reasons.indexOf(migration2.reason) < 0) {
@@ -166,12 +169,12 @@
                         content += "<hr><b> Reasons: <ol>";
 
                         reasons.forEach(function (reason) {
-                            content += "<li>" + reason + "</li>";
+                            content += "<li> <h5>" + reason + " </h5></li>";
                         });
                         content += "</ol></b>";
-                        content += "<b> Total:  " + numberOfMigrations + " migrations </b><br>";
-                        content += "<b> Total:  " + numberOfAdults + " adults </b><br>";
-                        content += "<b> Total:  " + numberOfChildren + " children </b><br>";
+                        content += "<h4> Total:  " + numberOfMigrations + " migrations </h4><br>";
+                        content += "<h4> Total:  " + numberOfAdults + " adults </h4><br>";
+                        content += "<h4> Total:  " + numberOfChildren + " children </h4><br>";
 
 
                         sidebar.setContent(content);
@@ -183,6 +186,7 @@
                 });
 
                 mymap.addLayer(polyline);
+                polylines.push(polyline);
 
 
                 L.polylineDecorator(polyline,{
