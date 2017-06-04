@@ -140,9 +140,11 @@
                             offset: '100%',
                             repeat:0,
                             symbol: new L.Symbol.arrowHead({
-                                pixelSize: 8,
-                                pathOptions: {fillOpacity: 0.5,
-                                    weight: 0.5
+                                pixelSize: 10,
+                                pathOptions: {
+                                    fillOpacity: 0.5,
+                                    weight: 2,
+                                    color: 'gray'
                                 }
                             })
                         }

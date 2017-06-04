@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $migrations = Migration::all()->where('id', '<', '100');
+        $migrations = Migration::all();
         return view('app.home',['migrations' => $migrations]);
     }
 

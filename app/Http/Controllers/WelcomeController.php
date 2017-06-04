@@ -15,7 +15,7 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        $migrations = Migration::all()->where('id', '<', '30');
+        $migrations = Migration::all();
 //        dd($migrations);
         return view('welcome.welcome',['migrations' => $migrations]);
     }
