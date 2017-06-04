@@ -39,6 +39,7 @@
                 'Imagery © <a href="http://mapbox.com">Mapbox</a>',
                 id: 'mapbox.streets'
             }).addTo(mymap);
+            var polylines = [];
 
             var sidebar = L.control.sidebar('sidebar', {
                 position: 'left',
@@ -66,7 +67,7 @@
 
 
             var migrations = {!! json_encode($migrations->toArray()) !!};
-            var polylines = [];
+            var polylineOptions;
             migrations.forEach(function(migration)
             {
                 var blueMarker = L.icon({
@@ -86,8 +87,10 @@
                     popupAnchor:  [1, -25] // point from which the popup should open relative to the iconAnchor
                 });
                 marker2 = L.marker([migration.arrival_latitude, migration.arrival_longitude], {icon: redMarker}).addTo(mymap);
-                marker1.bindPopup("<b> Here is the departure.</b>");
-                marker2.bindPopup("<b> Here is the arrival.</b>")
+                content = getMarkerPopupContent(migration.departure_city, migration.departure_country, migration.departure_latitude, migration.departure_longitude);
+                marker1.bindPopup(content);
+                content = getMarkerPopupContent(migration.arrival_city, migration.arrival_country, migration.arrival_latitude, migration.arrival_longitude);
+                marker2.bindPopup(content);
 
                 pointA = new L.LatLng(migration.departure_latitude, migration.departure_longitude);
                 pointB = new L.LatLng(migration.arrival_latitude, migration.arrival_longitude);
@@ -121,62 +124,12 @@
                     if (this.options["color"] === 'black') {
                         this.setStyle(polylineOptions);
                     } else {
-//                        console.log(polylines);
                         polylines.forEach(function (polyline2) {
                            polyline2.setStyle(polylineOptions);
                         });
                         sidebar.show();
 
-                        numberOfMigrations = 0;
-                        numberOfAdults = 0;
-                        numberOfChildren = 0;
-                        content = "";
-
-                        content = "<h1> Migration from " + migration.departure_city + ", " + migration.departure_country + " to " + migration.arrival_city + ", " + migration.arrival_country + " </h1><hr>";
-
-
-                        reasons = [];
-                        migrations.forEach(function (migration2) {
-                            if (migration2.departure_latitude === migration.departure_latitude &&
-                                migration2.departure_longitude === migration.departure_longitude &&
-                                migration2.arrival_latitude === migration.arrival_latitude &&
-                                migration2.arrival_latitude === migration.arrival_latitude) {
-                                content += "<ul class = \"list-group\">";
-                                numberOfMigrations++;
-                                numberOfAdults += migration2.adults;
-                                numberOfChildren += migration2.children;
-
-                                var users = {!! json_encode($users->toArray()) !!};
-                                var username = "";
-                                users.forEach(function (user) {
-                                    if (user.id === migration.user_id) {
-                                        username = user.first_name + " " + user.last_name;
-                                    }
-                                } );
-
-                                content +=
-                                    "<li class = \"list-group-item\"> Author: <b>" + username + "</b> </li>" +
-                                    "<li class = \"list-group-item\"> Date: <b>" + migration2.created_at + "</b> </li>" +
-                                    "<li class = \"list-group-item\"> Number of adults: <b>" + migration2.adults + "</b></li>" +
-                                    "<li class = \"list-group-item\"> Number of children: <b>" + migration2.children + "</b></li>" +
-                                    "<li class = \"list-group-item\"> Reason: <b>" + migration2.reason + "</b></li>";
-                                content += "</ul><br>";
-
-                                if (reasons.indexOf(migration2.reason) < 0) {
-                                    reasons.push(migration2.reason);
-                                }
-                            }
-                        });
-                        content += "<hr><b> Reasons: <ol>";
-
-                        reasons.forEach(function (reason) {
-                            content += "<li> <h5>" + reason + " </h5></li>";
-                        });
-                        content += "</ol></b>";
-                        content += "<h4> Total:  " + numberOfMigrations + " migrations </h4><br>";
-                        content += "<h4> Total:  " + numberOfAdults + " adults </h4><br>";
-                        content += "<h4> Total:  " + numberOfChildren + " children </h4><br>";
-
+                        content = getSideBarHTML(migration);
 
                         sidebar.setContent(content);
                         this.setStyle({
@@ -205,8 +158,102 @@
                             })
                         }
                     ]}).addTo(mymap);
-            })
+                sidebar.on('hidden', function () {
+                    polylines.forEach(function (polyline2) {
+                        polyline2.setStyle(polylineOptions);
+                    });
+                });
 
+            });
+
+        function getSideBarHTML(migration) {
+            numberOfMigrations = 0;
+            numberOfAdults = 0;
+            numberOfChildren = 0;
+            content = "";
+
+            content = "<h1> Migration from " + migration.departure_city + ", " + migration.departure_country + " to " + migration.arrival_city + ", " + migration.arrival_country + " </h1><hr>";
+
+
+            reasons = [];
+            migrations.forEach(function (migration2) {
+                if (migration2.departure_latitude === migration.departure_latitude &&
+                    migration2.departure_longitude === migration.departure_longitude &&
+                    migration2.arrival_latitude === migration.arrival_latitude &&
+                    migration2.arrival_latitude === migration.arrival_latitude) {
+                    content += "<ul class = \"list-group\">";
+                    numberOfMigrations++;
+                    numberOfAdults += migration2.adults;
+                    numberOfChildren += migration2.children;
+
+                    var users = {!! json_encode($users->toArray()) !!};
+                    var username = "";
+                    users.forEach(function (user) {
+                        if (user.id === migration.user_id) {
+                            username = user.first_name + " " + user.last_name;
+                        }
+                    } );
+
+                    content +=
+                        "<li class = \"list-group-item\"> Author: <b>" + username + "</b> </li>" +
+                        "<li class = \"list-group-item\"> Date: <b>" + migration2.created_at + "</b> </li>" +
+                        "<li class = \"list-group-item\"> Number of adults: <b>" + migration2.adults + "</b></li>" +
+                        "<li class = \"list-group-item\"> Number of children: <b>" + migration2.children + "</b></li>" +
+                        "<li class = \"list-group-item\"> Reason: <b>" + migration2.reason + "</b></li>";
+                    content += "</ul><br>";
+
+                    if (reasons.indexOf(migration2.reason) < 0) {
+                        reasons.push(migration2.reason);
+                    }
+                }
+            });
+            content += "<hr><b> Reasons: <ol>";
+
+            reasons.forEach(function (reason) {
+                content += "<li> <h5>" + reason + " </h5></li>";
+            });
+            content += "</ol></b>";
+            content += "<h4> Total:  " + numberOfMigrations + " migrations </h4><br>";
+            content += "<h4> Total:  " + numberOfAdults + " adults </h4><br>";
+            content += "<h4> Total:  " + numberOfChildren + " children </h4><br>";
+
+            return content;
+        }
+
+        function getMarkerPopupContent(city, country, latitude, longitude) {
+            reasons = [];
+            fromMigrations = 0;
+            toMigrations = 0;
+            migrations.forEach(function (migration2) {
+                if (migration2.departure_latitude ===latitude &&
+                    migration2.departure_longitude === longitude) {
+                    fromMigrations ++;
+                }
+
+                if (migration2.arrival_latitude === latitude &&
+                    migration2.arrival_longitude === longitude) {
+                    toMigrations ++;
+                }
+
+                if (reasons.indexOf(migration2.reason) < 0) {
+                    reasons.push(migration2.reason);
+                }
+
+            });
+            content1 = "<b> " + city + ", " + country + "</b> <br>";
+            content1 += "<b>" + fromMigrations +" migrations started from here. </b><br>";
+            content1 += "<b>" + toMigrations +" migrations finished here. </b>";
+
+            content1 += "<br><b> Reasons: <ol>";
+
+            reasons.forEach(function (reason) {
+                content1 += "<li> <h6>" + reason + " </h6></li>";
+            });
+
+            content1 += "</ol></b>";
+            return content1;
+        }
 
         </script>
     </div>
+@endsection
