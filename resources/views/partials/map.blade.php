@@ -122,7 +122,49 @@
                         this.setStyle(polylineOptions);
                     } else {
                         sidebar.show();
-                        sidebar.setContent('test' + migration.departure_latitude);
+
+                        numberOfMigrations = 0;
+                        numberOfAdults = 0;
+                        numberOfChildren = 0;
+                        content = "";
+
+                        content = "<h1> Migration from " + migration.departure_city + ", " + migration.departure_country + " to " + migration.arrival_city + ", " + migration.arrival_country + " </h1><hr>";
+
+
+                        reasons = [];
+                        migrations.forEach(function (migration2) {
+                            if (migration2.departure_latitude === migration.departure_latitude &&
+                                migration2.departure_longitude === migration.departure_longitude &&
+                                migration2.arrival_latitude === migration.arrival_latitude &&
+                                migration2.arrival_latitude === migration.arrival_latitude) {
+                                content += "<ul class = \"list-group\">";
+                                numberOfMigrations++;
+                                numberOfAdults += migration2.adults;
+                                numberOfChildren += migration2.children;
+                                content +=
+                                    "<li class = \"list-group-item\"> Date: " + migration2.created_at + " </li>" +
+                                    "<li class = \"list-group-item\"> Number of adults: " + migration2.adults + "</li>" +
+                                    "<li class = \"list-group-item\"> Number of children: " + migration2.children + "</li>" +
+                                    "<li class = \"list-group-item\"> Reason: " + migration2.reason + "</li>";
+                                content += "</ul><br>";
+
+                                if (reasons.indexOf(migration2.reason) < 0) {
+                                    reasons.push(migration2.reason);
+                                }
+                            }
+                        });
+                        content += "<hr><b> Reasons: <ol>";
+
+                        reasons.forEach(function (reason) {
+                            content += "<li>" + reason + "</li>";
+                        });
+                        content += "</ol></b>";
+                        content += "<b> Total:  " + numberOfMigrations + " migrations </b><br>";
+                        content += "<b> Total:  " + numberOfAdults + " adults </b><br>";
+                        content += "<b> Total:  " + numberOfChildren + " children </b><br>";
+
+
+                        sidebar.setContent(content);
                         this.setStyle({
                             color: 'black',
                             weight: 10
@@ -135,7 +177,6 @@
 
                 L.polylineDecorator(polyline,{
                     patterns: [
-                        // define a pattern of 10px-wide dashes, repeated every 20px on the line
                         {
                             offset: '100%',
                             repeat:0,
