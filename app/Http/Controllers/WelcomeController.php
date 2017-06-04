@@ -30,7 +30,7 @@ class WelcomeController extends Controller
 
     public function feed()
     {
-        $migrations = Migration::paginate(15);
+        $migrations = Migration::paginate(2);
         return view('welcome.feed',['migrations' => $migrations]);
     }
 
