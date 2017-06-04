@@ -28,6 +28,8 @@ Route::group(['prefix' => '/home'], function () {
     Route::get('/predictions', ['as' => 'predictions', 'uses' => 'HomeController@predictions']);
     Route::get('/profile', ['as' => 'profile', 'uses' => 'HomeController@profile']);
     Route::post('/add',['as' => 'add.migration', 'uses' => 'MigrationsController@store']);
+    Route::get('/prediction',['as' => 'get.predictions', 'uses' => 'PredictionsController@getPredictions']);
+    Route::get('/predictionsResult',['as' => 'return.predictions', 'uses' => 'PredictionsController@returnPredictions']);
 });
 
 Route::group(['prefix' => '/statistics'], function () {
