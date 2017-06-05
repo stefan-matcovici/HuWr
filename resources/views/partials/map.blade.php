@@ -10,6 +10,8 @@
     <script src="{{asset('js/L.Control.Sidebar.js')}}"></script>
     <script src="{{asset('js/Leaflet.CountrySelect.js')}}"></script>
     <link rel="stylesheet" href="{{asset('css/L.Control.Sidebar.css')}}">
+    <link rel="stylesheet" href="{{asset('css/easy-button.css')}}">
+    <script src="{{asset('js/easy-button.js')}}"></script>
 @endsection
 
 @section('content')
@@ -19,6 +21,7 @@
                 <h1>leaflet-sidebar</h1>
             </div>
         </div>
+
     </div>
     <div>
         <script
@@ -40,6 +43,7 @@
                 id: 'mapbox.streets'
             }).addTo(mymap);
             var polylines = [];
+            var markers = [];
 
             var sidebar = L.control.sidebar('sidebar', {
                 position: 'left',
@@ -56,8 +60,6 @@
                     mymap.removeLayer(this.previousCountry);
                 }
                 this.previousCountry = country;
-
-                mymap.addLayer(country);
                 mymap.fitBounds(country.getBounds());
                 sidebar.show();
             });
@@ -68,6 +70,12 @@
 
             var migrations = {!! json_encode($migrations->toArray()) !!};
             var polylineOptions;
+
+            addMigrationsToMap(migrations);
+
+
+
+        function addMigrationsToMap(migrations) {
             migrations.forEach(function(migration)
             {
                 var blueMarker = L.icon({
@@ -91,6 +99,9 @@
                 marker1.bindPopup(content);
                 content = getMarkerPopupContent(migration.arrival_city, migration.arrival_country, migration.arrival_latitude, migration.arrival_longitude);
                 marker2.bindPopup(content);
+
+                markers.push(marker1);
+                markers.push(marker2);
 
                 pointA = new L.LatLng(migration.departure_latitude, migration.departure_longitude);
                 pointB = new L.LatLng(migration.arrival_latitude, migration.arrival_longitude);
@@ -125,7 +136,7 @@
                         this.setStyle(polylineOptions);
                     } else {
                         polylines.forEach(function (polyline2) {
-                           polyline2.setStyle(polylineOptions);
+                            polyline2.setStyle(polylineOptions);
                         });
                         sidebar.show();
 
@@ -145,18 +156,18 @@
 
                 L.polylineDecorator(polyline,{
                     patterns: [
-                        {
-                            offset: '100%',
-                            repeat:0,
-                            symbol: new L.Symbol.arrowHead({
-                                pixelSize: 10,
-                                pathOptions: {
-                                    fillOpacity: 0.5,
-                                    weight: 2,
-                                    color: 'gray'
-                                }
-                            })
-                        }
+//                        {
+//                            offset: '100%',
+//                            repeat:0,
+//                            symbol: new L.Symbol.arrowHead({
+//                                pixelSize: 10,
+//                                pathOptions: {
+//                                    fillOpacity: 0.5,
+//                                    weight: 2,
+//                                    color: 'gray'
+//                                }
+//                            })
+//                        }
                     ]}).addTo(mymap);
                 sidebar.on('hidden', function () {
                     polylines.forEach(function (polyline2) {
@@ -165,6 +176,34 @@
                 });
 
             });
+
+            L.easyButton('fa-newspaper-o', function(btn, map){
+                polylines.forEach(function (p1) {
+                    mymap.removeLayer(p1);
+                });
+                markers.forEach(function (m1) {
+                    mymap.removeLayer(m1);
+                });
+            }).addTo( mymap );
+
+            L.easyButton('fa-globe', function(btn, map){
+                polylines.forEach(function (p1) {
+                    mymap.removeLayer(p1);
+                });
+                markers.forEach(function (m1) {
+                    mymap.removeLayer(m1);
+                });
+            }).addTo( mymap );
+
+            L.easyButton('fa-exclamation-circle', function(btn, map) {
+                polylines.forEach(function (p1) {
+                    mymap.removeLayer(p1);
+                });
+                markers.forEach(function (m1) {
+                    mymap.removeLayer(m1);
+                });
+            }).addTo( mymap );
+        }
 
         function getSideBarHTML(migration) {
             numberOfMigrations = 0;
