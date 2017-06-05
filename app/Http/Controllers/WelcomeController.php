@@ -58,6 +58,12 @@ class WelcomeController extends Controller
         return $migrations;
     }
 
+    public function countryMigrations(Request $request, $countryInitials) {
+        $migrations = Migration::where('departure_country', $countryInitials)->orWhere('arrival_country', $countryInitials)->get();
+
+        return $migrations;
+    }
+
     public function feed()
     {
         $migrations = Migration::paginate(15);
@@ -106,7 +112,7 @@ class WelcomeController extends Controller
 
     }
 
-    public function feedGetId(Request $request,$id)
+    public function feedGetId(Request $request, $id)
     {
         $migration = Migration::where('id',$id)->get()->first();
         return view('welcome.singleFeed',['migration' => $migration]);

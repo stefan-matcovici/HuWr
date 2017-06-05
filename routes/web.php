@@ -17,6 +17,7 @@ Route::group(['prefix' => '/'], function () {
     Route::get('/recent', ['as' => 'recent', 'uses' => 'WelcomeController@recentMigrations']);
     Route::get('/all', ['as' => 'all', 'uses' => 'WelcomeController@allMigrations']);
     Route::get('/important', ['as' => 'important', 'uses' => 'WelcomeController@importantMigrations']);
+    Route::get('/country-migrations/{country}', ['as' => 'country-migrations', 'uses' => 'WelcomeController@countryMigrations']);
     Route::get('/feed', ['as' => 'feed', 'uses' => 'WelcomeController@feed']);
     Route::get('/about', ['as' => 'about', 'uses' => 'WelcomeController@about']);
     Route::get('/country', ['as' => 'country', 'uses' => 'WelcomeController@country']);
