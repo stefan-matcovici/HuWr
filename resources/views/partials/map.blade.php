@@ -8,6 +8,7 @@
     <script src="file:://../../node_modules/leaflet-toolbar/dist/leaflet.toolbar.js"></script>
     <link rel="stylesheet" href="file:://../../node_modules/leaflet-toolbar/dist/leaflet.toolbar.css"/>
     <script src="{{asset('js/L.Control.Sidebar.js')}}"></script>
+    <script src="{{asset('js/getCountryCode.js')}}"></script>
     <script src="{{asset('js/Leaflet.CountrySelect.js')}}"></script>
     <link rel="stylesheet" href="{{asset('css/L.Control.Sidebar.css')}}">
     <link rel="stylesheet" href="{{asset('css/easy-button.css')}}">
@@ -57,7 +58,8 @@
 
             var select = L.countrySelect().addTo(mymap);
             select.on('change', function(e){
-                if(e.feature === undefined){ //No action when the first item ("Country") is selected
+                if(e.feature === undefined || e.feature === 'Country'){ //No action when the first item ("Country") is selected
+                    loadMigration(recentURI);
                     return;
                 }
                 var country = L.geoJson(e.feature);
@@ -65,8 +67,38 @@
                     mymap.removeLayer(this.previousCountry);
                 }
                 this.previousCountry = country;
+                countryCode = getCountryCode(e.feature.properties.name);
+
+                request = null;
+                if (window.XMLHttpRequest) {
+                    request = new XMLHttpRequest ();
+                } else
+                if (window.ActiveXObject) {
+                    request = new ActiveXObject ("Microsoft.XMLHTTP");
+                }
+                if (request) {
+                    request.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            migrations =  JSON.parse(this.responseText);
+                            polylines.forEach(function (p1) {
+                                mymap.removeLayer(p1);
+                            });
+                            markers.forEach(function (m1) {
+                                mymap.removeLayer(m1);
+                            });
+                            addMigrationsToMap(migrations);
+                        }
+                    };
+                }
+
+                var countryURI = "{{ route('country')}}";
+                countryURI += "-migrations/" + countryCode;
+                console.log(countryCode);
+                request.open ("GET", countryURI, true);
+                request.send (null);
+
                 mymap.fitBounds(country.getBounds());
-                sidebar.show();
+//                sidebar.show();
             });
 
 
@@ -202,21 +234,7 @@
                 polylines.push(polyline);
 
 
-                L.polylineDecorator(polyline,{
-                    patterns: [
-//                        {
-//                            offset: '100%',
-//                            repeat:0,
-//                            symbol: new L.Symbol.arrowHead({
-//                                pixelSize: 10,
-//                                pathOptions: {
-//                                    fillOpacity: 0.5,
-//                                    weight: 2,
-//                                    color: 'gray'
-//                                }
-//                            })
-//                        }
-                    ]}).addTo(mymap);
+                L.polylineDecorator(polyline,{patterns: []}).addTo(mymap);
                 sidebar.on('hidden', function () {
                     polylines.forEach(function (polyline2) {
                         polyline2.setStyle(polylineOptions);
