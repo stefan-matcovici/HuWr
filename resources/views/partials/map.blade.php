@@ -15,6 +15,11 @@
 @endsection
 
 @section('content')
+    <script type="text/javascript">
+        var recentURI = "{{ route('recent')}}";
+        var allURI = "{{ route('all')}}";
+        var importantURI = "{{ route('important')}}";
+    </script>
     <div class="container fill">
         <div id="demoMap">
             <div id="sidebar">
@@ -73,6 +78,41 @@
 
             addMigrationsToMap(migrations);
 
+            button1 = L.easyButton('fa-globe', function(btn, map){
+                polylines.forEach(function (p1) {
+                    mymap.removeLayer(p1);
+                });
+                markers.forEach(function (m1) {
+                    mymap.removeLayer(m1);
+                });
+                mymap.removeLayer(btn);
+                loadMigration(allURI);
+            }).addTo( mymap );
+            button1.options.id=1;
+
+            button2 = L.easyButton('fa-newspaper-o', function(btn, map){
+                polylines.forEach(function (p1) {
+                    mymap.removeLayer(p1);
+                });
+                markers.forEach(function (m1) {
+                    mymap.removeLayer(m1);
+                });
+                mymap.removeLayer(btn);
+                loadMigration(recentURI);
+            }).addTo( mymap );
+            button2.options.id=2;
+
+            button3 = L.easyButton('fa-exclamation-circle', function(btn, map) {
+                polylines.forEach(function (p1) {
+                    mymap.removeLayer(p1);
+                });
+                markers.forEach(function (m1) {
+                    mymap.removeLayer(m1);
+                });
+                mymap.removeLayer(btn);
+                loadMigration(importantURI);
+            }).addTo( mymap );
+            button3.options.id=3;
 
 
         function addMigrationsToMap(migrations) {
@@ -177,32 +217,6 @@
 
             });
 
-            L.easyButton('fa-newspaper-o', function(btn, map){
-                polylines.forEach(function (p1) {
-                    mymap.removeLayer(p1);
-                });
-                markers.forEach(function (m1) {
-                    mymap.removeLayer(m1);
-                });
-            }).addTo( mymap );
-
-            L.easyButton('fa-globe', function(btn, map){
-                polylines.forEach(function (p1) {
-                    mymap.removeLayer(p1);
-                });
-                markers.forEach(function (m1) {
-                    mymap.removeLayer(m1);
-                });
-            }).addTo( mymap );
-
-            L.easyButton('fa-exclamation-circle', function(btn, map) {
-                polylines.forEach(function (p1) {
-                    mymap.removeLayer(p1);
-                });
-                markers.forEach(function (m1) {
-                    mymap.removeLayer(m1);
-                });
-            }).addTo( mymap );
         }
 
         function getSideBarHTML(migration) {
@@ -264,6 +278,26 @@
             return content;
         }
 
+        function loadMigration(migrationURI) {
+            request = null;
+            if (window.XMLHttpRequest) {
+                request = new XMLHttpRequest ();
+            } else
+            if (window.ActiveXObject) {
+                request = new ActiveXObject ("Microsoft.XMLHTTP");
+            }
+            if (request) {
+                request.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        migrations =  JSON.parse(this.responseText);
+                        addMigrationsToMap(migrations);
+                    }
+                };
+            }
+            request.open ("GET", migrationURI, true);
+            request.send (null);
+        }
+
         function getMarkerPopupContent(city, country, latitude, longitude) {
             reasons = [];
             fromMigrations = 0;
@@ -284,9 +318,6 @@
                     }
                     toMigrations ++;
                 }
-
-
-
             });
             content1 = "<b> " + city + ", " + country + "</b> <br>";
             content1 += "<b>" + fromMigrations +" migrations started from here. </b><br>";

@@ -9,6 +9,7 @@ use App\User as User;
 use Feed;
 use Twitter;
 use DateTime;
+use DB;
 
 
 class WelcomeController extends Controller
@@ -28,6 +29,33 @@ class WelcomeController extends Controller
 //        dd($result);
         $migrations = Migration::all();
         return view('welcome.welcome',['migrations' => $migrations]);
+    }
+
+    public function recentMigrations() {
+        $migrations = DB::select("
+        select * 
+        from human_migrations 
+        WHERE YEAR(created_at) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH)
+        AND MONTH(created_at) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)");
+
+        return $migrations;
+    }
+
+    public function allMigrations() {
+        $migrations = DB::select("
+        select * 
+        from human_migrations");
+
+        return $migrations;
+    }
+
+    public function importantMigrations() {
+        $migrations = DB::select("
+        select * 
+        from human_migrations
+        where adults + children > 100");
+
+        return $migrations;
     }
 
     public function feed()
