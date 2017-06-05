@@ -129,15 +129,14 @@ function drawBar() {
     }
     var _this = this;
     var margin = { top: 20, right: 20, bottom: 30, left: 40 },
-        width = 960 - margin.left - margin.right,
+        width = 1200 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
     // set the ranges
     var x = d3.scaleBand()
         .range([0, width])
         .padding(0.1);
-    var y = d3.scaleLinear()
-        .range([height, 0]);
+    var y = d3.scaleLinear().range([height, 0]);
 
     d3.select(".jumbotron").append("div").attr("class", "card text-center rounded col-lg-10  mt-5 mx-auto year-statistic");
     var card = d3.select(".year-statistic").append("div").attr("class", "card-block");

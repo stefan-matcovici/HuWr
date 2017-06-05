@@ -9,6 +9,7 @@
         var basicURI = "{{ route('welcome')}}";
     </script>
     <script src="{{asset('js/countries_states.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="{{asset('js/statistics.js')}}"></script>
     <script src="{{asset('js/getCountryCode.js')}}"></script>
