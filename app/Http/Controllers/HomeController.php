@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\HumanMigration as Migration;
+use App\User as User;
 use Auth;
 
 
@@ -26,8 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $migrations = Migration::all();
-        return view('app.home',['migrations' => $migrations]);
+        $migrations = Migration::take(30)->get();
+        $users = User::all();
+        return view('app.home',['migrations' => $migrations, 'users' => $users]);
     }
 
     public function add()
