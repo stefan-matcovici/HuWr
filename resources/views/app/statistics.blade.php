@@ -13,6 +13,9 @@
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="{{asset('js/statistics.js')}}"></script>
     <script src="{{asset('js/getCountryCode.js')}}"></script>
+    <script src="{{asset('js/svgToPdf.js')}}"></script>
+    <script src="https://rawgit.com/exupero/saveSvgAsPng/gh-pages/saveSvgAsPng.js"></script>
+    <script src="https://rawgit.com/MrRio/jsPDF/master/dist/jspdf.debug.js"></script>
 
     <div class="jumbotron">
         <div class="card text-center rounded col-lg-10  mt-5 mx-auto">

@@ -110,10 +110,23 @@ function drawDonut() {
     request.send (null);
 
     var div = card.append('div').attr('class','buttons');
-    div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
-    div.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
-    div.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
-    div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
+    var htmlButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
+    var jsonButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
+    var svgButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
+    var pdfButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
+
+    pdfButton.on("click", function(){
+        svg_to_pdf(document.querySelector(".reason-statistic svg"), function (pdf) {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1;
+            var yyyy = today.getFullYear();
+            today = mm+'/'+dd+'/'+yyyy;
+            centeredText(pdf,'Reason statistic for '+country+' made on '+ today,15);
+            pdf.output('dataurlnewwindow');
+        });
+    });
+
 }
 
 function drawBar() {
@@ -129,7 +142,7 @@ function drawBar() {
     }
     var _this = this;
     var margin = { top: 20, right: 20, bottom: 30, left: 40 },
-        width = 1200 - margin.left - margin.right,
+        width = 960 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
     // set the ranges
@@ -155,11 +168,6 @@ function drawBar() {
             if (this.readyState == 4 && this.status == 200) {
                 years =  JSON.parse(this.responseText);
 
-                // format the data
-                years.forEach(function (d) {
-                    d.migrations = +d.migrations;
-                });
-
                 // Scale the range of the data in the domains
                 x.domain(years.map(function (d) { return d.year; }));
                 y.domain([0, d3.max(years, function (d) { return d.migrations; })]);
@@ -184,10 +192,22 @@ function drawBar() {
                     .call(d3.axisLeft(y));
 
                 var div = card.append('div').attr('class','buttons');
-                div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
-                div.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
-                div.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
-                div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
+                var htmlButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
+                var jsonButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
+                var svgButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
+                var pdfButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
+
+                pdfButton.on("click", function(){
+                    svg_to_pdf(document.querySelector(".year-statistic svg"), function (pdf) {
+                        var today = new Date();
+                        var dd = today.getDate();
+                        var mm = today.getMonth()+1;
+                        var yyyy = today.getFullYear();
+                        today = mm+'/'+dd+'/'+yyyy;
+                        centeredText(pdf,'Year statistic for '+country+' made on '+ today,15);
+                        pdf.output('dataurlnewwindow');
+                    });
+                });
             }
         };
     }
@@ -220,7 +240,8 @@ function drawLine() {
     var parseTime = d3.timeParse("%y");
 
     // set the ranges
-    var x = d3.scaleTime().range([0, width]);
+    var x = d3.scaleBand()
+        .range([0, width])
     var y = d3.scaleLinear().range([height, 0]);
 
     // define the line
@@ -243,14 +264,11 @@ function drawLine() {
         request.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 data = JSON.parse(this.responseText);
-                data.forEach(function (d) {
-                    d.date = parseTime(d.year);
-                    d.close = +d.close;
-                });
 
-                console.log(data);
+
+                //console.log(data);
                 // Scale the range of the data
-                x.domain(d3.extent(data, function (d) { return d.year; }));
+                x.domain(data.map(function (d) { return d.year; }));
                 y.domain([0, d3.max(data, function (d) { return d.close; })]);
 
                 // Add the valueline path.
@@ -269,10 +287,22 @@ function drawLine() {
                     .call(d3.axisLeft(y));
 
                 var div = card.append('div').attr('class','buttons');
-                div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
-                div.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
-                div.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
-                div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
+                var htmlButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
+                var jsonButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
+                var svgButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
+                var pdfButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
+
+                pdfButton.on("click", function(){
+                    svg_to_pdf(document.querySelector(".kids-statistic svg"), function (pdf) {
+                        var today = new Date();
+                        var dd = today.getDate();
+                        var mm = today.getMonth()+1;
+                        var yyyy = today.getFullYear();
+                        today = mm+'/'+dd+'/'+yyyy;
+                        centeredText(pdf,'Children statistic for '+country+' made on '+ today,15);
+                        pdf.output('dataurlnewwindow');
+                    });
+                });
             }
         }
     }
