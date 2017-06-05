@@ -78,7 +78,8 @@
 
             addMigrationsToMap(migrations);
 
-            button1 = L.easyButton('fa-globe', function(btn, map){
+
+            L.easyButton('fa-globe', function(btn, map){
                 polylines.forEach(function (p1) {
                     mymap.removeLayer(p1);
                 });
@@ -88,9 +89,8 @@
                 mymap.removeLayer(btn);
                 loadMigration(allURI);
             }).addTo( mymap );
-            button1.options.id=1;
 
-            button2 = L.easyButton('fa-newspaper-o', function(btn, map){
+            L.easyButton('fa-newspaper-o', function(btn, map){
                 polylines.forEach(function (p1) {
                     mymap.removeLayer(p1);
                 });
@@ -100,9 +100,8 @@
                 mymap.removeLayer(btn);
                 loadMigration(recentURI);
             }).addTo( mymap );
-            button2.options.id=2;
 
-            button3 = L.easyButton('fa-exclamation-circle', function(btn, map) {
+            L.easyButton('fa-exclamation-circle', function(btn, map) {
                 polylines.forEach(function (p1) {
                     mymap.removeLayer(p1);
                 });
@@ -112,7 +111,16 @@
                 mymap.removeLayer(btn);
                 loadMigration(importantURI);
             }).addTo( mymap );
-            button3.options.id=3;
+
+
+
+
+            HTMLButton1 = document.getElementsByClassName("fa-newspaper-o");
+            HTMLButton1[0].setAttribute("title", "See most recent migrations.");
+            HTMLButton2 = document.getElementsByClassName("fa-globe");
+            HTMLButton2[0].setAttribute("title", "See all migrations.");
+            HTMLButton3 = document.getElementsByClassName("fa-exclamation-circle");
+            HTMLButton3[0].setAttribute("title", "See most important migrations.");
 
 
         function addMigrationsToMap(migrations) {
