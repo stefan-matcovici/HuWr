@@ -67,7 +67,8 @@
                     mymap.removeLayer(this.previousCountry);
                 }
                 this.previousCountry = country;
-                countryCode = getCountryCode(e.feature.properties.name);
+                countryName = e.feature.properties.name;
+                countryCode = getCountryCode(countryName);
 
                 request = null;
                 if (window.XMLHttpRequest) {
@@ -86,6 +87,10 @@
                             markers.forEach(function (m1) {
                                 mymap.removeLayer(m1);
                             });
+                            sidebar.show();
+                            content = getCountrySidebarHTML(migrations, countryCode, countryName);
+                            sidebar.setContent(content);
+
                             addMigrationsToMap(migrations);
                         }
                     };
@@ -268,7 +273,7 @@
                     var users = {!! json_encode($users->toArray()) !!};
                     var username = "";
                     users.forEach(function (user) {
-                        if (user.id === migration.user_id) {
+                        if (user.id === migration2.user_id) {
                             username = user.first_name + " " + user.last_name;
                         }
                     } );
@@ -357,6 +362,59 @@
             content1 += "</ol></b>";
             return content1;
         }
+
+            function getCountrySidebarHTML(migrations, countryCode, countryName) {
+                content1 = "";
+                content2 = "<h1> " + countryName + " migrations </h1>";
+                numberOfMigrations = 0;
+                numberOfAdults = 0;
+                numberOfChildren = 0;
+
+                migrations.forEach(function (migration2) {
+                    content1 += "<ul class = \"list-group\">";
+                    numberOfMigrations++;
+                    numberOfAdults += migration2.adults;
+                    numberOfChildren += migration2.children;
+
+                    var users = {!! json_encode($users->toArray()) !!};
+                    var username = "";
+                    users.forEach(function (user) {
+                        if (user.id === migration2.user_id) {
+                            username = user.first_name + " " + user.last_name;
+                        }
+                    } );
+
+                    content1 +=
+                        "<li class = \"list-group-item list-group-item-warning\"> Author: <b>" + username + "</b> </li>" +
+                        "<li class = \"list-group-item list-group-item-warning\"> Date: <b>" + migration2.created_at + "</b> </li>" +
+                        "<li class = \"list-group-item list-group-item-warning\"> Number of adults: <b>" + migration2.adults + "</b></li>" +
+                        "<li class = \"list-group-item list-group-item-warning\"> Number of children: <b>" + migration2.children + "</b></li>" +
+                        "<li class = \"list-group-item list-group-item-warning\"> Reason: <b>" + migration2.reason + "</b></li>";
+                    content1 += "</ul><br>";
+
+                    if (reasons.indexOf(migration2.reason) < 0) {
+                        reasons.push(migration2.reason);
+                    }
+                });
+
+                content2 += "<hr><h4> Reasons: <ol class=\"list-group\">";
+
+                reasons.forEach(function (reason) {
+                    content2 += "<li class=\"list-group-item list-group-item-danger\"> <h5>" + reason + " </h5></li>";
+                });
+                content2 += "</ol></h4>";
+
+                content2 += "<hr><h4> Total: <ol class=\"list-group\">";
+
+
+                content2 += "<li class = \"list-group-item list-group-item-info\"> " +numberOfMigrations + " migrations </li><br>";
+                content2 += "<li class = \"list-group-item list-group-item-info\"> " +numberOfAdults + " adults </li><br>";
+                content2 += "<li class = \"list-group-item list-group-item-info\"> " + numberOfChildren + " children </li><br>";
+                content2 += "</ol></h4>";
+                content2 += "<hr> <h5>All migrations</h5>";
+
+                return content2 + content1;
+            }
 
         </script>
     </div>
