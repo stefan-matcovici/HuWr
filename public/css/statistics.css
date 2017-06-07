@@ -15,11 +15,15 @@ select {
 .location-selection
 {
   display:flex;
+  /*width: 100%;*/
   flex-flow: column wrap;
   justify-content: space-around;
   align-items: center;
 }
 
+.location-input {
+    width: 40%;
+}
 
 .legend {
     font-size: 12px;

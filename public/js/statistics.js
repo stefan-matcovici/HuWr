@@ -127,6 +127,25 @@ function drawDonut() {
         });
     });
 
+    htmlButton.on("click", function(){
+        try {
+            var isFileSaverSupported = !!new Blob();
+        } catch (e) {
+            alert("blob not supported");
+        }
+
+        var html = d3.select(".reason-statistic svg")
+            .attr("title", "test2")
+            .attr("version", 1.1)
+            .attr("xmlns", "http://www.w3.org/2000/svg")
+            .node().outerHTML;
+
+        console.log(html);
+
+        var blob = new Blob([html], {type: "image/svg+xml"});
+        saveAs(blob, "myProfile.svg");
+    });
+
 }
 
 function drawBar() {
@@ -207,6 +226,25 @@ function drawBar() {
                         centeredText(pdf,'Year statistic for '+country+' made on '+ today,15);
                         pdf.output('dataurlnewwindow');
                     });
+                });
+
+                htmlButton.on("click", function(){
+                    try {
+                        var isFileSaverSupported = !!new Blob();
+                    } catch (e) {
+                        alert("blob not supported");
+                    }
+
+                    var html = d3.select(".year-statistic svg")
+                        .attr("title", "test2")
+                        .attr("version", 1.1)
+                        .attr("xmlns", "http://www.w3.org/2000/svg")
+                        .node().outerHTML;
+
+                    console.log(html);
+
+                    var blob = new Blob([html], {type: "image/svg+xml"});
+                    saveAs(blob, "myProfile.svg");
                 });
             }
         };
@@ -302,6 +340,25 @@ function drawLine() {
                         centeredText(pdf,'Children statistic for '+country+' made on '+ today,15);
                         pdf.output('dataurlnewwindow');
                     });
+                });
+
+                htmlButton.on("click", function(){
+                    try {
+                        var isFileSaverSupported = !!new Blob();
+                    } catch (e) {
+                        alert("blob not supported");
+                    }
+
+                    var html = d3.select(".kids-statistic svg")
+                        .attr("title", "test2")
+                        .attr("version", 1.1)
+                        .attr("xmlns", "http://www.w3.org/2000/svg")
+                        .node().outerHTML;
+
+                    console.log(html);
+
+                    var blob = new Blob([html], {type: "image/svg+xml"});
+                    saveAs(blob, "myProfile.svg");
                 });
             }
         }
