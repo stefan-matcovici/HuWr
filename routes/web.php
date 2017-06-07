@@ -14,15 +14,23 @@ Auth::routes();
 
 Route::group(['prefix' => '/'], function () {
     Route::get('/', ['as' => 'welcome', 'uses' => 'WelcomeController@index']);
-    Route::get('/recent', ['as' => 'recent', 'uses' => 'WelcomeController@recentMigrations']);
-    Route::get('/all', ['as' => 'all', 'uses' => 'WelcomeController@allMigrations']);
-    Route::get('/important', ['as' => 'important', 'uses' => 'WelcomeController@importantMigrations']);
-    Route::get('/country-migrations/{country}', ['as' => 'country-migrations', 'uses' => 'WelcomeController@countryMigrations']);
     Route::get('/feed', ['as' => 'feed', 'uses' => 'WelcomeController@feed']);
     Route::get('/about', ['as' => 'about', 'uses' => 'WelcomeController@about']);
-    Route::get('/country', ['as' => 'country', 'uses' => 'WelcomeController@country']);
-    Route::get('/feed/get', ['as' => 'feed.get', 'uses' => 'WelcomeController@feedGet']);
     Route::get('/feed/{id}', ['as' => 'feed.getId', 'uses' => 'WelcomeController@feedGetId']);
+});
+
+Route::group(['prefix' => '/api'], function () {
+    Route::get('/recent', ['as' => 'recent', 'uses' => 'APIController@recentMigrations']);
+    Route::get('/all', ['as' => 'all', 'uses' => 'APIController@allMigrations']);
+    Route::get('/important', ['as' => 'important', 'uses' => 'APIController@importantMigrations']);
+    Route::get('/country-migrations/{country}', ['as' => 'country-migrations', 'uses' => 'APIController@countryMigrations']);
+    Route::get('/country', ['as' => 'country', 'uses' => 'APIController@country']);
+    Route::get('/atom-feed', ['as' => 'feed.get', 'uses' => 'APIController@feedGet']);
+});
+Route::group(['prefix' => '/api/statistics'], function () {
+    Route::get('/{country}/years', ['as' => 'statistics.country.years', 'uses' => 'StatisticsController@countryIndexByYears']);
+    Route::get('/{country}/reasons', ['as' => 'statistics.country.reasons', 'uses' => 'StatisticsController@countryIndexByReasons']);
+    Route::get('/{country}/children', ['as' => 'statistics.country.children', 'uses' => 'StatisticsController@countryIndexByChildren']);
 });
 
 Route::group(['prefix' => '/home'], function () {
@@ -36,11 +44,7 @@ Route::group(['prefix' => '/home'], function () {
     Route::get('/predictionsResult',['as' => 'return.predictions', 'uses' => 'PredictionsController@returnPredictions']);
 });
 
-Route::group(['prefix' => '/statistics'], function () {
-    Route::get('/{country}/years', ['as' => 'statistics.country.years', 'uses' => 'StatisticsController@countryIndexByYears']);
-    Route::get('/{country}/reasons', ['as' => 'statistics.country.reasons', 'uses' => 'StatisticsController@countryIndexByReasons']);
-    Route::get('/{country}/children', ['as' => 'statistics.country.children', 'uses' => 'StatisticsController@countryIndexByChildren']);
-});
+
 
 Route::group(['prefix' => '/twitter'], function () {
     Route::get('/login', ['as' => 'twitter.login', 'uses' => 'TwitterController@twitterLogin']);
