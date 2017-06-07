@@ -24,29 +24,21 @@ var years = [
 //     { date: '23-Apr-12', close: 166.70 },
 // ];
 
-var width = 360;
-var height = 360;
-var radius = Math.min(width, height) / 2;
-var color = d3.scaleOrdinal(d3.schemeCategory20b);
-var donutWidth = 75;
-var legendRectSize = 18;
-var legendSpacing = 4;
 
-var margin = { top: 20, right: 20, bottom: 30, left: 50 },
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+function drawDonut(selector,country,w,h,donutWidth,legendRectSize,legendSpacing){
+    var radius = Math.min(w, h) / 2;
+    var color = d3.scaleOrdinal(d3.schemeCategory20b);
 
-function drawDonut(selector,country){
     d3.select(selector).append("div").attr("class", "card text-center rounded col-lg-10  mt-5 mx-auto reason-statistic");
     var card = d3.select(".reason-statistic").append("div").attr("class", "card-block");
     card.append("h2").text("Migrations by reason");
 
     var svg = d3.select('.reason-statistic > .card-block')
         .append('svg')
-        .attr('width', width)
-        .attr('height', height)
+        .attr('width', w)
+        .attr('height', h)
         .append('g')
-        .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')');
+        .attr('transform', 'translate(' + (w / 2) + ',' + (h / 2) + ')');
     var arc = d3.arc()
         .innerRadius(radius - donutWidth)
         .outerRadius(radius);
@@ -143,7 +135,7 @@ function drawDonut(selector,country){
 
 }
 
-function drawBar(selector,country) {
+function drawBar(selector,country, width, height, margin) {
 
     var countryURI = basicURI + "/api/statistics/" + getCountryCode(country) + "/years";
     if (window.XMLHttpRequest) {
@@ -152,10 +144,6 @@ function drawBar(selector,country) {
     if (window.ActiveXObject) {
         request = new ActiveXObject ("Microsoft.XMLHTTP");
     }
-    var _this = this;
-    var margin = { top: 20, right: 20, bottom: 30, left: 40 },
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
 
     // set the ranges
     var x = d3.scaleBand()
@@ -244,7 +232,7 @@ function drawBar(selector,country) {
     request.send (null);
 }
 
-function drawLine(selector,country) {
+function drawLine(selector,country,width,height,margin) {
 
     var childrenURI = basicURI + "/api/statistics/" + getCountryCode(country) + "/children";
     if (window.XMLHttpRequest) {
@@ -258,10 +246,6 @@ function drawLine(selector,country) {
     var card = d3.select(".kids-statistic").append("div").attr("class", "card-block");
     card.append("h2").text("Children Migrations");
 
-    // set the dimensions and margins of the graph
-    var margin = { top: 20, right: 20, bottom: 30, left: 50 },
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
 
     // parse the date / time
     var parseTime = d3.timeParse("%y");
@@ -364,7 +348,16 @@ function drawStatistics() {
     var e = document.getElementById("country-location");
     var country = e.options[e.selectedIndex].value;
 
-    drawDonut(".jumbotron",country);
-    drawBar(".jumbotron",country);
-    drawLine(".jumbotron",country);
+    var margin = { top: 20, right: 20, bottom: 30, left: 50 },
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+    var donutWidth = 75;
+    var legendRectSize = 30;
+    var legendSpacing = 4;
+
+
+    drawDonut(".jumbotron",country,width,height,donutWidth,legendRectSize,legendSpacing);
+    drawBar(".jumbotron",country,width,height,margin);
+    drawLine(".jumbotron",country,width,height,margin);
 }
