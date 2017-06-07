@@ -166,7 +166,6 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Geocoder\Laravel\Providers\GeocoderService::class,
         Monarobase\CountryList\CountryListServiceProvider::class,
-        Latrell\Swagger\SwaggerServiceProvider::class,
 
         /*
          * Package Service Providers...

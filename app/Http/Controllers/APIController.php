@@ -5,8 +5,59 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\HumanMigration as Migration;
 
+/**
+ * Class ApiController
+ *
+ * @package App\Http\Controllers
+ *
+ * @SWG\Swagger(
+ *     basePath="/api",
+ *     host="localhost/HuWr/public",
+ *     schemes={"http"},
+ *     @SWG\Info(
+ *         version="1.0",
+ *         title="Sample API",
+ *          description="A simple API to get important data about human migrations",
+ *         @SWG\Contact(name="HuWr Team", url="https://localhost/public/about"),
+ *     ),
+ *     @SWG\Definition(
+ *         definition="Error",
+ *         required={"code", "message"},
+ *         @SWG\Property(
+ *             property="code",
+ *             type="integer",
+ *             format="int32"
+ *         ),
+ *         @SWG\Property(
+ *             property="message",
+ *             type="string"
+ *         )
+ *     )
+ * )
+ */
 class APIController extends Controller
 {
+    /**
+     * Displays just the most recent migrations
+     *
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * @SWG\Get(
+     *     path="/recent",
+     *     description="Returns the most recent migrations within the last month.",
+     *     operationId="api.recent.index",
+     *     produces={"application/json"},
+     *     tags={"recent"},
+     *     @SWG\Response(
+     *         response=200,
+     *         description="The most recent migrations."
+     *     ),
+     *     @SWG\Response(
+     *         response=404,
+     *         description="Not found.",
+     *     )
+     * )
+     */
     public function recentMigrations() {
         $migrations = DB::select("
         select * 
@@ -17,6 +68,27 @@ class APIController extends Controller
         return $migrations;
     }
 
+    /**
+     * Displays the whole collection of migrations
+     *
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * @SWG\Get(
+     *     path="/all",
+     *     description="Returns all migrations registred in application.",
+     *     operationId="api.all.index",
+     *     produces={"application/json"},
+     *     tags={"all"},
+     *     @SWG\Response(
+     *         response=200,
+     *         description="All migrations."
+     *     ),
+     *     @SWG\Response(
+     *         response=404,
+     *         description="Not found.",
+     *     )
+     * )
+     */
     public function allMigrations() {
         $migrations = DB::select("
         select * 
@@ -25,6 +97,27 @@ class APIController extends Controller
         return $migrations;
     }
 
+    /**
+     * Displays the most important migrations
+     *
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * @SWG\Get(
+     *     path="/important",
+     *     description="Returns the most important migrations meaning the most used routes for migration.",
+     *     operationId="api.important.index",
+     *     produces={"application/json"},
+     *     tags={"important"},
+     *     @SWG\Response(
+     *         response=200,
+     *         description="The most important migrations."
+     *     ),
+     *     @SWG\Response(
+     *         response=404,
+     *         description="Not found.",
+     *     )
+     * )
+     */
     public function importantMigrations() {
         $migrations = DB::select("
         select * 
@@ -34,12 +127,39 @@ class APIController extends Controller
         return $migrations;
     }
 
+    /**
+     * Returns the migrations associated with one country
+     *
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * @SWG\Get(
+     *     path="/country-migrations/{country}",
+     *     description="Returns the migrations from and to one particular country",
+     *     operationId="api.country.index",
+     *     produces={"application/json"},
+     *     tags={"country"},
+     *     @SWG\Parameter(
+     *         name="country",
+     *         in="path",
+     *         description="country ISO-2 code you are interested in",
+     *         required=true,
+     *         type="string"
+     *     ),
+     *     @SWG\Response(
+     *         response=200,
+     *         description="The migrations for country."
+     *     ),
+     *     @SWG\Response(
+     *         response=404,
+     *         description="Not found.",
+     *     )
+     * )
+     */
     public function countryMigrations(Request $request, $countryInitials) {
         $migrations = Migration::where('departure_country', $countryInitials)->orWhere('arrival_country', $countryInitials)->get();
 
         return $migrations;
     }
-
 
     public function country()
     {
@@ -47,6 +167,27 @@ class APIController extends Controller
         return view('welcome.welcome',['migrations' => $migrations]);
     }
 
+
+    /**
+     * Returns the atom feed with all migrations
+     *
+     *
+     * @SWG\Get(
+     *     path="/api/atom-feed",
+     *     description="Returns the migrations from and to one particular country",
+     *     operationId="api.feed",
+     *     produces={"application/xml"},
+     *     tags={"feed"},
+     *     @SWG\Response(
+     *         response=200,
+     *         description="The migrations for country."
+     *     ),
+     *     @SWG\Response(
+     *         response=404,
+     *         description="Not found.",
+     *     )
+     * )
+     */
     public function feedGet()
     {
         $feed = \App::make("feed");
