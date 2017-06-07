@@ -25,7 +25,7 @@ var years = [
 // ];
 
 
-function drawDonut(selector,country,w,h,donutWidth,legendRectSize,legendSpacing){
+function drawDonut(selector,country,w,h,donutWidth,legendRectSize,legendSpacing,btn){
     var radius = Math.min(w, h) / 2;
     var color = d3.scaleOrdinal(d3.schemeCategory20b);
 
@@ -98,40 +98,42 @@ function drawDonut(selector,country,w,h,donutWidth,legendRectSize,legendSpacing)
     request.open ("GET", reasonURI, true);
     request.send (null);
 
-    var div = card.append('div').attr('class','buttons');
-    var htmlButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
-    var jsonButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
-    var svgButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
-    var pdfButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
+    if (btn) {
+        var div = card.append('div').attr('class', 'buttons');
+        var htmlButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
+        var jsonButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
+        var svgButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
+        var pdfButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
 
-    pdfButton.on("click", function(){
-        svg_to_pdf(document.querySelector(".reason-statistic svg"), function (pdf) {
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth()+1;
-            var yyyy = today.getFullYear();
-            today = mm+'/'+dd+'/'+yyyy;
-            centeredText(pdf,'Reason statistic for '+country+' made on '+ today,15);
-            pdf.output('dataurlnewwindow');
+        pdfButton.on("click", function () {
+            svg_to_pdf(document.querySelector(".reason-statistic svg"), function (pdf) {
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth() + 1;
+                var yyyy = today.getFullYear();
+                today = mm + '/' + dd + '/' + yyyy;
+                centeredText(pdf, 'Reason statistic for ' + country + ' made on ' + today, 15);
+                pdf.output('dataurlnewwindow');
+            });
         });
-    });
 
-    htmlButton.on("click", function(){
-        try {
-            var isFileSaverSupported = !!new Blob();
-        } catch (e) {
-            alert("blob not supported");
-        }
+        htmlButton.on("click", function () {
+            try {
+                var isFileSaverSupported = !!new Blob();
+            } catch (e) {
+                alert("blob not supported");
+            }
 
-        var html = d3.select(".reason-statistic svg")
-            .attr("title", "test2")
-            .attr("version", 1.1)
-            .attr("xmlns", "http://www.w3.org/2000/svg")
-            .node().outerHTML;
+            var html = d3.select(".reason-statistic svg")
+                .attr("title", "test2")
+                .attr("version", 1.1)
+                .attr("xmlns", "http://www.w3.org/2000/svg")
+                .node().outerHTML;
 
-        var blob = new Blob([html], {type: "image/svg+xml"});
-        saveAs(blob, "myProfile.svg");
-    });
+            var blob = new Blob([html], {type: "image/svg+xml"});
+            saveAs(blob, "myProfile.svg");
+        });
+    }
 
 }
 
@@ -357,7 +359,7 @@ function drawStatistics() {
     var legendSpacing = 4;
 
 
-    drawDonut(".jumbotron",country,width,height,donutWidth,legendRectSize,legendSpacing);
+    drawDonut(".jumbotron",country,width,height,donutWidth,legendRectSize,legendSpacing,false   );
     drawBar(".jumbotron",country,width,height,margin);
     drawLine(".jumbotron",country,width,height,margin);
 }
