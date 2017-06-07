@@ -359,7 +359,7 @@ function drawStatistics() {
     var legendSpacing = 4;
 
 
-    drawDonut(".jumbotron",country,width,height,donutWidth,legendRectSize,legendSpacing,false   );
+    drawDonut(".jumbotron",country,width,height,donutWidth,legendRectSize,legendSpacing,true);
     drawBar(".jumbotron",country,width,height,margin);
     drawLine(".jumbotron",country,width,height,margin);
 }
