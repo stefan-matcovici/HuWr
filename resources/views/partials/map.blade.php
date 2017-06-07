@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{asset('css/L.Control.Sidebar.css')}}">
     <link rel="stylesheet" href="{{asset('css/easy-button.css')}}">
     <script src="{{asset('js/easy-button.js')}}"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="{{asset('js/statistics.js')}}"></script>
 @endsection
 
 @section('content')
@@ -20,6 +22,7 @@
         var recentURI = "{{ route('recent')}}";
         var allURI = "{{ route('all')}}";
         var importantURI = "{{ route('important')}}";
+        var basicURI = "{{ route('welcome')}}";
     </script>
     <div class="container fill">
         <div id="demoMap">
@@ -90,18 +93,20 @@
                             sidebar.show();
                             content = getCountrySidebarHTML(migrations, countryCode, countryName);
                             sidebar.setContent(content);
+                            drawDonut("#sidebar", countryName, 250, 250, 50, 30, 4, false);
 
                             addMigrationsToMap(migrations);
                         }
                     };
                 }
 
+
+
                 var countryURI = "{{ route('country')}}";
                 countryURI += "-migrations/" + countryCode;
                 console.log(countryCode);
                 request.open ("GET", countryURI, true);
                 request.send (null);
-
                 mymap.fitBounds(country.getBounds());
 //                sidebar.show();
             });

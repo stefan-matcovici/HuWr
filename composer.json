@@ -9,6 +9,7 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
+        "latrell/swagger": "dev-master",
         "monarobase/country-list": "^2.0",
         "nesbot/carbon": "^1.22",
         "roumen/feed": "^2.10",
