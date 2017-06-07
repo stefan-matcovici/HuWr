@@ -36,8 +36,8 @@ var margin = { top: 20, right: 20, bottom: 30, left: 50 },
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-function drawDonut() {
-    d3.select(".jumbotron").append("div").attr("class", "card text-center rounded col-lg-10  mt-5 mx-auto reason-statistic");
+function drawDonut(selector,country){
+    d3.select(selector).append("div").attr("class", "card text-center rounded col-lg-10  mt-5 mx-auto reason-statistic");
     var card = d3.select(".reason-statistic").append("div").attr("class", "card-block");
     card.append("h2").text("Migrations by reason");
 
@@ -55,10 +55,7 @@ function drawDonut() {
         .value(function (d) { return d.count; })
         .sort(null);
 
-    var e = document.getElementById("country-location");
-    var country = e.options[e.selectedIndex].value;
-
-    var reasonURI = basicURI + "/statistics/" + getCountryCode(country) + "/reasons";
+    var reasonURI = basicURI + "/api/statistics/" + getCountryCode(country) + "/reasons";
     if (window.XMLHttpRequest) {
         request = new XMLHttpRequest ();
     } else
@@ -140,19 +137,15 @@ function drawDonut() {
             .attr("xmlns", "http://www.w3.org/2000/svg")
             .node().outerHTML;
 
-        console.log(html);
-
         var blob = new Blob([html], {type: "image/svg+xml"});
         saveAs(blob, "myProfile.svg");
     });
 
 }
 
-function drawBar() {
-    var e = document.getElementById("country-location");
-    var country = e.options[e.selectedIndex].value;
+function drawBar(selector,country) {
 
-    var countryURI = basicURI + "/statistics/" + getCountryCode(country) + "/years";
+    var countryURI = basicURI + "/api/statistics/" + getCountryCode(country) + "/years";
     if (window.XMLHttpRequest) {
         request = new XMLHttpRequest ();
     } else
@@ -170,7 +163,7 @@ function drawBar() {
         .padding(0.1);
     var y = d3.scaleLinear().range([height, 0]);
 
-    d3.select(".jumbotron").append("div").attr("class", "card text-center rounded col-lg-10  mt-5 mx-auto year-statistic");
+    d3.select(selector).append("div").attr("class", "card text-center rounded col-lg-10  mt-5 mx-auto year-statistic");
     var card = d3.select(".year-statistic").append("div").attr("class", "card-block");
     card.append("h2").text("Migrations by year");
 
@@ -241,8 +234,6 @@ function drawBar() {
                         .attr("xmlns", "http://www.w3.org/2000/svg")
                         .node().outerHTML;
 
-                    console.log(html);
-
                     var blob = new Blob([html], {type: "image/svg+xml"});
                     saveAs(blob, "myProfile.svg");
                 });
@@ -253,11 +244,9 @@ function drawBar() {
     request.send (null);
 }
 
-function drawLine() {
-    var e = document.getElementById("country-location");
-    var country = e.options[e.selectedIndex].value;
+function drawLine(selector,country) {
 
-    var childrenURI = basicURI + "/statistics/" + getCountryCode(country) + "/children";
+    var childrenURI = basicURI + "/api/statistics/" + getCountryCode(country) + "/children";
     if (window.XMLHttpRequest) {
         request = new XMLHttpRequest ();
     } else
@@ -265,7 +254,7 @@ function drawLine() {
         request = new ActiveXObject ("Microsoft.XMLHTTP");
     }
 
-    d3.select(".jumbotron").append("div").attr("class", "card text-center rounded col-lg-10  mt-5 mx-auto kids-statistic");
+    d3.select(selector).append("div").attr("class", "card text-center rounded col-lg-10  mt-5 mx-auto kids-statistic");
     var card = d3.select(".kids-statistic").append("div").attr("class", "card-block");
     card.append("h2").text("Children Migrations");
 
@@ -355,8 +344,6 @@ function drawLine() {
                         .attr("xmlns", "http://www.w3.org/2000/svg")
                         .node().outerHTML;
 
-                    console.log(html);
-
                     var blob = new Blob([html], {type: "image/svg+xml"});
                     saveAs(blob, "myProfile.svg");
                 });
@@ -372,7 +359,12 @@ function drawStatistics() {
     d3.select(".reason-statistic").remove();
     d3.select(".year-statistic").remove();
     d3.select(".kids-statistic").remove();
-    drawDonut();
-    drawBar();
-    drawLine();
+
+
+    var e = document.getElementById("country-location");
+    var country = e.options[e.selectedIndex].value;
+
+    drawDonut(".jumbotron",country);
+    drawBar(".jumbotron",country);
+    drawLine(".jumbotron",country);
 }
