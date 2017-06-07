@@ -46,7 +46,7 @@
                         </td>
                         <td class="reason-cell">
                             <div class="username">
-                                User: {{$migration->user->username}}
+                                User: {{\App\User::find($migration->user_id)->email}}
                             </div>
                             <div class="reason">
                                 Reason: {{$migration->reason}}

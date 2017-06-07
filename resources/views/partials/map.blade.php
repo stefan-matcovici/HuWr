@@ -93,7 +93,7 @@
                             sidebar.show();
                             content = getCountrySidebarHTML(migrations, countryCode, countryName);
                             sidebar.setContent(content);
-                            drawDonut("#sidebar", countryName, 250, 250, 50, 30, 4, false);
+                            drawDonut("#sidebar .donutContainer", countryName, 250, 250, 50, 30, 4, false);
 
                             addMigrationsToMap(migrations);
                         }
@@ -370,7 +370,7 @@
 
             function getCountrySidebarHTML(migrations, countryCode, countryName) {
                 content1 = "";
-                content2 = "<h1> " + countryName + " migrations </h1>";
+                content2 = "<h1> " + countryName + " migrations </h1><div class=\"donutContainer\"></div>";
                 numberOfMigrations = 0;
                 numberOfAdults = 0;
                 numberOfChildren = 0;
@@ -402,12 +402,12 @@
                     }
                 });
 
-                content2 += "<hr><h4> Reasons: <ol class=\"list-group\">";
-
-                reasons.forEach(function (reason) {
-                    content2 += "<li class=\"list-group-item list-group-item-danger\"> <h5>" + reason + " </h5></li>";
-                });
-                content2 += "</ol></h4>";
+//                content2 += "<hr><h4> Reasons: <ol class=\"list-group\">";
+//
+//                reasons.forEach(function (reason) {
+//                    content2 += "<li class=\"list-group-item list-group-item-danger\"> <h5>" + reason + " </h5></li>";
+//                });
+//                content2 += "</ol></h4>";
 
                 content2 += "<hr><h4> Total: <ol class=\"list-group\">";
 
