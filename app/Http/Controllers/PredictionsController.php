@@ -21,8 +21,8 @@ class PredictionsController extends Controller
         select * 
         from human_migrations
         where (created_at>=".$start." and arrival_country="."'".$arrivalCode."')");
-        dd($this->getYears($end,$migrations)->y);
-        return $migrations;
+        //dd($migrations);
+        return $this->getFuturePredictions($migrations,$end);
         //return Redirect::route("home");
     }
     public function getFuturePredictions($migrations,$endDate)
@@ -30,26 +30,24 @@ class PredictionsController extends Controller
         $futurePredictions = [];
         foreach($migrations as $migration)
         {
-            $contor=0;
             if($migration->reason=="Personal" || $migration->reason=="Other"||$migration->reason=="Education")
             {
                 $years=$this->getYears($endDate,$migrations)->y;
-                for($i = 1; $i <=$years; $i++)
+                $date = date_create( $migration->created_at);
+                for($i = 0; $i <$years; $i++)
                 {
-                    $date = date_create( $migrations[contor]->created_at);
                     $date->add(new DateInterval('P1Y'));
-                    $futurePredictions[$contor]["created_at"]=$date->format('Y-m-d H:i:s');
-                    $futurePredictions[$contor]["departure_country"]=$migration->departure_country;
-                    $futurePredictions[$contor]["departure_city"]=$migration->departure_city;
-                    $futurePredictions[$contor]["arrial_country"]=$migration->arrival_country;
-                    $futurePredictions[$contor]["arrial_city"]=$migration->arrival_city;
-                    $futurePredictions[$contor]["children"]=$migration->children;
-                    $futurePredictions[$contor]["adults"]=$migration->adults;
-                    $contor++;
+                    $futurePredictions[$i]["created_at"]=$date->format('Y-m-d H:i:s');
+                    $futurePredictions[$i]["departure_country"]=$migration->departure_country;
+                    $futurePredictions[$i]["departure_city"]=$migration->departure_city;
+                    $futurePredictions[$i]["arrial_country"]=$migration->arrival_country;
+                    $futurePredictions[$i]["arrial_city"]=$migration->arrival_city;
+                    $futurePredictions[$i]["children"]=$migration->children;
+                    $futurePredictions[$i]["adults"]=$migration->adults;
                 }
             }
-            return $futurePredictions;
         }
+        return $futurePredictions;
 
     }
     public function getYears($end,$migrations)
