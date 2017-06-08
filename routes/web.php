@@ -20,6 +20,7 @@ Route::group(['prefix' => '/'], function () {
 });
 
 Route::group(['prefix' => '/api'], function () {
+    Route::get('/index', ['as' => 'api', 'uses' => 'APIController@index']);
     Route::get('/recent', ['as' => 'recent', 'uses' => 'APIController@recentMigrations']);
     Route::get('/all', ['as' => 'all', 'uses' => 'APIController@allMigrations']);
     Route::get('/important', ['as' => 'important', 'uses' => 'APIController@importantMigrations']);

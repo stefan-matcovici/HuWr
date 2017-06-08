@@ -37,6 +37,11 @@ use App\HumanMigration as Migration;
  */
 class APIController extends Controller
 {
+    public function index()
+    {
+        return view("swagger.index");
+    }
+
     /**
      * Displays just the most recent migrations
      *
@@ -191,8 +196,8 @@ class APIController extends Controller
     public function feedGet()
     {
         $feed = \App::make("feed");
-        //$feed->setCache(60);
-        if (!$feed->isCached() or true)
+        $feed->setCache(60);
+        if (!$feed->isCached())
         {
             $posts = \DB::table('human_migrations')->get();
             $feed->title = 'HuWr';
@@ -200,12 +205,9 @@ class APIController extends Controller
             $feed->logo = 'img/logo.png';
             $feed->link = route('feed.get');
             $feed->setDateFormat('datetime');
-            //$feed->pubdate = $posts[0]->created_at;
             $feed->lang = 'en';
             $feed->setShortening(true);
             $feed->setTextLimit(100);
-
-
 
             foreach ($posts as $post)
             {
@@ -217,15 +219,8 @@ class APIController extends Controller
                     'Migrated from '.$post->departure_city.', '.$post->departure_country.' to '.$post->arrival_city.', '.$post->arrival_country.' with '.
                     $post->adults.' adults'.' and '.$post->children.' children because of '.$post->reason.'.');
             }
-
         }
 
-        // first param is the feed format
-        // optional: second param is cache duration (value of 0 turns off caching)
-        // optional: you can set custom cache key with 3rd param as string
         return $feed->render('atom');
-
-        // to return your feed as a string set second param to -1
-        // $xml = $feed->render('atom', -1);
     }
 }
