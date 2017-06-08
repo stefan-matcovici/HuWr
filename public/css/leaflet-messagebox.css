@@ -1,5 +1,9 @@
 .leaflet-control-messagebox {
+	font-family: 'Quintessential', cursive;
 	display: none; /* Initially hidden */
-	background-color: gray;
+	background-color: white;
+	border: 2px solid;
+	border-radius: 10px;
+	box-shadow: 5px 5px 3px black;
 	padding: 5px 15px;
 }

@@ -97,7 +97,7 @@
                             sidebar.show();
                             content = getCountrySidebarHTML(migrations, countryCode, countryName);
                             sidebar.setContent(content);
-                            drawDonut("#sidebar .donutContainer", countryName, 250, 250, 50, 30, 4, false);
+                            drawDonut("#sidebar .donutContainer", countryName, 250, 250, 50, 15, 4, false);
 
                             addMigrationsToMap(migrations);
                         }
@@ -450,9 +450,9 @@
                     migrationsPerYear[year].push(migration2);
                 });
 
-                var options = { timeout: 1000 * (maxYear - minYear + 1), position: 'bottomleft' }
+                var options = { timeout: 500, position: 'bottomleft' }
                 var box = L.control.messagebox(options).addTo(mymap);
-                box.show("Current Year : " + minYear);
+                box.show("<h3>Current Year : " + minYear + "</h3>");
 
                 delayedLoop(minYear, maxYear, minYear, migrationsPerYear, box);
 
@@ -463,12 +463,12 @@
                 setTimeout(function () {
                     addMigrationsToMap(migrationsPerYear[current]);
                     console.log(migrationsPerYear[current]);
-                    box.show("Current Year : " + current);
+                    box.show("<h3>Current Year : " + current + "</h3>");
                     current++;
                     if (current <= max ) {
                         delayedLoop(min, max, current, migrationsPerYear, box);
                     }
-                }, 500);
+                }, 100);
             }
 
             function getMigrationYear(migration) {
