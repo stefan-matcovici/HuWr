@@ -107,7 +107,7 @@ class StatisticsController extends ApiController
      */
     public function countryIndexByChildren(Request $request,$country)
     {
-        $migrations = DB::select("SELECT YEAR(created_at) as year,SUM(children) as close FROM human_migrations WHERE arrival_country = '$country' GROUP BY YEAR(created_at)");
+        $migrations = DB::select("SELECT DATE_FORMAT(created_at,\"%d-%b-%y\") as year,SUM(children) as close FROM human_migrations WHERE arrival_country = '$country' GROUP BY created_at");
         return $migrations;
     }
 }

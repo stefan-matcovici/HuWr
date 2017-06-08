@@ -9,6 +9,7 @@ function svg_to_pdf(svg, callback) {
         var image = document.createElement('img');
 
         image.src = svg_uri;
+        image.setAttribute('width','725');
         image.onload = function() {
             var doc = new jsPDF('portrait', 'pt');
             var canvas = document.createElement('canvas');
@@ -17,7 +18,7 @@ function svg_to_pdf(svg, callback) {
 
             canvas.width = image.width;
             canvas.height = image.height;
-            context.drawImage(image, 0, 0, image.width, image.height);
+            context.drawImage(image, 130, 0, image.width, image.height);
 
             var w = image.width;
             var h = image.height;

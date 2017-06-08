@@ -200,8 +200,6 @@ function drawBar(selector,country, width, height, margin) {
 
                 var div = card.append('div').attr('class','buttons');
                 var htmlButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
-                var jsonButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
-                var svgButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
                 var pdfButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
                 var shareButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('Share on Twitter');
 
@@ -271,48 +269,73 @@ function drawLine(selector,country,width,height,margin) {
     var valueline = d3.line()
         .x(function (d) { return x(d.year); })
         .y(function (d) { return y(d.close); });
-
     // append the svg obgect to the body of the page
     // appends a 'group' element to 'svg'
     // moves the 'group' element to the top left margin
+
     var svg = d3.select('.kids-statistic > .card-block')
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform",
-            "translate(" + margin.left + "," + margin.top + ")");
+        .append('svg').attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom);
+
+    margin = {top: 20, right: 20, bottom: 30, left: 50},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom,
+    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var parseTime = d3.timeParse("%d-%b-%y");
+
+    var x = d3.scaleTime()
+        .rangeRound([0, width]);
+
+    var y = d3.scaleLinear()
+        .rangeRound([height, 0]);
+
+    var line = d3.line()
+        .x(function(d) { return x(d.year); })
+        .y(function(d) { return y(d.close); });
+
 
     if (request) {
         request.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 data = JSON.parse(this.responseText);
 
+                data.forEach(function(d) {
+                    d.year = parseTime(d.year);
+                    d.close = +d.close;
+                });
 
-                //console.log(data);
+                console.log(data);
                 // Scale the range of the data
-                x.domain(data.map(function (d) { return d.year; }));
-                y.domain([0, d3.max(data, function (d) { return d.close; })]);
+                x.domain(d3.extent(data, function(d) { return d.year; }));
+                y.domain(d3.extent(data, function(d) { return d.close; }));
 
-                // Add the valueline path.
-                svg.append("path")
-                    .data([data])
-                    .attr("class", "line")
-                    .attr("d", valueline);
-
-                // Add the X Axis
-                svg.append("g")
+                g.append("g")
                     .attr("transform", "translate(0," + height + ")")
-                    .call(d3.axisBottom(x));
+                    .call(d3.axisBottom(x))
+                    .select(".domain")
+                    .remove();
 
-                // Add the Y Axis
-                svg.append("g")
-                    .call(d3.axisLeft(y));
+                g.append("g")
+                    .call(d3.axisLeft(y))
+                    .append("text")
+                    .attr("fill", "#000")
+                    .attr("transform", "rotate(-90)")
+                    .attr("y", 6)
+                    .attr("dy", "0.71em")
+                    .attr("text-anchor", "end");
+
+                g.append("path")
+                    .datum(data)
+                    .attr("fill", "none")
+                    .attr("stroke", "steelblue")
+                    .attr("stroke-linejoin", "round")
+                    .attr("stroke-linecap", "round")
+                    .attr("stroke-width", 1.5)
+                    .attr("d", line);
 
                 var div = card.append('div').attr('class','buttons');
                 var htmlButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
-                var jsonButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
-                var svgButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
                 var pdfButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
                 var shareButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('Share on Twitter');
 
