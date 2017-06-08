@@ -10,9 +10,8 @@ class PredictionsController extends Controller
     {
         $start = $request->input('starting-time');
         $end = $request->input('ending-time');
-        $child=$request->input('child');
-        $adult=$request->input('adult');
+        $age=$request->input('childoradult');
         $location=$request->input('country-location');
-        dd($start,$end,$child,$adult,$location);
+        dd($start,$end,$age,$location);
     }
 }

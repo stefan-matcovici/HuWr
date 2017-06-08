@@ -37,11 +37,11 @@
                             <label>
                                 Child:
                             </label>
-                            <input class="radio-class" type="radio" name="child">
+                            <input class="radio-class" value ="child" type="radio" name="childoradult">
                             <label>
                                 Adult:
                             </label>
-                            <input class="radio-class" type="radio" name="adult">
+                            <input class="radio-class" value="adult" type="radio" name="childoradult">
                         </div>
                     </div>
 
