@@ -88,8 +88,8 @@
                             <label>
                                 Female:
                             </label>
-                            <input class="gender-class" type="radio" id="gender-female" name="female">
-                            @if ($errors->has('female'))
+                            <input class="gender-class" type="radio" value="female" id="gender-female" name="gender">
+                            @if ($errors->has('gender'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('gender') }}</strong>
                                     </span>
@@ -98,8 +98,8 @@
                             <label>
                                 Male:
                             </label>
-                            <input class="gender-class" type="radio" id="gender-male" name="male">
-                            @if ($errors->has('male'))
+                            <input class="gender-class" type="radio" value="male" id="gender-male" name="gender">
+                            @if ($errors->has('gender'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('gender') }}</strong>
                                     </span>

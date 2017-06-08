@@ -248,7 +248,6 @@ function drawLine(selector,country,width,height,margin) {
     var card = d3.select(".kids-statistic").append("div").attr("class", "card-block");
     card.append("h2").text("Children Migrations");
 
-
     // parse the date / time
     var parseTime = d3.timeParse("%y");
 
@@ -277,6 +276,8 @@ function drawLine(selector,country,width,height,margin) {
         request.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 data = JSON.parse(this.responseText);
+
+                console.log(data);
 
 
                 //console.log(data);

@@ -11,6 +11,7 @@
           crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/home.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Fanwood+Text|Quintessential" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Specific assets -->
     @yield('assets')
