@@ -15,6 +15,8 @@
     <script src="{{asset('js/easy-button.js')}}"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="{{asset('js/statistics.js')}}"></script>
+    <script src="{{asset('js/leaflet-messagebox.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('css/leaflet-messagebox.css')}}">
 @endsection
 
 @section('content')
@@ -29,7 +31,9 @@
             <div id="sidebar">
                 <h1>leaflet-sidebar</h1>
             </div>
+
         </div>
+
 
     </div>
     <div>
@@ -154,7 +158,16 @@
                 loadMigration(importantURI);
             }).addTo( mymap );
 
-
+            L.easyButton('fa-play-circle ', function(btn, map) {
+                polylines.forEach(function (p1) {
+                    mymap.removeLayer(p1);
+                });
+                markers.forEach(function (m1) {
+                    mymap.removeLayer(m1);
+                });
+                mymap.removeLayer(btn);
+                loadMigrationOnYears(migrations);
+            }).addTo( mymap );
 
 
             HTMLButton1 = document.getElementsByClassName("fa-newspaper-o");
@@ -421,6 +434,46 @@
                 return content2 + content1;
             }
 
+            function loadMigrationOnYears(migrations) {
+                minYear = 2017;
+                maxYear = -1;
+                migrationsPerYear = [];
+                for (i = 0; i < 3000; i++) {
+                    migrationsPerYear[i] = [];
+                }
+                migrations.forEach(function (migration2) {
+                    year = getMigrationYear(migration2);
+
+                    minYear = year < minYear ? year : minYear;
+                    maxYear = year > maxYear ? year : maxYear;
+
+                    migrationsPerYear[year].push(migration2);
+                });
+
+                var options = { timeout: 1000 * (maxYear - minYear + 1), position: 'bottomleft' }
+                var box = L.control.messagebox(options).addTo(mymap);
+                box.show("Current Year : " + minYear);
+
+                delayedLoop(minYear, maxYear, minYear, migrationsPerYear, box);
+
+                console.log(minYear);
+            }
+
+            function delayedLoop(min, max, current, migrationsPerYear, box) {
+                setTimeout(function () {
+                    addMigrationsToMap(migrationsPerYear[current]);
+                    console.log(migrationsPerYear[current]);
+                    box.show("Current Year : " + current);
+                    current++;
+                    if (current <= max ) {
+                        delayedLoop(min, max, current, migrationsPerYear, box);
+                    }
+                }, 500);
+            }
+
+            function getMigrationYear(migration) {
+                return migration['created_at'].split("-")[0];
+            }
         </script>
     </div>
 @endsection
