@@ -21,30 +21,61 @@ class PredictionsController extends Controller
         select * 
         from human_migrations
         where (created_at>=".$start." and arrival_country="."'".$arrivalCode."')");
-        //dd($migrations);
         return $this->getFuturePredictions($migrations,$end);
         //return Redirect::route("home");
     }
     public function getFuturePredictions($migrations,$endDate)
     {
         $futurePredictions = [];
+        $contor=0;
         foreach($migrations as $migration)
         {
-            if($migration->reason=="Personal" || $migration->reason=="Other"||$migration->reason=="Education")
-            {
-                $years=$this->getYears($endDate,$migrations)->y;
-                $date = date_create( $migration->created_at);
-                for($i = 0; $i <$years; $i++)
-                {
+            if($migration->reason=="Personal" || $migration->reason=="Other"||$migration->reason=="Education") {
+                $years = $this->getYears($endDate, $migrations)->y;
+                $date = date_create($migration->created_at);
+                for ($i = 0; $i < $years; $i++) {
                     $date->add(new DateInterval('P1Y'));
-                    $futurePredictions[$i]["created_at"]=$date->format('Y-m-d H:i:s');
-                    $futurePredictions[$i]["departure_country"]=$migration->departure_country;
-                    $futurePredictions[$i]["departure_city"]=$migration->departure_city;
-                    $futurePredictions[$i]["arrial_country"]=$migration->arrival_country;
-                    $futurePredictions[$i]["arrial_city"]=$migration->arrival_city;
-                    $futurePredictions[$i]["children"]=$migration->children;
-                    $futurePredictions[$i]["adults"]=$migration->adults;
+                    $futurePredictions[$contor]["created_at"] = $date->format('Y-m-d H:i:s');
+                    $futurePredictions[$contor]["departure_country"] = $migration->departure_country;
+                    $futurePredictions[$contor]["departure_city"] = $migration->departure_city;
+                    $futurePredictions[$contor]["departure_longitude"] = $migration->departure_longitude;
+                    $futurePredictions[$contor]["departure_latitude"] = $migration->departure_latitude;
+                    $futurePredictions[$contor]["arrvial_country"] = $migration->arrival_country;
+                    $futurePredictions[$contor]["arrival_city"] = $migration->arrival_city;
+                    $futurePredictions[$contor]["arrival_longitude"] = $migration->arrival_longitude;
+                    $futurePredictions[$contor]["arrival_latitude"] = $migration->arrival_latitude;
+                    $futurePredictions[$contor]["children"] = $migration->children;
+                    $futurePredictions[$contor]["adults"] = $migration->adults;
+                    $futurePredictions[$contor]["reason"] = $migration->reason;
+                    $contor=$contor+1;
+                    echo $contor;
                 }
+
+            }
+            if($migration->reason=="War" || $migration->reason=="Religion"||$migration->reason=="Economics")
+            {
+                    $years=$this->getYears($endDate,$migrations)->y;
+                    $date = date_create( $migration->created_at);
+                    for($j = 0; $j <$years; $j++)
+                    {
+                        $date->add(new DateInterval('P1Y'));
+                        $futurePredictions[$contor]["created_at"]=$date->format('Y-m-d H:i:s');
+                        $futurePredictions[$contor]["departure_country"]=$migration->departure_country;
+                        $futurePredictions[$contor]["departure_city"]=$migration->departure_city;
+                        $futurePredictions[$contor]["departure_longitude"]=$migration->departure_longitude;
+                        $futurePredictions[$contor]["departure_latitude"]=$migration->departure_latitude;
+                        $futurePredictions[$contor]["arrvial_country"]=$migration->arrival_country;
+                        $futurePredictions[$contor]["arrival_city"]=$migration->arrival_city;
+                        $futurePredictions[$contor]["arrival_longitude"]=$migration->arrival_longitude;
+                        $futurePredictions[$contor]["arrival_latitude"]=$migration->arrival_latitude;
+                        $futurePredictions[$contor]["children"]=$migration->children;
+                        $futurePredictions[$contor]["adults"]=$migration->adults;
+                        $futurePredictions[$contor]["reason"]=$migration->reason;
+                        $contor=$contor+1;
+                        echo $contor;
+
+                    }
+
             }
         }
         return $futurePredictions;
