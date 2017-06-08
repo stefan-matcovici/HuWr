@@ -104,6 +104,7 @@ function drawDonut(selector,country,w,h,donutWidth,legendRectSize,legendSpacing,
         var jsonButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
         var svgButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
         var pdfButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
+        var shareButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('Share on Twitter');
 
         pdfButton.on("click", function () {
             svg_to_pdf(document.querySelector(".reason-statistic svg"), function (pdf) {
@@ -132,6 +133,10 @@ function drawDonut(selector,country,w,h,donutWidth,legendRectSize,legendSpacing,
 
             var blob = new Blob([html], {type: "image/svg+xml"});
             saveAs(blob, "myProfile.svg");
+        });
+
+        shareButton.on("click", function () {
+            svg_to_image(document.querySelector(".reason-statistic svg"), 1);
         });
     }
 
@@ -198,6 +203,7 @@ function drawBar(selector,country, width, height, margin) {
                 var jsonButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
                 var svgButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
                 var pdfButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
+                var shareButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('Share on Twitter');
 
                 pdfButton.on("click", function(){
                     svg_to_pdf(document.querySelector(".year-statistic svg"), function (pdf) {
@@ -227,6 +233,10 @@ function drawBar(selector,country, width, height, margin) {
                     var blob = new Blob([html], {type: "image/svg+xml"});
                     saveAs(blob, "myProfile.svg");
                 });
+
+                shareButton.on("click", function () {
+                    svg_to_image(document.querySelector(".year-statistic svg"), 2);
+                });
             }
         };
     }
@@ -247,6 +257,7 @@ function drawLine(selector,country,width,height,margin) {
     d3.select(selector).append("div").attr("class", "card text-center rounded col-lg-10  mt-5 mx-auto kids-statistic");
     var card = d3.select(".kids-statistic").append("div").attr("class", "card-block");
     card.append("h2").text("Children Migrations");
+
 
     // parse the date / time
     var parseTime = d3.timeParse("%y");
@@ -277,8 +288,6 @@ function drawLine(selector,country,width,height,margin) {
             if (this.readyState == 4 && this.status == 200) {
                 data = JSON.parse(this.responseText);
 
-                console.log(data);
-
 
                 //console.log(data);
                 // Scale the range of the data
@@ -305,6 +314,7 @@ function drawLine(selector,country,width,height,margin) {
                 var jsonButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Json');
                 var svgButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To SVG');
                 var pdfButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
+                var shareButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('Share on Twitter');
 
                 pdfButton.on("click", function(){
                     svg_to_pdf(document.querySelector(".kids-statistic svg"), function (pdf) {
@@ -333,6 +343,10 @@ function drawLine(selector,country,width,height,margin) {
 
                     var blob = new Blob([html], {type: "image/svg+xml"});
                     saveAs(blob, "myProfile.svg");
+                });
+
+                shareButton.on("click", function () {
+                    svg_to_image(document.querySelector(".kids-statistic svg"), 3);
                 });
             }
         }
@@ -363,4 +377,64 @@ function drawStatistics() {
     drawDonut(".jumbotron",country,width,height,donutWidth,legendRectSize,legendSpacing,true);
     drawBar(".jumbotron",country,width,height,margin);
     drawLine(".jumbotron",country,width,height,margin);
+}
+
+function svg_to_image (svg, type) {
+    svgAsDataUri(svg, {}, function(svg_uri) {
+        var image = document.createElement('img');
+        var e = document.getElementById("country-location");
+        var country = e.options[e.selectedIndex].value;
+
+        image.src = svg_uri;
+        image.onload = function() {
+            var canvas = document.createElement('canvas');
+            var context = canvas.getContext('2d');
+            var dataUrl;
+
+            canvas.width = image.width;
+            canvas.height = image.height;
+            context.drawImage(image, 0, 0, image.width, image.height);
+            context.text = "BLABLA";
+
+            var w = image.width;
+            var h = image.height;
+            data = context.getImageData(0, 0, w, h);
+            var compositeOperation = context.globalCompositeOperation;
+            context.globalCompositeOperation = "destination-over";
+            context.fillStyle = "#ffffff";
+            context.fillRect(0, 0, w, h);
+            var imageData = canvas.toDataURL("image/jpeg");
+            context.clearRect(0, 0, w, h);
+            context.putImageData(data, 0, 0);
+            context.globalCompositeOperation = compositeOperation;
+
+            dataUrl = imageData;
+
+            if (window.XMLHttpRequest) {
+                request = new XMLHttpRequest();
+            } else if (window.ActiveXObject) {
+                request = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            console.log(dataUrl);
+            if (request) {
+                request.onreadystatechange = function () {
+
+                }
+            }
+            description = "";
+            if (type === 1) {
+                description = "Statistics for " + country + " about reasons for migrations.";
+            }
+            if (type === 2) {
+                description = "Statistics for " + country + " by years.";
+            }
+            if (type === 3) {
+                description = "Statistics for " + country + " about children migrations.";
+            }
+
+            sendObject = `{ \"text":\"` + description + `\",\"image\": \"` + dataUrl +`\"  }`;
+            request.open("POST", statisticShareURI, true);
+            request.send(sendObject);
+        }
+    });
 }

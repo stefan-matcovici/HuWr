@@ -38,6 +38,7 @@ Route::group(['prefix' => '/home'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
     Route::get('/add', ['as' => 'add', 'uses' => 'HomeController@add']);
     Route::get('/statistics', ['as' => 'statistics', 'uses' => 'HomeController@statistics']);
+    Route::post('/statistics-share', ['as' => 'statistics-share', 'uses' => 'WelcomeController@statisticsShare']);
     Route::get('/predictions', ['as' => 'predictions', 'uses' => 'HomeController@predictions']);
     Route::get('/profile', ['as' => 'profile', 'uses' => 'HomeController@profile']);
     Route::post('/add',['as' => 'add.migration', 'uses' => 'MigrationsController@store']);

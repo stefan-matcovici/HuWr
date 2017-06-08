@@ -468,7 +468,7 @@
                     if (current <= max ) {
                         delayedLoop(min, max, current, migrationsPerYear, box);
                     }
-                }, 100);
+                }, 250);
             }
 
             function getMigrationYear(migration) {
