@@ -26,6 +26,8 @@
         var allURI = "{{ route('all')}}";
         var importantURI = "{{ route('important')}}";
         var basicURI = "{{ route('welcome')}}";
+        var prediction = {!!$prediction!!};
+        var stopPlay = 0;
     </script>
     <div class="container fill">
         <div id="demoMap">
@@ -56,6 +58,7 @@
                 'Imagery © <a href="http://mapbox.com">Mapbox</a>',
                 id: 'mapbox.streets'
             }).addTo(mymap);
+
             var polylines = [];
             var markers = [];
 
@@ -64,58 +67,59 @@
                 closeButton: 'true',
             });
 
-            var select = L.countrySelect().addTo(mymap);
-            select.on('change', function(e){
-                if(e.feature === undefined || e.feature === 'Country'){ //No action when the first item ("Country") is selected
-                    loadMigration(recentURI);
-                    return;
-                }
-                var country = L.geoJson(e.feature);
-                if (this.previousCountry != null){
-                    mymap.removeLayer(this.previousCountry);
-                }
-                this.previousCountry = country;
-                countryName = e.feature.properties.name;
-                countryCode = getCountryCode(countryName);
+            if (prediction != 1) {
+                var select = L.countrySelect().addTo(mymap);
+                select.on('change', function(e){
+                    if(e.feature === undefined || e.feature === 'Country'){ //No action when the first item ("Country") is selected
+                        loadMigration(recentURI);
+                        return;
+                    }
+                    var country = L.geoJson(e.feature);
+                    if (this.previousCountry != null){
+                        mymap.removeLayer(this.previousCountry);
+                    }
+                    this.previousCountry = country;
+                    countryName = e.feature.properties.name;
+                    countryCode = getCountryCode(countryName);
 
-                request = null;
-                if (window.XMLHttpRequest) {
-                    request = new XMLHttpRequest ();
-                } else
-                if (window.ActiveXObject) {
-                    request = new ActiveXObject ("Microsoft.XMLHTTP");
-                }
-                if (request) {
-                    request.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                            migrations =  JSON.parse(this.responseText);
-                            polylines.forEach(function (p1) {
-                                mymap.removeLayer(p1);
-                            });
-                            markers.forEach(function (m1) {
-                                mymap.removeLayer(m1);
-                            });
-                            sidebar.show();
-                            content = getCountrySidebarHTML(migrations, countryCode, countryName);
-                            sidebar.setContent(content);
-                            drawDonut("#sidebar .donutContainer", countryName, 250, 250, 50, 15, 4, false);
+                    request = null;
+                    if (window.XMLHttpRequest) {
+                        request = new XMLHttpRequest ();
+                    } else
+                    if (window.ActiveXObject) {
+                        request = new ActiveXObject ("Microsoft.XMLHTTP");
+                    }
+                    if (request) {
+                        request.onreadystatechange = function() {
+                            if (this.readyState == 4 && this.status == 200) {
+                                migrations =  JSON.parse(this.responseText);
+                                polylines.forEach(function (p1) {
+                                    mymap.removeLayer(p1);
+                                });
+                                markers.forEach(function (m1) {
+                                    mymap.removeLayer(m1);
+                                });
+                                sidebar.show();
+                                content = getCountrySidebarHTML(migrations, countryCode, countryName);
+                                sidebar.setContent(content);
+                                drawDonut("#sidebar .donutContainer", countryName, 250, 250, 50, 15, 4, false);
 
-                            addMigrationsToMap(migrations, 60);
-                        }
-                    };
-                }
+                                addMigrationsToMap(migrations, 60);
+                            }
+                        };
+                    }
 
 
 
-                var countryURI = "{{ route('country')}}";
-                countryURI += "-migrations/" + countryCode;
-                console.log(countryCode);
-                request.open ("GET", countryURI, true);
-                request.send (null);
-                mymap.fitBounds(country.getBounds());
+                    var countryURI = "{{ route('country')}}";
+                    countryURI += "-migrations/" + countryCode;
+                    console.log(countryCode);
+                    request.open ("GET", countryURI, true);
+                    request.send (null);
+                    mymap.fitBounds(country.getBounds());
 //                sidebar.show();
-            });
-
+                });
+            }
 
             mymap.addControl(sidebar);
 
@@ -125,8 +129,51 @@
 
             addMigrationsToMap(migrations, 60);
 
+            if (prediction != 1) {
+                L.easyButton('fa-globe', function(btn, map){
+                    polylines.forEach(function (p1) {
+                        mymap.removeLayer(p1);
+                    });
+                    markers.forEach(function (m1) {
+                        mymap.removeLayer(m1);
+                    });
+                    mymap.removeLayer(btn);
+                    stopPlay = 1;
+                    loadMigration(allURI);
+                }).addTo( mymap );
 
-            L.easyButton('fa-globe', function(btn, map){
+                L.easyButton('fa-newspaper-o', function(btn, map){
+                    polylines.forEach(function (p1) {
+                        mymap.removeLayer(p1);
+                    });
+                    markers.forEach(function (m1) {
+                        mymap.removeLayer(m1);
+                    });
+                    mymap.removeLayer(btn);
+                    stopPlay = 1;
+                    loadMigration(recentURI);
+                }).addTo( mymap );
+
+                L.easyButton('fa-exclamation-circle', function(btn, map) {
+                    polylines.forEach(function (p1) {
+                        mymap.removeLayer(p1);
+                    });
+                    markers.forEach(function (m1) {
+                        mymap.removeLayer(m1);
+                    });
+                    mymap.removeLayer(btn);
+                    stopPlay = 1;
+                    loadMigration(importantURI);
+                }).addTo( mymap );
+
+                HTMLButton1 = document.getElementsByClassName("fa-newspaper-o");
+                HTMLButton1[0].setAttribute("title", "See most recent migrations.");
+                HTMLButton2 = document.getElementsByClassName("fa-globe");
+                HTMLButton2[0].setAttribute("title", "See all migrations.");
+                HTMLButton3 = document.getElementsByClassName("fa-exclamation-circle");
+                HTMLButton3[0].setAttribute("title", "See most important migrations.");
+            }
+            L.easyButton('fa-play-circle', function(btn, map) {
                 polylines.forEach(function (p1) {
                     mymap.removeLayer(p1);
                 });
@@ -134,49 +181,14 @@
                     mymap.removeLayer(m1);
                 });
                 mymap.removeLayer(btn);
-                loadMigration(allURI);
-            }).addTo( mymap );
-
-            L.easyButton('fa-newspaper-o', function(btn, map){
-                polylines.forEach(function (p1) {
-                    mymap.removeLayer(p1);
-                });
-                markers.forEach(function (m1) {
-                    mymap.removeLayer(m1);
-                });
-                mymap.removeLayer(btn);
-                loadMigration(recentURI);
-            }).addTo( mymap );
-
-            L.easyButton('fa-exclamation-circle', function(btn, map) {
-                polylines.forEach(function (p1) {
-                    mymap.removeLayer(p1);
-                });
-                markers.forEach(function (m1) {
-                    mymap.removeLayer(m1);
-                });
-                mymap.removeLayer(btn);
-                loadMigration(importantURI);
-            }).addTo( mymap );
-
-            L.easyButton('fa-play-circle ', function(btn, map) {
-                polylines.forEach(function (p1) {
-                    mymap.removeLayer(p1);
-                });
-                markers.forEach(function (m1) {
-                    mymap.removeLayer(m1);
-                });
-                mymap.removeLayer(btn);
+                stopPlay = 0;
                 loadMigrationOnYears(migrations);
             }).addTo( mymap );
 
+            HTMLButton4 = document.getElementsByClassName("fa-play-circle");
+            HTMLButton4[0].setAttribute("title", "Play migrations by years.");
 
-            HTMLButton1 = document.getElementsByClassName("fa-newspaper-o");
-            HTMLButton1[0].setAttribute("title", "See most recent migrations.");
-            HTMLButton2 = document.getElementsByClassName("fa-globe");
-            HTMLButton2[0].setAttribute("title", "See all migrations.");
-            HTMLButton3 = document.getElementsByClassName("fa-exclamation-circle");
-            HTMLButton3[0].setAttribute("title", "See most important migrations.");
+
 
 
         function addMigrationsToMap(migrations, speed) {
@@ -289,10 +301,6 @@
                     numberOfMigrations++;
                     numberOfAdults += migration2.adults;
                     numberOfChildren += migration2.children;
-
-                    var prediction = {!!$prediction!!};
-
-                    console.log(prediction);
 
                     if (prediction!=1)
                     {
@@ -481,7 +489,7 @@
                     console.log(migrationsPerYear[current]);
                     box.show("<h3>Current Year : " + current + "</h3>");
                     current++;
-                    if (current <= max ) {
+                    if (current <= max && stopPlay === 0) {
                         delayedLoop(min, max, current, migrationsPerYear, box);
                     }
                 }, 1000);
