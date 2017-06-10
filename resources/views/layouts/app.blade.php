@@ -19,7 +19,7 @@
 
 <body>
 
-    <nav class="navbar navbar-toggleable-sm navbar-light bg-faded rounded mt-3 mx-5 fixed-top">
+    <nav class="navbar navbar-toggleable-lg navbar-light bg-faded rounded mt-3 mx-5 fixed-top">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -39,6 +39,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('predictions')}}">Predictions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('feed')}}">Feed</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('api')}}">Rest API</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

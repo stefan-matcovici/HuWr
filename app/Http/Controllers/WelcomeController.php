@@ -19,7 +19,7 @@ class WelcomeController extends Controller
         $users = User::all();
 //        dd($users);
 //        dd($migrations);
-        return view('welcome.welcome',['migrations' => $migrations, 'users' => $users]);
+        return view('welcome.welcome',['migrations' => $migrations, 'users' => $users, 'prediction' => 1]);
     }
 
     public function feed()
