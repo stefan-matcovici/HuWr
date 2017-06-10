@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\HumanMigration as Migration;
 use App\User as User;
 use Auth;
+use Session;
 
 
 class HomeController extends Controller
@@ -39,7 +40,10 @@ class HomeController extends Controller
 
     public function statistics()
     {
-        return view('app.statistics');
+        $access_token = 0;
+        if (Session::get('access_token'))
+            $access_token = 1;
+        return view('app.statistics',['access_token' => $access_token]);
     }
 
     public function predictions()

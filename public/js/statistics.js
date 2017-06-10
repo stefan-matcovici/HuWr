@@ -30,6 +30,7 @@ function drawDonut(selector,country,w,h,donutWidth,legendRectSize,legendSpacing,
     d3.select(selector).append("div").attr("class", "card text-center rounded col-lg-10  mt-5 mx-auto reason-statistic");
     var card = d3.select(".reason-statistic").append("div").attr("class", "card-block");
     card.append("h2").text("Migrations by reason");
+    var spinner = card.append("i").attr("class","fa fa-refresh fa-3x ld ld-spin");
 
     var reasonURI = basicURI + "/api/statistics/" + getCountryCode(country) + "/reasons";
     if (window.XMLHttpRequest) {
@@ -43,6 +44,7 @@ function drawDonut(selector,country,w,h,donutWidth,legendRectSize,legendSpacing,
         request.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 dataset = JSON.parse(this.responseText);
+                spinner.style("display","none");
 
                 if (dataset.length == 0)
                 {
@@ -102,7 +104,15 @@ function drawDonut(selector,country,w,h,donutWidth,legendRectSize,legendSpacing,
                     var htmlButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
                     var csvButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To CSV');
                     var pdfButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
-                    var shareButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('Share on Twitter');
+
+                    if (access_token == 1)
+                    {
+                        var shareButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('Share on Twitter');
+                        shareButton.on("click", function () {
+                            svg_to_image(document.querySelector(".reason-statistic svg"), 1);
+                        });
+                    }
+
 
                     pdfButton.on("click", function () {
                         svg_to_pdf(document.querySelector(".reason-statistic svg"), function (pdf) {
@@ -131,10 +141,6 @@ function drawDonut(selector,country,w,h,donutWidth,legendRectSize,legendSpacing,
 
                         var blob = new Blob([html], {type: "image/svg+xml"});
                         saveAs(blob, "ReasonStatistic"+country+".svg");
-                    });
-
-                    shareButton.on("click", function () {
-                        svg_to_image(document.querySelector(".reason-statistic svg"), 1);
                     });
 
                     csvButton.on("click", function(){
@@ -169,6 +175,7 @@ function drawBar(selector,country, width, height, margin) {
     d3.select(selector).append("div").attr("class", "card text-center rounded col-lg-10  mt-5 mx-auto year-statistic");
     var card = d3.select(".year-statistic").append("div").attr("class", "card-block");
     card.append("h2").text("Migrations by year");
+    var spinner = card.append("i").attr("class","fa fa-refresh fa-3x ld ld-spin");
 
 
     var countryURI = basicURI + "/api/statistics/" + getCountryCode(country) + "/years";
@@ -176,6 +183,7 @@ function drawBar(selector,country, width, height, margin) {
         request.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 years =  JSON.parse(this.responseText);
+                spinner.style("display","none");
 
                 if (years.length == 0)
                 {
@@ -224,7 +232,6 @@ function drawBar(selector,country, width, height, margin) {
                 var htmlButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
                 var pdfButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
                 var csvButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To CSV');
-                var shareButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('Share on Twitter');
 
                 pdfButton.on("click", function(){
                     svg_to_pdf(document.querySelector(".year-statistic svg"), function (pdf) {
@@ -255,9 +262,13 @@ function drawBar(selector,country, width, height, margin) {
                     saveAs(blob, "YearStatistic"+country+".svg");
                 });
 
-                shareButton.on("click", function () {
-                    svg_to_image(document.querySelector(".year-statistic svg"), 2);
-                });
+
+                if (access_token == 1) {
+                    var shareButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('Share on Twitter');
+                    shareButton.on("click", function () {
+                        svg_to_image(document.querySelector(".year-statistic svg"), 2);
+                    });
+                }
 
                 csvButton.on("click", function(){
                     var csvContent = to_csv(years);
@@ -281,6 +292,7 @@ function drawLine(selector,country,width,height,margin) {
     d3.select(selector).append("div").attr("class", "card text-center rounded col-lg-10  mt-5 mx-auto kids-statistic");
     var card = d3.select(".kids-statistic").append("div").attr("class", "card-block");
     card.append("h2").text("Children Migrations");
+    var spinner = card.append("i").attr("class","fa fa-refresh fa-3x ld ld-spin");
 
     var childrenURI = basicURI + "/api/statistics/" + getCountryCode(country) + "/children";
     if (window.XMLHttpRequest) {
@@ -293,6 +305,7 @@ function drawLine(selector,country,width,height,margin) {
     if (request) {
         request.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
+                spinner.style("display","none");
                 data = JSON.parse(this.responseText);
 
                 if (data.length == 0)
@@ -372,7 +385,6 @@ function drawLine(selector,country,width,height,margin) {
                 var htmlButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
                 var csvButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To CSV');
                 var pdfButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
-                var shareButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('Share on Twitter');
 
                 pdfButton.on("click", function(){
                     svg_to_pdf(document.querySelector(".kids-statistic svg"), function (pdf) {
@@ -419,9 +431,12 @@ function drawLine(selector,country,width,height,margin) {
                     document.body.removeChild(a)
                 });
 
-                shareButton.on("click", function () {
-                    svg_to_image(document.querySelector(".kids-statistic svg"), 3);
-                });
+                if (access_token == 1) {
+                    var shareButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('Share on Twitter');
+                    shareButton.on("click", function () {
+                        svg_to_image(document.querySelector(".kids-statistic svg"), 3);
+                    });
+                }
             }
         }
     }

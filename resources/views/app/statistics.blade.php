@@ -8,6 +8,7 @@
     <script type="text/javascript">
         var basicURI = "{{ route('welcome')}}";
         var statisticShareURI = "{{route('statistics-share') }}";
+        var access_token = "{!! $access_token !!}";
     </script>
     <script src="{{asset('js/countries_states.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
@@ -18,6 +19,9 @@
     <script src="https://rawgit.com/exupero/saveSvgAsPng/gh-pages/saveSvgAsPng.js"></script>
     <script src="https://rawgit.com/MrRio/jsPDF/master/dist/jspdf.debug.js"></script>
     <script src="{{asset('js/FileSaver.js')}}"></script>
+    <script src="{{asset('js/loading-bar.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/loading.css')}}"></link>
+
 
     <button id="open-modal-button" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="display: none">Open Modal</button>
 
