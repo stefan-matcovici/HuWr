@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $migrations = Migration::take(30)->get();
         $users = User::all();
-        return view('app.home',['migrations' => $migrations, 'users' => $users]);
+        return view('app.home',['migrations' => $migrations, 'users' => $users, 'prediction' => 2]);
     }
 
     public function add()

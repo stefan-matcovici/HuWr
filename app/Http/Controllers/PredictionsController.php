@@ -21,8 +21,8 @@ class PredictionsController extends Controller
         select * 
         from human_migrations
         where (created_at>=".$start." and arrival_country="."'".$arrivalCode."')");
-        return $this->getFuturePredictions($migrations,$end);
-        //return Redirect::route("home");
+        $predicted_migrations = collect($this->getFuturePredictions($migrations,$end))  ;
+        return view('app.prediction_result', ['migrations' => $predicted_migrations,"users" => collect(array()),"prediction" => true]);
     }
     public function getFuturePredictions($migrations,$endDate)
     {
@@ -48,7 +48,6 @@ class PredictionsController extends Controller
                     $futurePredictions[$contor]["adults"] = $migration->adults;
                     $futurePredictions[$contor]["reason"] = $migration->reason;
                     $contor=$contor+1;
-                    echo $contor;
                 }
 
             }
@@ -72,7 +71,6 @@ class PredictionsController extends Controller
                         $futurePredictions[$contor]["adults"]=$migration->adults;
                         $futurePredictions[$contor]["reason"]=$migration->reason;
                         $contor=$contor+1;
-                        echo $contor;
 
                     }
 
@@ -90,5 +88,9 @@ class PredictionsController extends Controller
         $d_end= new DateTime($endYear);
         $years= $d_end->diff($d_start);
         return $years;
+    }
+
+    public function predictionsMap() {
+
     }
 }

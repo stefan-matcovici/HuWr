@@ -53,16 +53,7 @@
                             populateCountries("country-location");
                         </script>
                     </div>
-
-                    <div class="climate-selection">
-                        <label class="label-input-left"> Climate
-                            <select class="climate-input" id="climate-location" name="climate-location"></select>
-                        </label>
-                        <script type="text/javascript">
-                            populateClimates("climate-location");
-                        </script>
-                    </div>
-
+                    
                     <div class="submit-button-div">
                         <input class="button" type="submit" name="submit" value="Send">
                     </div>
