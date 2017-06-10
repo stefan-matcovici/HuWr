@@ -417,7 +417,6 @@ function svg_to_image (svg, type) {
             canvas.width = image.width;
             canvas.height = image.height;
             context.drawImage(image, 0, 0, image.width, image.height);
-            context.text = "BLABLA";
 
             var w = image.width;
             var h = image.height;
@@ -444,7 +443,7 @@ function svg_to_image (svg, type) {
                     if (this.readyState == 4 && this.status == 200) {
                         document.getElementById("open-modal-button").click();
                     } else {
-                        if (this.status != 200) {
+                        if (this.readyState == 4 && this.status != 200) {
                             document.getElementById("modal-text").innerHTML = "<p> An error occured. Please try again later. </p>"
                         }
                     }
@@ -455,7 +454,7 @@ function svg_to_image (svg, type) {
                 description = "Statistics for " + country + " about reasons for migrations.";
             }
             if (type === 2) {
-                description = "Statistics for " + country + " by years.";
+                description = "Statistics for " + country + " migrations by years.";
             }
             if (type === 3) {
                 description = "Statistics for " + country + " about children migrations.";
