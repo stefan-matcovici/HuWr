@@ -35,13 +35,13 @@
                         <label class="date"> Age </label>
                         <div class="sub-radio-div">
                             <label>
-                                Child:
+                                Emigration:
                             </label>
-                            <input class="radio-class" value ="child" type="radio" name="childoradult">
+                            <input class="radio-class" value ="emigration" type="radio" name="emigrationorimmigration">
                             <label>
-                                Adult:
+                                Immigration:
                             </label>
-                            <input class="radio-class" value="adult" type="radio" name="childoradult">
+                            <input class="radio-class" value="immigration" type="radio" name="emigrationorimmigration">
                         </div>
                     </div>
 
@@ -53,7 +53,7 @@
                             populateCountries("country-location");
                         </script>
                     </div>
-                    
+
                     <div class="submit-button-div">
                         <input class="button" type="submit" name="submit" value="Send">
                     </div>

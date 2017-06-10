@@ -13,14 +13,14 @@ class PredictionsController extends Controller
     {
         $start = $request->input('starting-time');
         $end = $request->input('ending-time');
-        $age=$request->input('childoradult');
+        $migrationtype=$request->input('emigrationorimmigration');
         $arrival = app('geocoder')->geocode($request->input('country-location'))->all()[0];
         $arrivalCode=$arrival->getCountryCode();
 
-        $migrations = DB::select("
+        $migrations= DB::select("
         select * 
         from human_migrations
-        where (created_at>=".$start." and arrival_country="."'".$arrivalCode."')");
+        where (created_at>='".$start."' and arrival_country="."'".$arrivalCode."')");
         $predicted_migrations = collect($this->getFuturePredictions($migrations,$end))  ;
         return view('app.prediction_result', ['migrations' => $predicted_migrations,"users" => collect(array()),"prediction" => true]);
     }
