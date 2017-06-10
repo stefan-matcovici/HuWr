@@ -16,24 +16,36 @@ class PredictionsController extends Controller
         $migrationtype=$request->input('emigrationorimmigration');
         $arrival = app('geocoder')->geocode($request->input('country-location'))->all()[0];
         $arrivalCode=$arrival->getCountryCode();
-
-        $migrations= DB::select("
+        $predicted_migrations=[];
+        if($migrationtype=="immigration") {
+            $migrations = DB::select("
         select * 
         from human_migrations
-        where (created_at>='".$start."' and arrival_country="."'".$arrivalCode."')");
-        $predicted_migrations = collect($this->getFuturePredictions($migrations,$end))  ;
-        return view('app.prediction_result', ['migrations' => $predicted_migrations,"users" => collect(array()),"prediction" => true]);
+        where arrival_country=" . "'" . $arrivalCode . "' order by created_at desc limit 5");
+            $predicted_migrations = collect($this->getFuturePredictions($migrations,$end,$start))  ;
+        }
+        else{
+            $migrations = DB::select("
+        select * 
+        from human_migrations
+        where departure_country=" . "'" . $arrivalCode . "' order by created_at desc limit 5");
+            $predicted_migrations = collect($this->getFuturePredictions($migrations,$end,$start))  ;
+        }
+        //dd($migrations);
+        return $this->getFuturePredictions($migrations,$end,$start);
+        //return view('app.prediction_result', ['migrations' => $predicted_migrations,"users" => collect(array()),"prediction" => true]);
     }
-    public function getFuturePredictions($migrations,$endDate)
+    public function getFuturePredictions($migrations,$endDate,$startDate)
     {
         $futurePredictions = [];
         $contor=0;
         foreach($migrations as $migration)
         {
             if($migration->reason=="Personal" || $migration->reason=="Other"||$migration->reason=="Education") {
-                $years = $this->getYears($endDate, $migrations)->y;
-                $date = date_create($migration->created_at);
-                for ($i = 0; $i < $years; $i++) {
+                $years = $this->getYears($endDate, $startDate)->y;
+                $date = date_create($startDate);
+                $date->modify('-1 year')->format('Y-m-d H:i:s');
+                for ($i = 0; $i <= $years; $i++) {
                     $date->add(new DateInterval('P1Y'));
                     $futurePredictions[$contor]["created_at"] = $date->format('Y-m-d H:i:s');
                     $futurePredictions[$contor]["departure_country"] = $migration->departure_country;
@@ -53,9 +65,10 @@ class PredictionsController extends Controller
             }
             if($migration->reason=="War" || $migration->reason=="Religion"||$migration->reason=="Economics")
             {
-                    $years=$this->getYears($endDate,$migrations)->y;
-                    $date = date_create( $migration->created_at);
-                    for($j = 0; $j <$years; $j++)
+                    $years = $this->getYears($endDate, $startDate)->y;
+                    $date = date_create($startDate);
+                    $date->modify('-1 year')->format('Y-m-d H:i:s');
+                    for($j = 0; $j <=$years; $j++)
                     {
                         $date->add(new DateInterval('P1Y'));
                         $futurePredictions[$contor]["created_at"]=$date->format('Y-m-d H:i:s');
@@ -76,13 +89,16 @@ class PredictionsController extends Controller
 
             }
         }
+        dd($futurePredictions);
         return $futurePredictions;
 
     }
-    public function getYears($end,$migrations)
+
+    public function getYears($end,$start)
     {
+        $startDate=date_create($start);
         $endDate= date_create($end);
-        $startYear = date( 'Y-m-d H:i:s');
+        $startYear =$startDate->format( 'Y-m-d H:i:s');
         $endYear=$endDate->format('Y-m-d H:i:s');
         $d_start= new DateTime($startYear);
         $d_end= new DateTime($endYear);
