@@ -290,13 +290,21 @@
                     numberOfAdults += migration2.adults;
                     numberOfChildren += migration2.children;
 
-                    var users = {!! json_encode($users->toArray()) !!};
-                    var username = "";
-                    users.forEach(function (user) {
-                        if (user.id === migration2.user_id) {
-                            username = user.first_name + " " + user.last_name;
-                        }
-                    } );
+                    var prediction = {!!$prediction!!};
+
+                    console.log(prediction);
+
+                    if (prediction!=1)
+                    {
+                        var users = {!! json_encode($users->toArray()) !!};
+                        var username = "";
+                        users.forEach(function (user) {
+                            if (user.id === migration2.user_id) {
+                                username = user.first_name + " " + user.last_name;
+                            }
+                        } );
+
+                    }
 
                     content +=
                         "<li class = \"list-group-item list-group-item-warning\"> Author: <b>" + username + "</b> </li>" +
@@ -396,13 +404,19 @@
                     numberOfAdults += migration2.adults;
                     numberOfChildren += migration2.children;
 
-                    var users = {!! json_encode($users->toArray()) !!};
-                    var username = "";
-                    users.forEach(function (user) {
-                        if (user.id === migration2.user_id) {
-                            username = user.first_name + " " + user.last_name;
-                        }
-                    } );
+                    var prediction = {!!$prediction!!};
+
+                    if (prediction!=1)
+                    {
+                        var users = {!! json_encode($users->toArray()) !!};
+                        var username = "";
+                        users.forEach(function (user) {
+                            if (user.id === migration2.user_id) {
+                                username = user.first_name + " " + user.last_name;
+                            }
+                        } );
+
+                    }
 
                     content1 +=
                         "<li class = \"list-group-item list-group-item-warning\"> Author: <b>" + username + "</b> </li>" +

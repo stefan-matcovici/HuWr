@@ -46,6 +46,10 @@ Route::group(['prefix' => '/home'], function () {
     Route::get('/predictionsResult',['as' => 'return.predictions', 'uses' => 'PredictionsController@returnPredictions']);
 });
 
+Route::group(['prefix' => '/predictions'], function () {
+    Route::get('/map', ['as' => 'predictions.map', 'uses' => 'PredictionsController@predictionsMap']);
+});
+
 Route::group(['prefix' => '/twitter'], function () {
     Route::get('/login', ['as' => 'twitter.login', 'uses' => 'TwitterController@twitterLogin']);
     Route::get('/callback', ['as' => 'twitter.callback', 'uses' => 'TwitterController@twitterCallback']);
