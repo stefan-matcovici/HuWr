@@ -441,7 +441,13 @@ function svg_to_image (svg, type) {
             console.log(dataUrl);
             if (request) {
                 request.onreadystatechange = function () {
-
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("open-modal-button").click();
+                    } else {
+                        if (this.status != 200) {
+                            document.getElementById("modal-text").innerHTML = "<p> An error occured. Please try again later. </p>"
+                        }
+                    }
                 }
             }
             description = "";

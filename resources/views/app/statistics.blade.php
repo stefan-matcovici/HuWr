@@ -19,8 +19,30 @@
     <script src="https://rawgit.com/MrRio/jsPDF/master/dist/jspdf.debug.js"></script>
     <script src="{{asset('js/FileSaver.js')}}"></script>
 
+    <button id="open-modal-button" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="display: none">Open Modal</button>
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Share statistic on Twitter</h4>
+                </div>
+                <div class="modal-body" id="modal-text">
+                    <p>You shared this statistic succesfully on Twitter.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
     <div class="jumbotron">
-        <div class="card text-center rounded col-lg-10  mt-5 mx-auto">
+
+        <div class="card text-center rounded col-lg-10  mt-5 mx-auto" >
             <div class="card-block">
                 <div class="location-selection">
                     <label class="label-input-center">Country</label>
