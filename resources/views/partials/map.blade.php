@@ -16,6 +16,7 @@
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="{{asset('js/statistics.js')}}"></script>
     <script src="{{asset('js/leaflet-messagebox.js')}}"></script>
+    <script src="{{asset('js/L.Polyline.SnakeAnim.js')}}"></script>
     <link rel="stylesheet" href="{{asset('css/leaflet-messagebox.css')}}">
 @endsection
 
@@ -99,7 +100,7 @@
                             sidebar.setContent(content);
                             drawDonut("#sidebar .donutContainer", countryName, 250, 250, 50, 15, 4, false);
 
-                            addMigrationsToMap(migrations);
+                            addMigrationsToMap(migrations, 60);
                         }
                     };
                 }
@@ -122,7 +123,7 @@
             var migrations = {!! json_encode($migrations->toArray()) !!};
             var polylineOptions;
 
-            addMigrationsToMap(migrations);
+            addMigrationsToMap(migrations, 60);
 
 
             L.easyButton('fa-globe', function(btn, map){
@@ -178,7 +179,7 @@
             HTMLButton3[0].setAttribute("title", "See most important migrations.");
 
 
-        function addMigrationsToMap(migrations) {
+        function addMigrationsToMap(migrations, speed) {
             migrations.forEach(function(migration)
             {
                 var blueMarker = L.icon({
@@ -214,7 +215,8 @@
                     color: '#4d4d4d',
                     weight: 3.5,
                     opacity: 0.5,
-                    noClip: true
+                    noClip: true,
+                    snakingSpeed: speed
                 };
 
                 var polyline = new L.Polyline(polylinePoints, polylineOptions);
@@ -256,8 +258,8 @@
                 mymap.addLayer(polyline);
                 polylines.push(polyline);
 
-
-                L.polylineDecorator(polyline,{patterns: []}).addTo(mymap);
+                console.log(polyline.options);
+                polyline.addTo(mymap).snakeIn();
                 sidebar.on('hidden', function () {
                     polylines.forEach(function (polyline2) {
                         polyline2.setStyle(polylineOptions);
@@ -339,7 +341,7 @@
                 request.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                         migrations =  JSON.parse(this.responseText);
-                        addMigrationsToMap(migrations);
+                        addMigrationsToMap(migrations, 60);
                     }
                 };
             }
@@ -450,7 +452,7 @@
                     migrationsPerYear[year].push(migration2);
                 });
 
-                var options = { timeout: 500, position: 'bottomleft' }
+                var options = { timeout: 1000, position: 'bottomleft' }
                 var box = L.control.messagebox(options).addTo(mymap);
                 box.show("<h3>Current Year : " + minYear + "</h3>");
 
@@ -461,14 +463,14 @@
 
             function delayedLoop(min, max, current, migrationsPerYear, box) {
                 setTimeout(function () {
-                    addMigrationsToMap(migrationsPerYear[current]);
+                    addMigrationsToMap(migrationsPerYear[current], 350);
                     console.log(migrationsPerYear[current]);
                     box.show("<h3>Current Year : " + current + "</h3>");
                     current++;
                     if (current <= max ) {
                         delayedLoop(min, max, current, migrationsPerYear, box);
                     }
-                }, 250);
+                }, 1000);
             }
 
             function getMigrationYear(migration) {
