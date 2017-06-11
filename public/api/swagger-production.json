@@ -120,7 +120,7 @@
                 ]
             }
         },
-        "/api/atom-feed": {
+        "/atom-feed": {
             "get": {
                 "tags": [
                     "feed"

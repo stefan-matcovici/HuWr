@@ -73,7 +73,7 @@
 window.onload = function() {
   // Build a system
   const ui = SwaggerUIBundle({
-    url: "http://localhost/HuWr/public/api/swagger-production.json",
+    url: "https://protected-chamber-47547.herokuapp.com/api/swagger-production.json",
     dom_id: '#swagger-ui',
     presets: [
       SwaggerUIBundle.presets.apis,
