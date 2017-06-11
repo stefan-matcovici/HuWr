@@ -17,8 +17,6 @@ class WelcomeController extends Controller
     {
         $migrations = Migration::take(30)->get();
         $users = User::all();
-//        dd($users);
-//        dd($migrations);
         return view('welcome.welcome',['migrations' => $migrations, 'users' => $users, 'prediction' => 2]);
     }
 

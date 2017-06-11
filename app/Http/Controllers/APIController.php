@@ -161,7 +161,9 @@ class APIController extends Controller
      * )
      */
     public function countryMigrations(Request $request, $countryInitials) {
-        $migrations = Migration::where('departure_country', $countryInitials)->orWhere('arrival_country', $countryInitials)->get();
+        $migrations = Migration::where('departure_country', $countryInitials)
+                ->orWhere('arrival_country', $countryInitials)
+                ->get();
 
         return $migrations;
     }
