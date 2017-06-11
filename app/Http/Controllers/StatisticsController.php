@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\HumanMigration as Migration;
 use DB;
 
-class StatisticsController extends ApiController
+class StatisticsController extends APIController
 {
     /**
      * Returns the migrations associated with one country by year

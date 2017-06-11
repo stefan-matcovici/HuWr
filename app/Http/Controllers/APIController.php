@@ -184,7 +184,7 @@ class APIController extends Controller
      *
      *
      * @SWG\Get(
-     *     path="/api/atom-feed",
+     *     path="/atom-feed",
      *     schemes={"https"},
      *     description="Returns the migrations from and to one particular country",
      *     operationId="api.feed",
