@@ -38,7 +38,11 @@ class StatisticsController extends ApiController
      */
     public function countryIndexByYears(Request $request,$country)
     {
-        $migrations = DB::select("SELECT YEAR(created_at) as year,COUNT(*) as migrations FROM human_migrations WHERE arrival_country = '$country' GROUP BY YEAR(created_at),arrival_country");
+        $migrations = DB::select(
+            DB::raw("SELECT YEAR(created_at) as year,COUNT(*) as migrations FROM human_migrations 
+                      WHERE arrival_country = :country GROUP BY YEAR(created_at),arrival_country"),
+            array('country' => $country,
+            ));
 
         return $migrations;
     }
@@ -73,7 +77,12 @@ class StatisticsController extends ApiController
      */
     public function countryIndexByReasons(Request $request,$country)
     {
-        $migrations = DB::select("SELECT reason as label,COUNT(*) as count FROM human_migrations WHERE arrival_country = '$country' GROUP BY reason");
+        $migrations = DB::select(
+            DB::raw("SELECT reason as label,COUNT(*) as count FROM human_migrations 
+                                  WHERE arrival_country = :country GROUP BY reason"),
+            array('country' => $country,
+            ));
+
         return $migrations;
     }
 
@@ -107,7 +116,12 @@ class StatisticsController extends ApiController
      */
     public function countryIndexByChildren(Request $request,$country)
     {
-        $migrations = DB::select("SELECT DATE_FORMAT(created_at,\"%d-%b-%y\") as year,SUM(children) as close FROM human_migrations WHERE arrival_country = '$country' GROUP BY created_at");
+        $migrations = DB::select(
+            DB::raw("SELECT DATE_FORMAT(created_at,\"%d-%b-%y\") as year,SUM(children) as close FROM human_migrations
+                                  WHERE arrival_country = :country GROUP BY created_at"),
+            array('country' => $country,
+        ));
+
         return $migrations;
     }
 }
