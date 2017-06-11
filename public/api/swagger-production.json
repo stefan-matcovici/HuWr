@@ -1,0 +1,269 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Sample API",
+        "description": "A simple API to get important data about human migrations",
+        "contact": {
+            "name": "HuWr Team",
+            "url": "protected-chamber-47547.herokuapp.com/about"
+        },
+        "version": "1.0"
+    },
+    "host": "protected-chamber-47547.herokuapp.com",
+    "basePath": "/api",
+    "schemes": [
+        "https"
+    ],
+    "paths": {
+        "/recent": {
+            "get": {
+                "tags": [
+                    "recent"
+                ],
+                "summary": "Displays just the most recent migrations",
+                "description": "Returns the most recent migrations within the last month.",
+                "operationId": "api.recent.index",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The most recent migrations."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            }
+        },
+        "/all": {
+            "get": {
+                "tags": [
+                    "all"
+                ],
+                "summary": "Displays the whole collection of migrations",
+                "description": "Returns all migrations registred in application.",
+                "operationId": "api.all.index",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All migrations."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            }
+        },
+        "/important": {
+            "get": {
+                "tags": [
+                    "important"
+                ],
+                "summary": "Displays the most important migrations",
+                "description": "Returns the most important migrations meaning the most used routes for migration.",
+                "operationId": "api.important.index",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The most important migrations."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            }
+        },
+        "/country-migrations/{country}": {
+            "get": {
+                "tags": [
+                    "country"
+                ],
+                "summary": "Returns the migrations associated with one country",
+                "description": "Returns the migrations from and to one particular country",
+                "operationId": "api.country.index",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "country",
+                        "in": "path",
+                        "description": "country ISO-2 code you are interested in",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The migrations for country."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            }
+        },
+        "/api/atom-feed": {
+            "get": {
+                "tags": [
+                    "feed"
+                ],
+                "summary": "Returns the atom feed with all migrations",
+                "description": "Returns the migrations from and to one particular country",
+                "operationId": "api.feed",
+                "produces": [
+                    "application/xml"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The migrations for country."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            }
+        },
+        "/statistics/{country}/years": {
+            "get": {
+                "tags": [
+                    "statistics by year"
+                ],
+                "summary": "Returns the migrations associated with one country by year",
+                "description": "Returns the migrations by year",
+                "operationId": "api.statistics.years",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "country",
+                        "in": "path",
+                        "description": "country ISO-2 code you are interested in",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The migrations for country by year."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            }
+        },
+        "/statistics/{country}/reasons": {
+            "get": {
+                "tags": [
+                    "statistics by reason"
+                ],
+                "summary": "Returns the migrations associated with one country according with reasons",
+                "description": "Returns the migrations by reason",
+                "operationId": "api.statistics.years",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "country",
+                        "in": "path",
+                        "description": "country ISO-2 code you are interested in",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The migrations for country by reason."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            }
+        },
+        "/statistics/{country}/children": {
+            "get": {
+                "tags": [
+                    "children migrations statistics"
+                ],
+                "summary": "Returns the number of children that migrated from specified country",
+                "description": "Returns the children migrations",
+                "operationId": "api.statistics.children",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "country",
+                        "in": "path",
+                        "description": "country ISO-2 code you are interested in",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The children migrations for country."
+                    },
+                    "404": {
+                        "description": "Not found."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Error": {
+            "required": [
+                "code",
+                "message"
+            ],
+            "properties": {
+                "code": {
+                    "description": "Class ApiController",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "description": "Class ApiController",
+                    "type": "string"
+                }
+            }
+        },
+        "User": {
+            "required": [
+                "email"
+            ],
+            "properties": {
+                "email": {
+                    "description": "The user email",
+                    "type": "string"
+                },
+                "first_name": {
+                    "description": "The user first name",
+                    "type": "string"
+                },
+                "last_name": {
+                    "description": "The user last_name",
+                    "type": "string"
+                },
+                "birtday": {
+                    "description": "The user birthday",
+                    "type": "date"
+                },
+                "gender": {
+                    "description": "The user gender",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

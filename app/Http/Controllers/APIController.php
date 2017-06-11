@@ -12,13 +12,13 @@ use App\HumanMigration as Migration;
  *
  * @SWG\Swagger(
  *     basePath="/api",
- *     host="localhost/HuWr/public",
- *     schemes={"http"},
+ *     host="protected-chamber-47547.herokuapp.com",
+ *     schemes={"https"},
  *     @SWG\Info(
  *         version="1.0",
  *         title="Sample API",
  *          description="A simple API to get important data about human migrations",
- *         @SWG\Contact(name="HuWr Team", url="https://localhost/public/about"),
+ *         @SWG\Contact(name="HuWr Team", url="protected-chamber-47547.herokuapp.com/about"),
  *     ),
  *     @SWG\Definition(
  *         definition="Error",
