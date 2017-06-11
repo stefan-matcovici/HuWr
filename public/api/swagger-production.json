@@ -33,7 +33,10 @@
                     "404": {
                         "description": "Not found."
                     }
-                }
+                },
+                "schemes": [
+                    "https"
+                ]
             }
         },
         "/all": {
@@ -54,7 +57,10 @@
                     "404": {
                         "description": "Not found."
                     }
-                }
+                },
+                "schemes": [
+                    "https"
+                ]
             }
         },
         "/important": {
@@ -75,7 +81,10 @@
                     "404": {
                         "description": "Not found."
                     }
-                }
+                },
+                "schemes": [
+                    "https"
+                ]
             }
         },
         "/country-migrations/{country}": {
@@ -105,7 +114,10 @@
                     "404": {
                         "description": "Not found."
                     }
-                }
+                },
+                "schemes": [
+                    "https"
+                ]
             }
         },
         "/api/atom-feed": {
@@ -126,7 +138,10 @@
                     "404": {
                         "description": "Not found."
                     }
-                }
+                },
+                "schemes": [
+                    "https"
+                ]
             }
         },
         "/statistics/{country}/years": {
@@ -156,7 +171,10 @@
                     "404": {
                         "description": "Not found."
                     }
-                }
+                },
+                "schemes": [
+                    "https"
+                ]
             }
         },
         "/statistics/{country}/reasons": {
@@ -186,7 +204,10 @@
                     "404": {
                         "description": "Not found."
                     }
-                }
+                },
+                "schemes": [
+                    "https"
+                ]
             }
         },
         "/statistics/{country}/children": {
@@ -216,7 +237,10 @@
                     "404": {
                         "description": "Not found."
                     }
-                }
+                },
+                "schemes": [
+                    "https"
+                ]
             }
         }
     },

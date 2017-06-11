@@ -15,6 +15,7 @@ class StatisticsController extends ApiController
      *
      * @SWG\Get(
      *     path="/statistics/{country}/years",
+     *     schemes={"https"},
      *     description="Returns the migrations by year",
      *     operationId="api.statistics.years",
      *     produces={"application/json"},
@@ -54,6 +55,7 @@ class StatisticsController extends ApiController
      *
      * @SWG\Get(
      *     path="/statistics/{country}/reasons",
+     *     schemes={"https"},
      *     description="Returns the migrations by reason",
      *     operationId="api.statistics.years",
      *     produces={"application/json"},
@@ -93,6 +95,7 @@ class StatisticsController extends ApiController
      *
      * @SWG\Get(
      *     path="/statistics/{country}/children",
+     *     schemes={"https"},
      *     description="Returns the children migrations",
      *     operationId="api.statistics.children",
      *     produces={"application/json"},

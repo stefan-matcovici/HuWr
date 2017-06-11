@@ -49,6 +49,7 @@ class APIController extends Controller
      *
      * @SWG\Get(
      *     path="/recent",
+     *     schemes={"https"},
      *     description="Returns the most recent migrations within the last month.",
      *     operationId="api.recent.index",
      *     produces={"application/json"},
@@ -80,6 +81,7 @@ class APIController extends Controller
      *
      * @SWG\Get(
      *     path="/all",
+     *     schemes={"https"},
      *     description="Returns all migrations registred in application.",
      *     operationId="api.all.index",
      *     produces={"application/json"},
@@ -109,6 +111,7 @@ class APIController extends Controller
      *
      * @SWG\Get(
      *     path="/important",
+     *     schemes={"https"},
      *     description="Returns the most important migrations meaning the most used routes for migration.",
      *     operationId="api.important.index",
      *     produces={"application/json"},
@@ -139,6 +142,7 @@ class APIController extends Controller
      *
      * @SWG\Get(
      *     path="/country-migrations/{country}",
+     *     schemes={"https"},
      *     description="Returns the migrations from and to one particular country",
      *     operationId="api.country.index",
      *     produces={"application/json"},
@@ -181,6 +185,7 @@ class APIController extends Controller
      *
      * @SWG\Get(
      *     path="/api/atom-feed",
+     *     schemes={"https"},
      *     description="Returns the migrations from and to one particular country",
      *     operationId="api.feed",
      *     produces={"application/xml"},
