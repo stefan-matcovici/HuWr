@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Documentatie HuWr - Human Migration Web Reporter</title>
+	<meta charset="utf-8">
+    <link rel="stylesheet" href="scholarly.css">
+    <link rel="stylesheet" href="prism-coy.css">
+    <script src="Scholarly/prism.js" defer=""></script>
+</head>
+<body prefix="schema: http://schema.org/">
+    <header>
+      <p class="title">Human Migration Web Reporter</p>
+      <p class="subtitle">Documentation</p>
+    </header>
+	<article typeof="schema:ScholarlyArticle" resource="#">
+		<h1> Human Migration Web Reporter (HuWr) </h1>
+		<section>
+			<ol>
+				<li property="schema:author">
+					<a property="schema:author" href="https://github.com/andreiluca96" typeof="schema:Person">
+						<span property="schema:givenName">
+							Andrei
+						</span>
+						<span property="schema:familyName">
+							Luca
+						</span>						
+					</a>					
+				</li>
+				<li property="schema:author">
+					<a property="schema:author" href="https://github.com/stefan-matcovici" typeof="schema:Person">
+						<span property="schema:givenName">
+							Stefan
+						</span>
+						<span property="schema:familyName">
+							Matcovici
+						</span>						
+					</a>					
+				</li>
+				<li property="schema:author">
+					<a property="schema:author" href="https://github.com/OpariucAriana" typeof="schema:Person">
+						<span property="schema:givenName">
+							Ariana
+						</span>
+						<span property="schema:familyName">
+							Opariuc
+						</span>						
+					</a>					
+				</li>
+			</ol>
+		</section>
+		<section typeof="sa:Subcategorii" id="cuprins">
+        <h2>Cuprins</h2>
+        <aside typeof="schema:WPSideBar">
+          <p>
+            <ul>
+				<li><a href="#descriereaProiectului">1. Introducere</a></li>
+				<li><a href="#etapeProiect">2. Etapele dezvoltarii proiectului</a></li>
+				<li><a href="#arhitectura">3. Arhitectura aplicatiei</a></li>
+				<li><a href="#progresProiect">4. Progresul inregistrat</a></li>
+				<li><a href="#tehnologiieUtilizate">5. Tehnologii utilizate</a></li>
+				<li><a href="#serviciiUtilizate">6. Servicii utilizate</a></li>
+				<li><a href="#task">7. Task-urile echipei</a></li>
+				<li><a href="#membriiEchipei">8. Membrii echipei</a></li>
+			</ul>
+          <!--</p>-->
+        </aside>
+      </section>
+      <section typeof="sa:Results" id="descriereaProiectului">
+        <h2>1. Descriere Proiect</h2>
+        <p>
+        	Pe baza datelor existente si a observatiilor semnalate de utilizatori (autentificati via un cont existent pe o platforma Web cu caracter social precum Facebook ori Twitter), se doreste realizarea unei harti interactive -- via un serviciu public de cartografiere precum OpenStreetMap -- referitoare la traseele migratiei persoanelor la nivel de natiune, de continent sau de glob. Raportarea unui eveniment migratoriu se va putea efectua fie direct in cadrul aplicatiei Web, fie folosind termenul de continut '#migration' in cadrul retelei sociale preferate de utilizator. Sistemul propus va fi capabil sa figureze si sa ofere statistici vizand aceste migratii sezoniere in functie de zona geografica (e.g., tranzit pe teritoriul unei tari), perioada de timp, climat, consideratii demografice etc. Fiecare nou raport introdus de utilizator va fi semnalat si in cadrul unui flux de stiri Atom. Sistemul Web dezvoltat va oferi statistici relevante disponibile ca documente HTML, CSV, JSON si PDF, putand fi partajate la nivelul retelelor sociale. Folosind datele disponibile, se vor putea oferi predictii referitoare la migrarea persoanelor spre un areal geografic.
+        </p>
+    </section>
+    <section id="etapeProiect">
+        <h2>2. Etapele dezvoltarii proiectului</h2>
+        <ol>
+			<li>Modelarea si design-ul paginilor principale</li>
+			<li>Crearea paginilor propriu-zise utilizand HTML5, CSS3 si Javascript(front-end)</li>
+			<li>Portarea proiectului pe framework-ul MVC(Laravel)</li>
+			<li>Modelarea arhitecturii la nivel de back-end</li>
+			<li>Studierea API-urilor si a librariilor disponibile pentru a rezolva diferite probleme</li>
+			<li>Crearea modelelor bazei de date</li>
+			<li>Generarea de date pentru baza de date</li>
+			<li>Impartirea pe module a aplicatiei</li>
+			<li>Implementarea fiecarui modul in parte si integrarea lor in cadrul aplicatiei</li>
+			<li>Finisarea aspectelor ce tin de design</li>
+			<li>Deployment(Heroku)</li>
+		</ol>
+    </section>
+    <section id="arhitectura">
+		<h2>3. Arhitectura aplicatiei</h2>
+		
+		<figure typeof="sa:Image6">
+					<img src="images/arhitectura.jpg" style="width:800px;height:500px;display:inline;border-left: 2px solid black">
+					<figcaption align="center">
+						Arhitectura aplicatiei HuWr impreuna cu API-urile/tehnologiile folosite pe fiecare nivel.
+					</figcaption>
+		</figure>
+		<blockquote>	 
+		<p>Diagrama poate fi privita si ca o arhitectura de tip MVC unde Data Layer-ul reprezinta modelele, Business Layer-ul reprezinta controllerele, iar Presentation Layer-ul reprezinta view-urile</p>
+		</blockquote>
+	</section>
+	</article>
+</body>
+</html>
