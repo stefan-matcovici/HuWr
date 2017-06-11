@@ -325,7 +325,7 @@ function drawLine(selector,country,width,height,margin) {
                 // define the line
                 var valueline = d3.line()
                     .x(function (d) { return x(d.year); })
-                    .y(function (d) { return y(d.close); });
+                    .y(function (d) { return y(d.count); });
 
                 var svg = d3.select('.kids-statistic > .card-block')
                     .append('svg').attr("width", width + margin.left + margin.right)
@@ -346,16 +346,16 @@ function drawLine(selector,country,width,height,margin) {
 
                 var line = d3.line()
                     .x(function(d) { return x(d.year); })
-                    .y(function(d) { return y(d.close); });
+                    .y(function(d) { return y(d.count); });
 
                 data.forEach(function(d) {
                     d.year = parseTime(d.year);
-                    d.close = +d.close;
+                    d.count = +d.count;
                 });
 
                 // Scale the range of the data
                 x.domain(d3.extent(data, function(d) { return d.year; }));
-                y.domain(d3.extent(data, function(d) { return d.close; }));
+                y.domain(d3.extent(data, function(d) { return d.count; }));
 
                 g.append("g")
                     .attr("transform", "translate(0," + height + ")")
