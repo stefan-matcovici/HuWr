@@ -503,7 +503,6 @@ function svg_to_image (svg, type) {
             } else if (window.ActiveXObject) {
                 request = new ActiveXObject("Microsoft.XMLHTTP");
             }
-            console.log(dataUrl);
             if (request) {
                 request.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
@@ -526,7 +525,7 @@ function svg_to_image (svg, type) {
                 description = "Statistics for " + country + " about children migrations.";
             }
 
-            sendObject = `{ \"text":\"` + description + `\",\"image\": \"` + dataUrl +`\"  }`;
+            sendObject = '{ \"text":\"` + description + `\",\"image\": \"` + dataUrl +`\"  }';
             request.open("POST", statisticShareURI, true);
             request.send(sendObject);
         }
