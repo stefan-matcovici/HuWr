@@ -74,7 +74,7 @@
     <section id="etapeProiect">
         <h2>2. Etapele dezvoltarii proiectului</h2>
         <ol>
-			<li>Modelarea si design-ul paginilor principale</li>
+			<li>Modelarea paginilor principale(use-case)</li>
 			<li>Crearea paginilor propriu-zise utilizand HTML5, CSS3 si Javascript(front-end)</li>
 			<li>Portarea proiectului pe framework-ul MVC(Laravel)</li>
 			<li>Modelarea arhitecturii la nivel de back-end</li>
@@ -91,15 +91,110 @@
 		<h2>3. Arhitectura aplicatiei</h2>
 		
 		<figure typeof="sa:Image6">
-					<img src="images/arhitectura.jpg" style="width:800px;height:500px;display:inline;border-left: 2px solid black">
+					<img src="images/arhitectura.jpg" style="width:800px;height:500px;display:inline;border: 2px solid black">
 					<figcaption align="center">
 						Arhitectura aplicatiei HuWr impreuna cu API-urile/tehnologiile folosite pe fiecare nivel.
 					</figcaption>
 		</figure>
 		<blockquote>	 
-		<p>Diagrama poate fi privita si ca o arhitectura de tip MVC unde Data Layer-ul reprezinta modelele, Business Layer-ul reprezinta controllerele, iar Presentation Layer-ul reprezinta view-urile</p>
+		<p>Diagrama poate fi privita si ca o arhitectura de tip MVC unde Data Layer-ul reprezinta modelele, Business Layer-ul reprezinta controllerele, iar Presentation Layer-ul reprezinta view-urile, insa pentru o perspectiva mai detaliata puteti studia urmatoarea digrama.</p>
+		</blockquote>
+
+		<figure typeof="sa:Image6">
+					<img src="images/arhitectura_MVC.png" style="width:950px;height:600px;display:inline;border: 2px solid black">
+					<figcaption align="center">
+						Arhitectura aplicatiei pe baza MVC(model-view-controller).
+					</figcaption>
+		</figure>
+		<blockquote>	 
+		<p>Diagrama reprezinta o perspectiva ceva mai detaliata a serviciilor folosite si structurii aplicatiei. Pentru a organiza aplicatia astfel am folosit Laravel PHP framework.</p>
+		</blockquote>
+	</section>		
+    <section id="progresProiect">
+      	<h2>4. Progresul inregistrat</h2>
+        <blockquote>
+	  		<h3> Modelarea paginilor principale(use-case) </h3>
+	  		<figure typeof="sa:Image6">
+						<img src="images/use_case_TW.jpg" style="width:800px;height:500px;display:inline;border: 2px solid black">
+						<figcaption align="center">
+							Use case a unui utilizator al aplicatiei HuWr.
+						</figcaption>
+			</figure>	 
+			<p>Un utilizator al aplicatiei HuWr va avea la dispozitie sa se logheze(utilizand contul din aplicatie/fie utilizand Twitter) avand astfel o serie de facilitati precum adaugarea de migratii, vizualizarea de statistici sau predictii si de asemenea de a consulta harta interactiva. Un utilizator care nu este logat va fi limitat doar la vizualizarea migratiilor pe o harta interactiva si de a consulta o lista de migratii. De asemenea, toti utilizatorii vor putea accesa API-ul pus la dispozitie de aplicatia noastra si de asemenea cateva detalii legate de noi(dezvoltatorii aplicatiei).</p>
+		</blockquote>
+		<blockquote>
+	  		<h3> Crearea paginilor propriu-zise utilizand HTML5, CSS3 si Javascript(front-end)</h3>
+			<p>In cele ce urmeaza vom prezenta o parte din paginile aplicatiei noastre urmand ca in ghidul de utilizare a aplicatiei sa prezentam fiecare pagina in parte si functionalitatea fiecareia.</p>
+	  		<figure typeof="sa:Image6">
+			<img src="images/register.jpg" style="width:900px;height:450px;display:inline;border: 2px solid black">
+			<figcaption align="center">
+				Pagina de inregistrare a utilizatorilor.
+			</figcaption>
+			</figure>
+			<figure typeof="sa:Image6">
+			<img src="images/map.jpg" style="width:900px;height:450px;display:inline;border: 2px solid black">
+			<figcaption align="center">
+				Harta interactiva a migratiilor de pe glob.
+			</figcaption>
+			</figure>
+			<figure typeof="sa:Image6">
+			<img src="images/statistics.jpg" style="width:900px;height:450px;display:inline;border: 2px solid black">
+			<figcaption align="center">
+				Statistici SVG despre migratiile la nivel de tari.
+			</figcaption>
+			</figure>	
+		</blockquote>
+		<blockquote>
+			<h3>Portarea proiectului pe framework-ul MVC(Laravel)</h3>
+			<figure typeof="sa:Image6">
+			<img src="images/controllers_models_MVC.jpg" style="width:300px;height:400px;display:inline;border: 2px solid black">
+			<figcaption align="center">
+				Structura fisierelor Controllers + Models in Laravel.
+			</figcaption>
+			</figure>
+			<figure typeof="sa:Image6">
+			<img src="images/views_MVC.jpg" style="width:300px;height:400px;display:inline;border: 2px solid black">
+			<figcaption align="center">
+				Structura View-urilor in Laravel.
+			</figcaption>
+			</figure>
+		</blockquote>
+		<blockquote>
+			<h3>Crearea modelelor bazei de date</h3>
+			<figure typeof="sa:Image6">
+			<img src="images/DB_migrations.jpg" style="width:700px;height:500px;display:inline;border: 2px solid black">
+			<figcaption align="center">
+				Structura tabelei migratiilor.
+			</figcaption>
+			</figure>
+			<figure typeof="sa:Image6">
+			<img src="images/DB_users.jpg" style="width:700px;height:350px;display:inline;border: 2px solid black">
+			<figcaption align="center">
+				Structura tabelei utilizatorilor aplicatiei.
+			</figcaption>
+			</figure>
+		</blockquote>
+		<blockquote>
+			<h3>Impartirea pe module a aplicatiei</h3>
+			<figure typeof="sa:Image6">
+			<img src="images/modules.jpg" style="width:900px;height:500px;display:inline;border: 2px solid black">
+			<figcaption align="center">
+				Organizarea modulelor aplicatiei.
+			</figcaption>
+			</figure>
+		</blockquote>
+		<blockquote>
+			<h3>Deployment Heroku</h3>
+			<figure typeof="sa:Image6">
+			<img src="images/deployment.jpg" style="width:900px;height:100px;display:inline;border: 2px solid black">
+			<figcaption align="center">
+				Deployment-ul aplicatiei pe Heroku.
+			</figcaption>
+			</figure>
 		</blockquote>
 	</section>
+
+
 	</article>
 </body>
 </html>
