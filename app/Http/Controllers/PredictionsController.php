@@ -27,7 +27,7 @@ class PredictionsController extends Controller
 //                    select *
 //                    from human_migrations
 //                    where arrival_country=" . "'" . $arrivalCode . "' order by created_at desc limit 5");
-            $predicted_migrations = collect($this->getFuturePredictions($migrations, $end, $start));
+
         } else {
             $migrations = DB::select(DB::raw("select * 
                     from human_migrations
@@ -40,9 +40,8 @@ class PredictionsController extends Controller
 //       where departure_country=" . "'" . $arrivalCode . "' order by created_at desc limit 5");
 //            $predicted_migrations = collect($this->getFuturePredictions($migrations,$end,$start))  ;
 //        }
-            //dd($migrations);
-            return $this->getFuturePredictions($migrations, $end, $start);
-            //return view('app.prediction_result', ['migrations' => $predicted_migrations,"users" => collect(array()),"prediction" => true]);
+            $predicted_migrations = collect($this->getFuturePredictions($migrations, $end, $start));
+            return view('app.prediction_result', ['migrations' => $predicted_migrations,"users" => collect(array()),"prediction" => true]);
         }
     }
     public function getFuturePredictions($migrations,$endDate,$startDate)
