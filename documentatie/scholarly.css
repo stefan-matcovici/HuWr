@@ -12,6 +12,7 @@
 
 * {
   box-sizing: border-box;
+  text-align: justify;
 }
 body {
   font-family: "Libre Baskerville", Times, serif;

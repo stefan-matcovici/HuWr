@@ -102,8 +102,8 @@ function drawDonut(selector,country,w,h,donutWidth,legendRectSize,legendSpacing,
                 {
                     var div = card.append('div').attr('class', 'buttons');
                     var htmlButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
-                    var csvButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To CSV');
                     var pdfButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
+                    var csvButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To CSV');
 
                     if (access_token == 1)
                     {
@@ -275,7 +275,7 @@ function drawBar(selector,country, width, height, margin) {
                     var a = window.document.createElement('a');
                     var arr = [csvContent];
                     a.href = window.URL.createObjectURL(new Blob(arr, {type: 'text/csv'}));
-                    saveAs(blob,"YearStatistic"+country+".svg");
+                    a.download = 'YearStatistic'+country+'.csv';
                     document.body.appendChild(a)
                     a.click();
                     document.body.removeChild(a)
@@ -383,8 +383,8 @@ function drawLine(selector,country,width,height,margin) {
 
                 var div = card.append('div').attr('class','buttons');
                 var htmlButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To HTML');
+                var pdfButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf')
                 var csvButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To CSV');
-                var pdfButton = div.append("button").attr('class', 'btn btn-primary mx-2').text('To Pdf');
 
                 pdfButton.on("click", function(){
                     svg_to_pdf(document.querySelector(".kids-statistic svg"), function (pdf) {
@@ -425,7 +425,7 @@ function drawLine(selector,country,width,height,margin) {
                     var a = window.document.createElement('a');
                     var arr = [csvContent];
                     a.href = window.URL.createObjectURL(new Blob(arr, {type: 'text/csv'}));
-                    a.download = "ReasonStatistic"+country+".csv";
+                    a.download = "ChildrenStatistic"+country+".csv";
                     document.body.appendChild(a)
                     a.click();
                     document.body.removeChild(a)
@@ -525,7 +525,7 @@ function svg_to_image (svg, type) {
                 description = "Statistics for " + country + " about children migrations.";
             }
 
-            sendObject = `{ \"text":\"` + description + `\",\"image\": \"` + dataUrl +`\"  }`;
+            sendObject = '{ \"text":\"` + description + `\",\"image\": \"` + dataUrl +`\"  }';
             request.open("POST", statisticShareURI, true);
             request.send(sendObject);
         }
