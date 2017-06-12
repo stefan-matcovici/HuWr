@@ -306,9 +306,12 @@
                     {
                         var users = {!! json_encode($users->toArray()) !!};
                         var username = "";
+
                         users.forEach(function (user) {
                             if (user.id === migration2.user_id) {
+                                console.log(migration2.user_id);
                                 username = user.first_name + " " + user.last_name;
+                                console.log(username);
                             }
                         } );
 
@@ -420,6 +423,7 @@
                         var username = "";
                         users.forEach(function (user) {
                             if (user.id === migration2.user_id) {
+//                                console.log(migration2.user_id);
                                 username = user.first_name + " " + user.last_name;
                             }
                         } );

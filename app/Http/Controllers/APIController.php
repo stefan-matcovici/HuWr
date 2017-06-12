@@ -68,8 +68,7 @@ class APIController extends Controller
         $migrations = DB::select("
         select * 
         from human_migrations 
-        WHERE YEAR(created_at) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH)
-        AND MONTH(created_at) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)");
+        WHERE YEAR(created_at) = YEAR(CURRENT_DATE)");
 
         return $migrations;
     }
@@ -130,7 +129,7 @@ class APIController extends Controller
         $migrations = DB::select("
         select * 
         from human_migrations
-        where adults + children > 100");
+        where adults + children > 13");
 
         return $migrations;
     }
@@ -220,7 +219,7 @@ class APIController extends Controller
             {
                 $feed->add('Migrated from '.$post->departure_city.', '.$post->departure_country.' to '.$post->arrival_city.', '.$post->arrival_country,
                     'SAA',
-                    'http://localhost/PW/public/feed/'.$post->id,
+                    'http://localhost/ProiectTW/public/feed/'.$post->id,
                     $post->created_at,
                     'Migration Feed',
                     'Migrated from '.$post->departure_city.', '.$post->departure_country.' to '.$post->arrival_city.', '.$post->arrival_country.' with '.
