@@ -1,4 +1,4 @@
-@extends('layouts.welcome')
+@extends(Auth::user() ? 'layouts.app' : 'layouts.welcome');
 
 @section('assets')
     <link rel="stylesheet" type="text/css" href="{{asset('css/feed.css')}}">
