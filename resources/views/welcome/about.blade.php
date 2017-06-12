@@ -21,7 +21,7 @@
 
         </div>
         <div class="personal-information">
-            <img  alt="avatar" class="personal-image" src="{{asset('img/stefan2.jpg')}}">
+            <img  alt="avatar" class="personal-image" src="{{asset('img/stefan.jpg')}}">
             <h3>
                 Stefan Matcovici
             </h3>
