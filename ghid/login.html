@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
@@ -17,6 +18,31 @@
       height: 100%;
     }
 
+    .screen {
+      width: 1000px;
+      height: 500px;
+      padding: 10px;
+    }
+
+    .col-sm-9 {
+      display: flex;
+      flex-flow: column wrap;
+      align-items: center;
+      margin-bottom: 100px;
+    }
+
+    body {
+      font-family: "Book Antiqua";
+    }
+
+    h1 {
+      font-size: 50px;
+    }
+
+    p {
+      font-size: 20px;
+      align-self: flex-start;
+    }
     
     /* Set black background color, white text and some padding */
     footer {
@@ -45,7 +71,7 @@
         <li><a href="./pagina-principala.html">Pagina principala</a></li>
         <li><a href="./feed.html">Feed</a></li>
         <li><a href="./register.html">Inregistrare</a></li>
-        <li><a href="./login.html">Login</a></li>
+        <li class="active"><a href="./login.html">Login</a></li>
         <li><a href="./pagina-principala-logat.html">Pagina principala(Logat)</a></li>
       </ul><br>
       <div class="input-group">
@@ -59,13 +85,12 @@
     </div>
 
     <div class="col-sm-9">
-      <div class="jumbotron">
-          <h1> <img src="./images/logo.png" width="75px" height="75px">  Ghidul site-ului web HuWr <img src="./images/logo.png" width="75px" height="75px"> </h1>
-          <h6> Autori: Luca Andrei, Matcovici Stefan, Opariuc Ariana </h6>
-          <a href="./pagina-principala.html" type="button" class="btn-lg btn-primary">Start</a>
-      </div>
-
+      <h1 class="display-1">
+        Logarea utilizatorilor
+      </h1>Pentru logare, utilizatorii pot folosi 2 metode: logarea cu email-ul si parola sau utilizand contul de Twitter(care trebuie sa aiba acelasi email ca cel cu care si-a facut contul). Daca utilizatorul a ales prima varianta si a introdus corect datele(in caz contrar va aparea un mesaj de eroare), accesta va fi redirectat la pagina principala(logat de aceasta data). Daca utilizatorul alege sa se logheze utilizand Twitter, acesta va trebui sa accepte conditiile impuse de aplicatia noastra si sa confirme din Twitter ca are incredere in aceasta aplicatie, iar apoi va fi redirectat catre pagina principala(logat) de asemenea.</p>
+      <img class="screen" alt="Animatie tara" src="./images/login.jpg">
     </div>
 </div>
+
 </body>
 </html>

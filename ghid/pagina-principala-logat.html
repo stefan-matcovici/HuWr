@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
@@ -17,6 +18,31 @@
       height: 100%;
     }
 
+    .screen {
+      width: 1000px;
+      height: 500px;
+      padding: 10px;
+    }
+
+    .col-sm-9 {
+      display: flex;
+      flex-flow: column wrap;
+      align-items: center;
+      margin-bottom: 100px;
+    }
+
+    body {
+      font-family: "Book Antiqua";
+    }
+
+    h1 {
+      font-size: 50px;
+    }
+
+    p {
+      font-size: 20px;
+      align-self: flex-start;
+    }
     
     /* Set black background color, white text and some padding */
     footer {
@@ -46,7 +72,7 @@
         <li><a href="./feed.html">Feed</a></li>
         <li><a href="./register.html">Inregistrare</a></li>
         <li><a href="./login.html">Login</a></li>
-        <li><a href="./pagina-principala-logat.html">Pagina principala(Logat)</a></li>
+        <li class="active"><a href="./pagina-principala-logat.html">Pagina principala(Logat)</a></li>
       </ul><br>
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Blog..">
@@ -59,13 +85,27 @@
     </div>
 
     <div class="col-sm-9">
-      <div class="jumbotron">
-          <h1> <img src="./images/logo.png" width="75px" height="75px">  Ghidul site-ului web HuWr <img src="./images/logo.png" width="75px" height="75px"> </h1>
-          <h6> Autori: Luca Andrei, Matcovici Stefan, Opariuc Ariana </h6>
-          <a href="./pagina-principala.html" type="button" class="btn-lg btn-primary">Start</a>
-      </div>
-
+      <h1 class="display-1">
+        Pagina principala(Logat)
+      </h1>
+      <p> Aceasta pagina nu este diferita referitor la harta, insa in navigator apar noi pagini: </p>
+      <ul>
+        <li>
+          Add Migration(pentru adaugarea de migratii)
+        </li>
+        <li>
+          Statistics(pentru vizualizarea diferitor statistici la nivel de tara)
+        </li>
+        <li>
+          Predictions(pentru a consulta cateva predictii)
+        </li>
+        <li>
+          Profile(pentru a vedea cateva date despre contul utilizatorului)
+        </li>
+      </ul>
+      <img class="screen" alt="Animatie tara" src="./images/pagina-principala-logat.jpg">
     </div>
 </div>
+
 </body>
 </html>
