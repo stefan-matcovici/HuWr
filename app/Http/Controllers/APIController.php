@@ -202,7 +202,7 @@ class APIController extends Controller
     public function feedGet()
     {
         $feed = \App::make("feed");
-        $feed->setCache(60);
+        $feed->setCache(1);
         if (!$feed->isCached())
         {
             $posts = \DB::table('human_migrations')->get();
