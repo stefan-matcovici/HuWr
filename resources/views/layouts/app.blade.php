@@ -44,9 +44,6 @@
                     <a class="nav-link" href="{{route('feed')}}">Feed</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('api')}}">Rest API</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         Logout
                     </a>
