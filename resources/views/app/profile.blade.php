@@ -14,6 +14,7 @@
 
 <div class="profile-outside-container">
     <div class="profile-inside-container">
+        <img class="profile-image" src="https://cdn.pixabay.com/photo/2017/02/25/22/04/user-icon-2098873_960_720.png">
         <div class="name-div">
             <label>
                 <b>Firstname:</b> {{Auth::user()->first_name}}

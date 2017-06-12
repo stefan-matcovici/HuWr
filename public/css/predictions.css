@@ -43,10 +43,10 @@ label {
 }
 
 .image-div {
-    padding: 20px;
-    flex: 1;
+    padding: 100px;
+    flex: 0.75;
     display: flex;
-    justify-content: center;
+    align-items: flex-start;
 }
 
 .image-div img {
@@ -54,10 +54,6 @@ label {
 }
 
 #prediction-form-container {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-around;
-    align-items: center;
     padding-left: 50px;
     padding-right: 50px;
     height: 100%;

@@ -13,12 +13,18 @@
 @section('content')
     <div class="body-container">
         <h1>
-            <img class="migration-image" alt="migration" src="https://cdn.pixabay.com/photo/2017/02/01/11/13/couple-2029712_960_720.png">
+            {{--<img class="migration-image" alt="migration" src="https://cdn.pixabay.com/photo/2017/02/01/11/13/couple-2029712_960_720.png">--}}
             Migration Feed
-            <img class="migration-image" alt="migration" src="https://cdn.pixabay.com/photo/2017/02/01/11/13/couple-2029712_960_720.png">
+            {{--<img class="migration-image" alt="migration" src="https://cdn.pixabay.com/photo/2017/02/01/11/13/couple-2029712_960_720.png">--}}
         </h1>
         <div class="submit-button-div">
-            <a href="{{route('feed.get')}}">Feed</a>
+            <a href="{{route('feed.get')}}" title="Subscribe to Migration Feed" class="btn btn-warning btn-lg\" target="_blank">
+                <div class="row">
+                    <div class="col-md-12">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </div>
+                </div>
+            </a>
         </div>
 
         <div class="table-div">

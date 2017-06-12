@@ -19,6 +19,7 @@ body {
 }
 
 .profile-image {
+	background-color: white;
 	filter: grayscale(90%);
 	margin-top: -120px;
 	width: 100px;
