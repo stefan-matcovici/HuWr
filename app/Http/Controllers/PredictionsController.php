@@ -98,7 +98,6 @@ class PredictionsController extends Controller
                     }
             }
         }
-        dd($futurePredictions);
         return $futurePredictions;
 
     }
