@@ -11,7 +11,7 @@
     </h1>
     <div class="information-container">
         <div class="personal-information">
-            <img alt="avatar" class="personal-image" src="https://www.w3schools.com/w3css/img_avatar2.png">
+            <img alt="avatar" class="personal-image" src="https://scontent.fotp3-3.fna.fbcdn.net/v/t34.0-12/19198151_768101280031806_1710414693_n.jpg?oh=26a2549e73abe2837806017c6743d2a7&oe=5941B512">
             <h3>
                 Luca Andrei
             </h3>
