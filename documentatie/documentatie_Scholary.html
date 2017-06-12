@@ -229,33 +229,43 @@
     	<h2>6. Servicii utilizate</h2>
     	<blockquote>
     		<h3> Blade </h3>
+    		Blade este un plugin al framework-ului Laravel ce permite sectionarea view-urilor si crearea de template-uri pentru acestea astfel incat sa reutilizam diferite componente din view-uri in cat mai multe pagini evitand codul duplicat si favorizand modularizarea.
     	</blockquote>
     	<blockquote>
     		<h3> Eloquent </h3>
-    	</blockquote>
+    		Eloquent este un alt plugin al framework-ului Laravel si nu este decat un ORM(object-relational mapping) care ne-a ajutat sa mapam modelele create in cadrul aplicatiei noastre cu datele din baza de date astfel incat sa ne fie cat mai simplu sa accesam datele necesare pentru experienta utilizatorului.
+ 	  	</blockquote>
     	<blockquote>
     		<h3> D3.js </h3>
+    		D3.js este o biblioteca Javascript care se bazeaza pe crearea de reprezentari grafice bazate pe date. In acest sens, am utilziat aceasta biblioteca pentru a crea diferite statistici despre migratii la nivel de tara(ex: statistici referitoare la motivul migratiei, statistici bazate pe anui sau consideratii demografice)
     	</blockquote>
     	<blockquote>
     		<h3> Swagger-doc </h3>
+    		Swagger este un framework ce ajuta dezvoltatorii de API-uri sa isi documenteze adecvat serviciul pus la dispozitie altor dezvoltatori. Avand un API minimal ce ofera modalitati de consulta migratii, de a consulta predictiile si statisticile puse la dispozitie de aplicatia noastra, am avut nevoie de o metoda de documentare a cererilor intr-un mod standardizat si pentru acest lucru am preferat Swagger.
     	</blockquote>
     	<blockquote>
     		<h3> Open-Street-Map(Leaflet + diferite plugin-uri) </h3>
+    		Open-Street-Map este un serviciu de cartografiere la nivel de web, iar Leaflet reprezinta o biblioteca de Javascript peste acest serviciu, ce ne-a oferit impreuna cu diferitele plugin-uri open-source sa realizam o harta interactiva responsive care ofera utilizatorului o experienta placuta.
     	</blockquote>
     	<blockquote>
-    		<h3> Twitter APi - impreuna cu Thujohn API</h3>
-    	</blockquote>
+    		<h3> Twitter API - impreuna cu Thujohn API</h3>
+    		Twitter este o platforma de social media ce le permite utilizatorilor aplicatiei sa impartaseasca migratiile adaugate din cadrul aplicatiei sau statisticile generate de aplicatia noastra cu prietenii lor. De asemenea, procesul poate fi si invers, utilizatorii de Twitter pot adauga migratii direct printr-o postare chiar si fara a avea un cont in cadrul aplicatiei.
+     	</blockquote>
     	<blockquote>
     		<h3> Scheduler </h3>
+    		Pentru a mentine aplicatia cu date cat mai relevante si cat mai recente am simtit nevoia de a folosi un Scheduler ce ne permite ruland o comanda sa putem prelua ultimele date de pe Twitter si sa le adaugam in baza de date la diferite intervale de timp.
     	</blockquote>
     	<blockquote>
     		<h3> Bootstrap + FontAwesome </h3>
+    		Bootstrap si FontAwesome sunt biblioteci CSS ce ajut la stilizarea elementelor HTML intr-un mod cat mai familiar si atractiv pentru utilizatori si de asemenea asigura ca elementele stilizate utilizand aceste librarii sunt responsive si eficient facute astfel incat sa oferim utilizatorilor o experienta frumoasa.
     	</blockquote>
     	<blockquote>
     		<h3> MrRio/jsPDF </h3>
+    		Pentru a exporta statisticile generate utilizand libraria D3 in formatul PDF a fost nevoie sa folosim un pachet ce ne-a usurat munca si ne-a ajutat apoi si sa impartasim acea statistica si pe Twitter si acest pachet s-a pliat cel mai bine pentru ce aveam noi nevoie.
     	</blockquote>
     	<blockquote>
     		<h3> Roumen/Feed - Stiri ATOM </h3>
+    		Toate migratiile adaugate in cadrul aplicatiei apar intr-o pagina separata, insa unii utilizatori s-ar putea sa doreasca sa aiba nevoie de un flux de stiri atom legate de migratii si am oferit acest lucru utilizand standardul existent impreuna cu pachetul specificat mai sus ce ne-a ajutat sa fim mai eficienti.
     	</blockquote>
 	</section>
 	</article>
