@@ -21,7 +21,7 @@
 
         </div>
         <div class="personal-information">
-            <img  alt="avatar" class="personal-image" src="https://www.w3schools.com/w3css/img_avatar3.png">
+            <img  alt="avatar" class="personal-image" src="{{asset('img/stefan2.jpg')}}">
             <h3>
                 Stefan Matcovici
             </h3>
@@ -29,7 +29,7 @@
                 Student at Faculty of Computer Science Iasi
             </p>
             <p>
-                <strong> Team Leader </strong>
+                <strong> Team Founder </strong>
             </p>
 
         </div>
