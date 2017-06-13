@@ -47,7 +47,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-polylinedecorator/1.1.0/leaflet.polylineDecorator.js">
         </script>
         <script>
-            var mymap = L.map('demoMap', {zoomControl : false}).setView([30,0], 2);
+            var mymap = L.map('demoMap', {zoomControl : false}).locate({setView: true, maxZoom: 8   });
             mymap.options.minZoom = 2;
 //            map.options.maxZoom = 14;
 
