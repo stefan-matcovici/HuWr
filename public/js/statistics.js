@@ -525,7 +525,7 @@ function svg_to_image (svg, type) {
                 description = "Statistics for " + country + " about children migrations.";
             }
 
-            sendObject = '{ \"text":\"` + description + `\",\"image\": \"` + dataUrl +`\"  }';
+            sendObject = '{ \"text":\"' + description + '\",\"image\": \"' + dataUrl +'\"  }';
             request.open("POST", statisticShareURI, true);
             request.send(sendObject);
         }
